@@ -27,13 +27,17 @@ export default class routes extends React.Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="splash" component={Splash} hideNavBar={true} />
+          <Scene
+            key="splash"
+            initial={true}
+            component={Splash}
+            hideNavBar={true}
+          />
           <Scene
             key="login"
             component={Login}
             title="login"
             hideNavBar={true}
-            initial={true}
           />
           <Scene
             key="landing"
@@ -42,18 +46,19 @@ export default class routes extends React.Component {
             passProps
           />
           <Scene key="signup" component={SignUp} hideNavBar={true} />
+          <Scene
+            key="calendar"
+            component={Calendar}
+            hideNavBar={true}
+            passProps
+          />
         </Scene>
       </Router>
     )
   }
 }
 
-/* <Scene
-            key="calendar"
-            component={Calendar}
-            hideNavBar={true}
-            passProps
-          />
+/* 
           <Scene key="sync" component={Sync} hideNavBar={true} passProps /> 
           <Scene key="day" component={Day} hideNavBar={true} passProps />
           <Scene

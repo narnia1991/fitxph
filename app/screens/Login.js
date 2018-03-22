@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from "react";
 import {
   Button,
   Container,
@@ -9,26 +9,25 @@ import {
   Label,
   Title,
   Body
-} from 'native-base'
-import { Actions } from 'react-native-router-flux'
-import { Dimensions, StyleSheet, Text } from 'react-native'
-import Header from '../components/Header'
+} from "native-base";
+import { Actions } from "react-native-router-flux";
+import { Dimensions, StyleSheet, Text } from "react-native";
+import Header from "../components/Header";
 
-class Login extends Component {
+class Login extends React.Component {
   state = {
-    username: '',
-    password: ''
-  }
+    username: "",
+    password: ""
+  };
   componentDidMount = () => {
-    console.log(' potato')
-  }
+    console.log(" potato");
+  };
   handleLogin = () => {
-    // Actions.landing()
-  }
+    Actions.landing();
+  };
   handleSignUp = () => {
-    // Actions.signup()
-  }
-  // title = () => <Title>Login</Title>
+    Actions.signup();
+  };
   render() {
     return (
       <Container>
@@ -48,11 +47,11 @@ class Login extends Component {
           </Form>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
-let { height, width } = Dimensions.get('window')
+let { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -65,6 +64,6 @@ const styles = StyleSheet.create({
   syncNowText: {
     paddingBottom: 30
   }
-})
+});
 
-export default Login
+export default Login;
