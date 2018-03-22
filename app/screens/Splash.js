@@ -5,7 +5,7 @@ import imageLoader from './imageLoader'
 
 class Splash extends React.Component {
   componentDidMount = () => {
-    setTimeout(() => Actions.login(), 500)
+    setTimeout(() => Actions.login(), 1500)
   }
 
   render() {
