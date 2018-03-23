@@ -15,8 +15,8 @@
 //         date_modified: ''
 //       } */
 
-import React, { Component } from 'react'
-import { Image } from 'react-native'
+import React from "react";
+import { Image } from "react-native";
 import {
   Container,
   Header,
@@ -29,8 +29,17 @@ import {
   Icon,
   Left,
   Body
-} from 'native-base'
-class Food extends Component {
+} from "native-base";
+import { Actions } from "react-native-router-flux";
+
+class Food extends React.Component {
+  state = { user: null };
+  componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+    this.setState({ user: this.props.user });
+  };
   render() {
     return (
       <Container>
@@ -39,7 +48,7 @@ class Food extends Component {
           <Card style={{ flex: 0 }}>
             <CardItem>
               <Left>
-                <Thumbnail source={{ uri: 'Image URL' }} />
+                <Thumbnail source={{ uri: "Image URL" }} />
                 <Body>
                   <Text>NativeBase</Text>
                   <Text note>April 15, 2016</Text>
@@ -49,7 +58,7 @@ class Food extends Component {
             <CardItem>
               <Body>
                 <Image
-                  source={{ uri: 'Image URL' }}
+                  source={{ uri: "Image URL" }}
                   style={{ height: 200, width: 200, flex: 1 }}
                 />
                 <Text>//Your text here</Text>
@@ -57,7 +66,7 @@ class Food extends Component {
             </CardItem>
             <CardItem>
               <Left>
-                <Button transparent textStyle={{ color: '#87838B' }}>
+                <Button transparent textStyle={{ color: "#87838B" }}>
                   <Icon name="logo-github" />
                   <Text>1,926 stars</Text>
                 </Button>
@@ -66,8 +75,8 @@ class Food extends Component {
           </Card>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
-export default Food
+export default Food;

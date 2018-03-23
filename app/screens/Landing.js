@@ -1,24 +1,34 @@
-import React, { Component } from 'react'
-import { Actions } from 'react-native-router-flux'
-import { Container, Content } from 'native-base'
-import Tile from '../components/Tile'
-import imageLoader from './imageLoader'
+import React, { Component } from "react";
+import { Actions } from "react-native-router-flux";
+import { Container, Content } from "native-base";
+import Tile from "../components/Tile";
+import imageLoader from "./imageLoader";
 class Landing extends Component {
+  state = {
+    user: null
+  };
+
+  componentWillMount = () => {
+    this.setState({ user: this.props.user });
+  };
+
   handlePlanPress = () => {
-    Actions.plan()
-  }
+    Actions.plan({ user: this.state.user });
+    Actions.planlist({ user: this.state.user });
+  };
   handleProgressPress = () => {
-    Actions.progress()
-  }
+    Actions.progress({ user: this.state.user });
+  };
   handleReferencePress = () => {
-    Actions.reference()
-  }
+    Actions.reference({ user: this.state.user });
+  };
 
   render() {
     return [
       <Tile
         uri={imageLoader.Plans}
         content="Plan"
+        key="Plan"
         contentColor="#fff"
         backGroundColor="rgba(9,9,9,.8)"
         onPress={this.handlePlanPress}
@@ -26,6 +36,7 @@ class Landing extends Component {
       <Tile
         uri={imageLoader.Progress}
         content="Progress"
+        key="Progress"
         contentColor="#fff"
         backGroundColor="rgba(9,9,9,.8)"
         onPress={this.handleProgressPress}
@@ -33,12 +44,13 @@ class Landing extends Component {
       <Tile
         uri={imageLoader.Reference}
         content="Reference"
+        key="Reference"
         contentColor="#fff"
         backGroundColor="rgba(9,9,9,.8)"
         onPress={this.handleReferencePress}
       />
-    ]
+    ];
   }
 }
 
-export default Landing
+export default Landing;

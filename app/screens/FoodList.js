@@ -1,22 +1,34 @@
 //food list
 //fab to add food
-import React, { Component } from 'react'
-import { Container, Header, Content, List, ListItem, Text } from 'native-base'
-export default class FoodList extends Component {
+import React from "react";
+import { Container, Header, Content, List, ListItem, Text } from "native-base";
+import { Actions } from "react-native-router-flux";
+
+class FoodList extends React.Component {
   state = {
-    list: null
-  }
+    list: null,
+    user: null
+  };
+
+  componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+    this.setState({ user: this.props.user });
+  };
+
   handleAdd = () => {
-    //add exercise
-  }
+    //add food
+  };
+
   renderlist = () => {
     if (this.state.list) {
       return this.state.list.map(item => {
-        return <ListItem>{item.name}</ListItem>
-      })
+        return <ListItem>{item.name}</ListItem>;
+      });
     }
-    return <Text>Nothing To Show</Text>
-  }
+    return <Text>Nothing To Show</Text>;
+  };
 
   render() {
     return (
@@ -26,7 +38,7 @@ export default class FoodList extends Component {
           <List>{this.renderList}</List>
           <Fab
             containerStyle={{}}
-            style={{ backgroundColor: '#5067FF' }}
+            style={{ backgroundColor: "#5067FF" }}
             position="bottomRight"
             onPress={this.handleAdd}
           >
@@ -34,6 +46,8 @@ export default class FoodList extends Component {
           </Fab>
         </Content>
       </Container>
-    )
+    );
   }
 }
+
+export default FoodList;

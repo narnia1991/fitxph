@@ -1,18 +1,29 @@
-import React, { Component } from 'react'
-import { Actions } from 'react-native-router-flux'
-import { Container, Content } from 'native-base'
-import Tile from '../components/Tile'
-import imageLoader from './imageLoader'
+import React, { Component } from "react";
+import { Actions } from "react-native-router-flux";
+import { Container, Content } from "native-base";
+import Tile from "../components/Tile";
+import imageLoader from "./imageLoader";
 class Landing extends Component {
+  state = {
+    user: null
+  };
+
+  componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+    this.setState({ user: this.props.user });
+  };
+
   handleExercisePress = () => {
-    Actions.exerciselist()
-  }
+    Actions.exerciselist({ user: this.state.user });
+  };
   handleFoodPress = () => {
-    Actions.foodlist()
-  }
+    Actions.foodlist({ user: this.state.user });
+  };
   handleDiscoverPress = () => {
-    Actions.discover()
-  }
+    Actions.discover({ user: this.state.user });
+  };
 
   render() {
     return [
@@ -37,8 +48,8 @@ class Landing extends Component {
         backGroundColor="rgba(9,9,9,.8)"
         onPress={this.handleDiscoverPress}
       />
-    ]
+    ];
   }
 }
 
-export default Landing
+export default Landing;

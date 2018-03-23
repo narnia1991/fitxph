@@ -16,17 +16,23 @@ plan structure:
 }
 */
 
-import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
-import { Actions } from 'react-native-router-flux'
-import imageLoader from './imageLoader'
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
+import { Actions } from "react-native-router-flux";
+import imageLoader from "./imageLoader";
 
-import Header from '../components/Header'
+import Header from "../components/Header";
 
 class Plan extends React.Component {
-  componentDidMount = () => {
-    //check if there is a current workout plan
-  }
+  state = {
+    user: null
+  };
+  componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+    this.setState({ user: this.props.user });
+  };
   render() {
     return (
       <Container>
@@ -43,10 +49,10 @@ class Plan extends React.Component {
           </Tab>
         </Tabs>
       </Container>
-    )
+    );
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
-export default Plan
+export default Plan;
