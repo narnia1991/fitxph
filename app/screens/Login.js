@@ -23,7 +23,33 @@ class Login extends React.Component {
     console.log(" potato");
   };
   handleLogin = () => {
-    Actions.landing();
+    const user = {
+      username: "puroyski",
+      password: "potato",
+      plan: "defaultfull",
+      progress: {
+        day: 10,
+        intitial_height: 169,
+        initial_weight: 68,
+        initial_date: Date(),
+        target_weight: 60,
+        progress: {
+          date: Date(),
+          weight: 67.5
+        }
+      },
+      notification: false,
+      sound: false,
+      sync: false,
+      custom_data: {
+        exercises: [],
+        dishes: [],
+        plans: []
+      },
+      date_created: Date(),
+      date_modified: Date()
+    };
+    Actions.landing({ user });
   };
   handleSignUp = () => {
     Actions.signup();

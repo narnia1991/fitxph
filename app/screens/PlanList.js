@@ -12,36 +12,41 @@ plan structure:
     dishes
 }
 */
-import React from 'react'
-import { Container, Content, List, ListItem, Text } from 'native-base'
-import { StyleSheet } from 'react-native'
+import React from "react";
+import { Container, Content, List, ListItem, Text } from "native-base";
+import { StyleSheet } from "react-native";
 
 class PlanList extends React.Component {
   state = {
     items: null
-  }
+  };
+
+  componentWillMount = () => {
+    this.setState({ user: this.props.user });
+  };
+
   componentDidMount = async () => {
     //get plan list data
-    let items = []
+    let items = [];
     switch (this.props.type) {
-      case 'workout':
+      case "workout":
         items.push({
-          name: 'default'
-        })
-      case 'diet':
+          name: "default"
+        });
+      case "diet":
         items.push({
-          name: 'default'
-        })
+          name: "default"
+        });
       default:
         items.push({
-          name: 'default'
-        })
+          name: "default"
+        });
     }
 
     // items = [items, ...fetchedData]
 
-    this.setState({ items })
-  }
+    this.setState({ items });
+  };
 
   renderList = () => {
     if (this.state.items)
@@ -49,9 +54,9 @@ class PlanList extends React.Component {
         <ListItem>
           <Text>{item.name}</Text>
         </ListItem>
-      ))
-    return <Text>No Plans Available</Text>
-  }
+      ));
+    return <Text>No Plans Available</Text>;
+  };
 
   render() {
     return (
@@ -60,8 +65,8 @@ class PlanList extends React.Component {
           <List>{this.renderList}</List>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
-export default PlanList
+export default PlanList;

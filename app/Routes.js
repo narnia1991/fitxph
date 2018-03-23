@@ -1,5 +1,5 @@
-import React from 'react'
-import { Lightbox, Router, Scene } from 'react-native-router-flux'
+import React from "react";
+import { Lightbox, Router, Scene } from "react-native-router-flux";
 import {
   Calendar,
   Day,
@@ -9,6 +9,7 @@ import {
   ExerciseOnGoing,
   Featured,
   Food,
+  FoodAdd,
   FoodList,
   InitialData,
   Landing,
@@ -20,7 +21,7 @@ import {
   SignUp,
   Splash,
   Sync
-} from './screens'
+} from "./screens";
 
 export default class routes extends React.Component {
   render() {
@@ -52,14 +53,14 @@ export default class routes extends React.Component {
             hideNavBar={true}
             passProps
           />
-        </Scene>
-      </Router>
-    )
-  }
-}
 
-/* 
-          <Scene key="sync" component={Sync} hideNavBar={true} passProps /> 
+          <Scene
+            key="reference"
+            component={Reference}
+            hideNavBar={true}
+            passProps
+          />
+          <Scene key="sync" component={Sync} hideNavBar={true} passProps />
           <Scene key="day" component={Day} hideNavBar={true} passProps />
           <Scene
             key="exercise"
@@ -87,6 +88,12 @@ export default class routes extends React.Component {
           />
           <Scene key="food" component={Food} hideNavBar={true} passProps />
           <Scene
+            key="foodadd"
+            component={FoodAdd}
+            hideNavBar={true}
+            passProps
+          />
+          <Scene
             key="foodlist"
             component={FoodList}
             hideNavBar={true}
@@ -111,9 +118,11 @@ export default class routes extends React.Component {
             hideNavBar={true}
             passProps
           />
-          <Scene
-            key="reference"
-            component={Reference}
-            hideNavBar={true}
-            passProps
-          /> */
+        </Scene>
+      </Router>
+    );
+  }
+}
+
+/* 
+           */

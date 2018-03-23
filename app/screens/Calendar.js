@@ -1,12 +1,20 @@
 // calendar to track the exercises
-import React from 'react'
-import { Calendar as Kalendaryo } from 'react-native-calendars'
-import { Button, Container, Content } from 'native-base'
+import React from "react";
+import { Calendar as Kalendaryo } from "react-native-calendars";
+import { Button, Container, Content } from "native-base";
 
 class Calendar extends React.Component {
+  state = {
+    user: null
+  };
+
+  comoponentWillMount = () => {
+    this.setState({ user: this.props.user });
+  };
+
   componentDidMount = () => {
     //get progressdata from asyncstorage
-  }
+  };
 
   render() {
     return (
@@ -16,11 +24,11 @@ class Calendar extends React.Component {
             // Initially visible month. Default = Date()
             current={Date()}
             onDayPress={day => {
-              console.log('selected day', day)
+              console.log("selected day", day);
             }}
-            monthFormat={'yyyy MM'}
+            monthFormat={"yyyy MM"}
             onMonthChange={month => {
-              console.log('month changed', month)
+              console.log("month changed", month);
             }}
             hideArrows={true}
             hideExtraDays={true}
@@ -36,8 +44,8 @@ class Calendar extends React.Component {
           </Button>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
-export default Calendar
+export default Calendar;

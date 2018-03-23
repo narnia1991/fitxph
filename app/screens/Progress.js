@@ -28,7 +28,12 @@ class Progress extends React.Component {
       { x: new Date(2005, 1, 1), y: 305 },
       { x: new Date(2011, 1, 1), y: 270 },
       { x: new Date(2015, 1, 1), y: 470 }
-    ]
+    ],
+    user: null
+  };
+
+  componentWillMount = () => {
+    this.setState({ user: this.props.user });
   };
 
   render() {
