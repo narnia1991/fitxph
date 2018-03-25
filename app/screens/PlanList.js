@@ -25,9 +25,10 @@ import {
 import { StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
 
+
 class PlanList extends React.Component {
   state = {
-    items: null,
+    list: null,
     user: null
   };
 
@@ -35,29 +36,14 @@ class PlanList extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user });
+    conct list = defaultlist
+    this.setState({ user: this.props.user, list });
   };
 
   componentDidMount = async () => {
     //get plan list data
-    let items = [];
-    switch (this.props.type) {
-      case "exercise":
-        items.push({
-          name: "default",
-          creator: "default"
-        });
-      case "diet":
-        items.push({
-          name: "default",
-          creator: "default"
-        });
-      default:
-        items.push({
-          name: "default",
-          creator: "default"
-        });
-    }
+    let list = [];
+    
 
     // items = [items, ...fetchedData]
     this.setState({ items });

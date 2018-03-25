@@ -73,10 +73,12 @@ export const anonymousSignIn = async () => {
 };
 
 export const setSyncData = async (key, value) => {
+  const res = key.replace(/\./g, "__dot__");
+  const user = res.replace(/\@/g, "__at__");
   try {
     return await firebaseService
       .database()
-      .ref(key)
+      .ref(user)
       .set(value);
   } catch (err) {
     console.log(err.message);
@@ -85,8 +87,10 @@ export const setSyncData = async (key, value) => {
 };
 
 export const getSyncData = async key => {
+  const res = key.replace(/\./g, "__dot__");
+  const user = res.replace(/\@/g, "__at__");
   try {
-    return await firebaseService.database().ref(key);
+    return await firebaseService.database().ref(user);
   } catch (err) {
     console.log(err.message);
     return false;

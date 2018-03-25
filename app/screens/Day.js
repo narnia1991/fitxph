@@ -7,16 +7,19 @@ class Day extends React.Component {
   state = {
     user: {}
   };
+
   componentWillMount = () => {
     if (!this.props.user) {
       Actions.login();
     }
     this.setState({ user: this.props.user });
   };
+
   getMeals = () => {
     const meals = [];
     meals.push(this.state.user.custom);
   };
+
   renderDietPlan = () => {
     const dishes = this.getMeals();
     const diet = this.state.user.plan.dietplan;
@@ -31,6 +34,7 @@ class Day extends React.Component {
     });
     return dayplan;
   };
+
   renderTabs = () => {
     const { plan, progress } = this.state.user;
     const header = "";

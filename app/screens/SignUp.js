@@ -16,10 +16,27 @@ class SignUp extends Component {
   state = {
     username: "",
     password: "",
-    confirm_password: ""
+    confirm_password: "",
+    errors: ""
   };
-  handleSignUp = () => {
-    Actions.sync();
+  handleSignUp = async () => {
+    const user = await getData(this.state.username);
+    if (password !== confirm_password) {
+      this.setState({ errors: "Password didn't match" });
+    } else if (user) {
+      this.setState({ errors: "Username already taken" });
+    } else {
+      await setData(username, {
+        username: this.state.username,
+        password: this.state.password
+      });
+      Actions.sync({
+        user: {
+          username: this.state.username,
+          password: this.state.password
+        }
+      });
+    }
   };
   title = () => <Title>SignUp</Title>;
   render() {
@@ -27,6 +44,7 @@ class SignUp extends Component {
       <Container>
         <Content padder>
           <Form>
+            <Text>{this.state.errors}</Text>
             <Item floatingLabel>
               <Label>Username</Label>
               <Input onChange={input => this.setState({ username: input })} />

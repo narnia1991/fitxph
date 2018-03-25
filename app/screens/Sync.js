@@ -15,12 +15,14 @@ import { Dimensions, StyleSheet, Text } from "react-native";
 
 class Sync extends React.Component {
   state = {
-    user: null
+    user: null,
+    email: ""
   };
 
   componentWillMount = () => {
     this.setState({ user: this.props.user });
   };
+
   componentDidMount = () => {
     console.log(" potato");
   };
@@ -28,12 +30,16 @@ class Sync extends React.Component {
   handleSync = async () => {
     //check for username availability online
     //upload data online
-    const user = await getData(this.state.user);
-    Actions.landing({});
+    const user = this.state.user;
+    user.email = this.state.email;
+    const syncUser = await loginUser(user.email, this.state.user.password);
+    if (syncUser) {
+      await setSyncData(user.email, user);
+      await setData(user.username, user);
+      Actions.landing(user);
+    }
   };
-  handleSignUp = () => {
-    Actions.signup();
-  };
+
   render() {
     return (
       <Container>
@@ -41,11 +47,7 @@ class Sync extends React.Component {
           <Form>
             <Item floatingLabel>
               <Label>Username</Label>
-              <Input onChange={input => this.setState({ username: input })} />
-            </Item>
-            <Item floatingLabel last>
-              <Label>Password</Label>
-              <Input onChange={input => this.setState({ password: input })} />
+              <Input onChange={input => this.setState({ email: input })} />
             </Item>
             <Button block onPress={this.handleSync}>
               <Text>Sync</Text>
