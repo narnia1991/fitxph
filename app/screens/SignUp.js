@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   Button,
   Container,
@@ -8,27 +8,43 @@ import {
   Item,
   Label,
   Title
-} from 'native-base'
-import { Actions } from 'react-native-router-flux'
-import { Dimensions, StyleSheet, Text } from 'react-native'
-import Header from '../components/Header'
+} from "native-base";
+import { Actions } from "react-native-router-flux";
+import { Dimensions, StyleSheet, Text } from "react-native";
 
 class SignUp extends Component {
   state = {
-    username: '',
-    password: '',
-    confirm_password: ''
-  }
-  handleSignUp = () => {
-    Actions.sync()
-  }
-  title = () => <Title>SignUp</Title>
+    username: "",
+    password: "",
+    confirm_password: "",
+    errors: ""
+  };
+  handleSignUp = async () => {
+    const user = await getData(this.state.username);
+    if (password !== confirm_password) {
+      this.setState({ errors: "Password didn't match" });
+    } else if (user) {
+      this.setState({ errors: "Username already taken" });
+    } else {
+      await setData(username, {
+        username: this.state.username,
+        password: this.state.password
+      });
+      Actions.sync({
+        user: {
+          username: this.state.username,
+          password: this.state.password
+        }
+      });
+    }
+  };
+  title = () => <Title>SignUp</Title>;
   render() {
     return (
       <Container>
-        <Header title="SignUp" body={this.title} />
         <Content padder>
           <Form>
+            <Text>{this.state.errors}</Text>
             <Item floatingLabel>
               <Label>Username</Label>
               <Input onChange={input => this.setState({ username: input })} />
@@ -49,11 +65,11 @@ class SignUp extends Component {
           </Form>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
-let { height, width } = Dimensions.get('window')
+let { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,6 +82,6 @@ const styles = StyleSheet.create({
   syncNowText: {
     paddingBottom: 30
   }
-})
+});
 
-export default SignUp
+export default SignUp;

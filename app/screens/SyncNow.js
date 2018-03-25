@@ -27,10 +27,7 @@ class Sync extends React.Component {
   handleSync = async () => {
     const user = await loginUser(this.state.email, this.state.password);
     if (user) {
-      const username = this.state.email;
-      const res = username.replace(/\./g, "__dot__");
-      const key = res.replace(/\@/g, "__at__");
-      const userData = await getSyncData(key);
+      const userData = await getSyncData(this.state.email);
       if (userData) {
         await setData(userData.username, userData);
         Actions.landing({ user });

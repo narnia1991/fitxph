@@ -33,16 +33,13 @@ class Login extends React.Component {
   };
 
   handleLogin = async () => {
-    user = dummyUser;
-    // const user = await getData(this.state.username);
+    const user = await getData(this.state.username);
     if (user && user.password == this.state.password) {
       console.log(user, "user");
-
-      // await setData("currentUser", user.username);
-      //upload to firebase
+      await setData("currentUser", user.username);
+      const user = await setSyncData(user.email, user);
       Actions.landing({ user });
-    }
-    this.setState({ errors: "invalid Username /  Password" });
+    } else this.setState({ errors: "invalid Username /  Password" });
   };
 
   handleSignUp = () => {

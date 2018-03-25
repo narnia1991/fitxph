@@ -7,11 +7,30 @@ export const dietplan = {
     [
       {
         meal: "Breakfast",
-        dishes: ["defaulteggandrice"]
+        dishes: [
+          {
+            name: "egg",
+            quantity: "3 pcs"
+          },
+          { name: "rice", quantity: "1 cup" }
+        ]
       },
       {
         meal: "Lunch",
-        dishes: ["defaultkamote,bangusatensalada"]
+        dishes: [
+          {
+            name: "kamote",
+            quantity: "1 pc"
+          },
+          {
+            name: "bangus",
+            quantity: "1/4 pc"
+          },
+          {
+            name: "ensalada",
+            quantity: "1/4 cup"
+          }
+        ]
       },
       {
         meal: "Dinner",

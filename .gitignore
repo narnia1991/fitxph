@@ -5,8 +5,8 @@
 
 # dependencies
 /node_modules
-*/build/*
 /android/app/build
+/android/build
 
 # misc
 .env.local

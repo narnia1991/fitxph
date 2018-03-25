@@ -17,7 +17,7 @@ class Landing extends Component {
 
   handlePlanPress = () => {
     console.log(Actions.plan);
-    Actions.plan({ user: this.state.user });
+    Actions.planlist({ user: this.state.user });
     // Actions.planlist({ user: this.state.user });
   };
   handleProgressPress = () => {
