@@ -15,7 +15,6 @@ import {
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet, Text } from "react-native";
 import { VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
-import Header from "../components/Header";
 
 class Progress extends React.Component {
   state = {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Header, Content, Tab, Tabs } from "native-base";
 import { Actions } from "react-native-router-flux";
 
 class Day extends React.Component {
@@ -11,8 +12,30 @@ class Day extends React.Component {
     }
     this.setState({ user: this.props.user });
   };
+
+  renderTabs = () => {
+    const { plan, progress } = this.state.user;
+    const header = "";
+    const tabs = [];
+    if (plan.exerciseplan) {
+      <Tab heading="Exercises">
+        <Tab1 />
+      </Tab>;
+    } else if (plan.exerciseplan) {
+      <Tab heading="Meals">
+        <Tab1 />
+      </Tab>;
+    }
+    return tabs;
+  };
+
   render() {
-    return;
+    return (
+      <Container>
+        <Header hasTabs />
+        <Tabs initialPage={1}>{this.renderTabs}</Tabs>
+      </Container>
+    );
   }
 }
 

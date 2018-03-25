@@ -20,7 +20,8 @@ import {
   Reference,
   SignUp,
   Splash,
-  Sync
+  Sync,
+  SyncNow
 } from "./screens";
 
 export default class routes extends React.Component {
@@ -118,6 +119,7 @@ export default class routes extends React.Component {
             hideNavBar={true}
             passProps
           />
+          <Scene key="syncnow" component={SyncNow} hideNavBar={true} />
         </Scene>
       </Router>
     );

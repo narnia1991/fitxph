@@ -18,6 +18,7 @@ import Reference from "./Reference";
 import SignUp from "./SignUp";
 import Splash from "./Splash";
 import Sync from "./Sync";
+import SyncNow from "./SyncNow";
 
 export {
   Calendar,
@@ -39,5 +40,6 @@ export {
   Reference,
   SignUp,
   Splash,
-  Sync
+  Sync,
+  SyncNow
 };

@@ -1,3 +1,8 @@
 asyncstorage keys
 
-currentUser
+currentUser[usernames]
+users[username, email, password]
+${username}
+customExercise
+customDish
+customPlan

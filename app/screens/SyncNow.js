@@ -19,42 +19,16 @@ class Sync extends React.Component {
     password: ""
   };
 
-  componentDidMount = () => {
-    console.log(" potato");
-  };
+  componentDidMount = () => {};
 
   handleSync = () => {
-    const user = {
-      username: "puroyski",
-      password: "potato",
-      plan: "defaultfull",
-      progress: {
-        day: 10,
-        intitial_height: 169,
-        initial_weight: 68,
-        initial_date: Date(),
-        target_weight: 60,
-        progress: {
-          date: Date(),
-          weight: 67.5
-        }
-      },
-      notification: false,
-      sound: false,
-      sync: false,
-      custom_data: {
-        exercises: [],
-        dishes: [],
-        plans: []
-      },
-      date_created: Date(),
-      date_modified: Date()
-    };
+    //authnticate then get the data
+
+    //set the data to the database
+    //set current user
     Actions.landing({ user });
   };
-  handleSignUp = () => {
-    Actions.signup();
-  };
+
   render() {
     return (
       <Container>

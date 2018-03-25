@@ -21,8 +21,6 @@ import { Image, StyleSheet, View } from "react-native";
 import { Actions } from "react-native-router-flux";
 import imageLoader from "./imageLoader";
 
-import Header from "../components/Header";
-
 class Plan extends React.Component {
   state = {
     user: null
