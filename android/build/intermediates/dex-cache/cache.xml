@@ -3,12 +3,21 @@
 
     <item
         is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_8ea429000f6a4d8133806b59dec399cfddafb19b.jar" />
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_296bdd78bdac657f60b87de7fa40e78b0b7a1dc9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.3.2\bcc561a84883a9f3f84e209662c4765a0c3dc691\rxjava-1.3.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="bcc561a84883a9f3f84e209662c4765a0c3dc691">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\rxjava-1.3.2_752af2af0022d4648de1d42cdd840bd7d46603c4.jar" />
     </item>
     <item
         is-multidex="false"
@@ -21,21 +30,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_39f65bca403d52db1179030823638d4787cf66ff.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.6.0\69edde9fc4b01c9fd51d25b83428837478c27254\okhttp-3.6.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
         <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\okhttp-3.6.0_0e7a86d85dda2b6d4008cba6927ae14a0bcb1b9f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_6da26f0db4f61ea56dd5cd2dd9c330c59bd4079c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_8f1c959abe60ba7b71a8893774c342066c0685cf.jar" />
     </item>
     <item
         is-multidex="false"
@@ -48,12 +66,39 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_426586a3498df0e5d57af759b6cfa915e26b3929.jar" />
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_cce0454fc5452588a6e5bd61d9d3c001459d4861.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.google.dagger\dagger\2.8\55a1aa1cdcfd06b9950ca856e2bc2790e105146a\dagger-2.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="55a1aa1cdcfd06b9950ca856e2bc2790e105146a">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\dagger-2.8_7a97408c5846a4a04f1490846fb7c9cd3fc8971e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.artemzin.rxjava\proguard-rules\1.3.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="615264fe0e8b673e8a6ba5740547a1e86ff8f7a4">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.artemzin.rxjava-proguard-rules-1.3.2.0_cdf3fc379d4d96e566c303a6386c4aeaf89288bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_524e48cb22217b54cfe6433508b85d37f4c009a2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -75,21 +120,111 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\fitxph\react-native-tts\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3ea098039a4993218d5da8a8defb6820a9681a8a">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\fitxph-react-native-tts-unspecified_665bc5588f1626d37e38bce005905b644f4bdecb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.jakewharton.rxrelay\rxrelay\1.2.0\a53b8b8ef1a5ec8ff75afca24fc689b71892b44f\rxrelay-1.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a53b8b8ef1a5ec8ff75afca24fc689b71892b44f">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\rxrelay-1.2.0_04cf92ff8103f8b53ef4b4dae4f7205ed933e867.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_6474fb61b57c0f1dd9e848e002837e32ed9f7d3e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.polidea.rxandroidble\rxandroidble\1.4.3\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="86d0e4fc4a4ee9e31b6d54ae3a14afe682815f08">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.polidea.rxandroidble-rxandroidble-1.4.3_f516c2d80e03d53fe16357c99d8999d069764f73.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_b6202b679a3c3e029fba6cfaeadd585c6424f03a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_7181663b13dd0a0bfa46c7a85f91d709dcda7e66.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.52.0\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_be6ca57ae18c6a4dfe2cd7e5e794a707d86c2682.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_50348afc6bf97b86af0d5ade465405ed07a1baeb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\1.3.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-1.3.0_8ea429000f6a4d8133806b59dec399cfddafb19b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_39f65bca403d52db1179030823638d4787cf66ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_426586a3498df0e5d57af759b6cfa915e26b3929.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\1.3.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
         <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-1.3.0_d2c0b054ca5a4a8ee4178621b744eebf6855367c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_e1ee65333ae321a9e1ce169dcf497ff92dc74d29.jar" />
     </item>
     <item
         is-multidex="false"
@@ -111,15 +246,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\jsuplido\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_107fd4a75396a67e9634a4628812b8ff6497aca7.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\fitxph\react-native-svg\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -129,66 +255,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\fitxph\react-native-vector-icons\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_6474fb61b57c0f1dd9e848e002837e32ed9f7d3e.jar" />
+        sha1="279750fed3c920d06351dbf32889c1b48203c7ad">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\fitxph-react-native-vector-icons-unspecified_6559e004428d05fd39c75834160534d677cd6187.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\1.3.0\jars\classes.jar"
+        jar="C:\Users\jsuplido\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-1.3.0_b6202b679a3c3e029fba6cfaeadd585c6424f03a.jar" />
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_31bdc84b94904121aceee62aca73ea6a00248866.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\fitxph\react-native-ble-plx\unspecified\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.0.1_cf27a61f617a9223762715953d39590282b142c8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\jsuplido\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_7181663b13dd0a0bfa46c7a85f91d709dcda7e66.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.0.1_6f098ee56bf944e73f9f672a501f6c5dc47adb1e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.52.0\jars\libs\infer-annotations-4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_be6ca57ae18c6a4dfe2cd7e5e794a707d86c2682.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Projects\fitxph\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
-        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_50348afc6bf97b86af0d5ade465405ed07a1baeb.jar" />
+        sha1="fdc111f5b0e40da60988a54cfb25e1534d3736ee">
+        <dex dex="D:\Projects\fitxph\android\app\build\intermediates\pre-dexed\debug\fitxph-react-native-ble-plx-unspecified_966530205e2e2b70b51331bb9213b520e1ffc39d.jar" />
     </item>
     <item
         is-multidex="false"
