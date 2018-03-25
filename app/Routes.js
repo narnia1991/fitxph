@@ -118,6 +118,12 @@ export default class routes extends React.Component {
             hideNavBar={true}
             passProps
           />
+          <Scene
+            key="exerciselist"
+            component={ExerciseList}
+            hideNavBar={true}
+            passProps
+          />
         </Scene>
       </Router>
     );
