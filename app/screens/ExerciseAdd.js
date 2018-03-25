@@ -10,17 +10,17 @@ import {
   Button
 } from "native-base";
 
-class FoodAdd extends React.Component {
+class ExerciseAdd extends React.Component {
   state = {
     user: null,
     creator: "",
     name: "",
-    calories: "",
     difficulty: "",
-    preparation_time: "",
-    ingredients: [],
+    target_muscle_group: "",
+    equipment: "",
+    classification: "",
     description: "",
-    instructions: "",
+    instruction: "",
     image_url: "",
     video_url: "",
     date_created: "",
@@ -49,11 +49,7 @@ class FoodAdd extends React.Component {
       <Content>
         <Form>
           <Item floatingLabel>
-            <Label>Name of Food</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel>
-            <Label>Calories</Label>
+            <Label>Name of Exercise</Label>
             <Input />
           </Item>
           <Item stackedLabel>
@@ -69,11 +65,15 @@ class FoodAdd extends React.Component {
             </Picker>
           </Item>
           <Item floatingLabel>
-            <Label>Preparation time</Label>
+            <Label>Target Muscle Group</Label>
             <Input />
           </Item>
           <Item floatingLabel>
-            <Label>Ingredients</Label>
+            <Label>Equipment</Label>
+            <Input />
+          </Item>
+          <Item floatingLabel>
+            <Label>Classification</Label>
             <Input />
           </Item>
           <Item floatingLabel>
@@ -92,7 +92,7 @@ class FoodAdd extends React.Component {
             <Label>Video URL</Label>
             <Input />
           </Item>
-          <Button block light onPress={this.handleSignUp}>
+          <Button block light onPress={this.handleSubmit}>
             <Text>Submit</Text>
           </Button>
         </Form>
@@ -100,4 +100,4 @@ class FoodAdd extends React.Component {
     </Container>;
   }
 }
-export default FoodAdd;
+export default ExerciseAdd;
