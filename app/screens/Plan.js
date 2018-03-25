@@ -31,21 +31,27 @@ class Plan extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user });
+    console.log("plan");
+    console.log(user);
+    if (this.props.user.plan) {
+      console.log("hasplan");
+      console.log(Actions.calendar);
+      Actions.calendar({ user: this.props.user });
+    } else this.setState({ user: this.props.user });
   };
 
   render() {
     return (
       <Container>
-        <Tabs initialPage="1">
+        <Tabs initialPage={1}>
           <Tab heading="Workout Plan">
-            <PlanList type="workout" />
+            <PlanList type="exercise" user={this.state.user} />
           </Tab>
           <Tab heading="Diet Plan">
-            <PlanList type="diet" />
+            <PlanList type="diet" user={this.state.user} />
           </Tab>
-          <Tab heading="Full FItness Plan">
-            <PlanList type="full" />
+          <Tab heading="Full Fitness ">
+            <PlanList type="full" user={this.state.user} />
           </Tab>
         </Tabs>
       </Container>

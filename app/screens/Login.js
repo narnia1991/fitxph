@@ -34,10 +34,6 @@ class Login extends React.Component {
 
   handleLogin = async () => {
     user = dummyUser;
-    console.log("====================================");
-    console.log(user, "user");
-    console.log(this.state, "state");
-    console.log("====================================");
     // const user = await getData(this.state.username);
     if (user && user.password == this.state.password) {
       console.log(user, "user");
@@ -129,19 +125,31 @@ const dummyUser = {
     initial_weight: 68,
     initial_date: Date(),
     target_weight: 60,
-    progress: {
-      date: Date(),
-      weight: 67.5
-    }
+    progress: [
+      {
+        date: Date(),
+        weight: 67.5
+      },
+      {
+        date: Date(),
+        weight: 66.7
+      },
+      {
+        date: Date(),
+        weight: 66
+      },
+      {
+        date: Date(),
+        weight: 65.6
+      }
+    ]
   },
   notification: false,
   sound: false,
   sync: false,
-  custom_data: {
-    exercises: [],
-    dishes: [],
-    plans: []
-  },
+  customdishes: [],
+  customexercises: [],
+  customplans: [],
   date_created: Date(),
   date_modified: Date()
 };

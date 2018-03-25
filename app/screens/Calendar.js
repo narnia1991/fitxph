@@ -9,46 +9,54 @@ class Calendar extends React.Component {
     user: null
   };
 
-  comoponentWillMount = () => {
-    if (!this.props.user) {
-      Actions.login();
-    }
-    this.setState({ user: this.props.user });
+  componentWillMount = () => {
+    // if (!this.props.user) {
+    //   Actions.login();
+    // }
+    console.log("calendar");
+    // this.setState({
+    //   user: this.props.user,
+    //   progress: this.props.user.progress
+    // });
   };
 
   componentDidMount = () => {
     //get progressdata from asyncstorage
   };
+  handleProceedPress = () => {
+    Actions.day({ user: this.state.user });
+  };
 
   render() {
-    return (
-      <Container>
-        <Content>
-          <Kalendaryo
-            // Initially visible month. Default = Date()
-            current={Date()}
-            onDayPress={day => {
-              console.log("selected day", day);
-            }}
-            monthFormat={"yyyy MM"}
-            onMonthChange={month => {
-              console.log("month changed", month);
-            }}
-            hideArrows={true}
-            hideExtraDays={true}
-            disableMonthChange={true}
-            // Hide day names. Default = false
-            hideDayNames={true}
-            // Show week numbers to the left. Default = false
-            showWeekNumbers={true}
-            onPressArrowLeft={substractMonth => substractMonth()}
-          />
-          <Button block>
-            <Text>Proceed</Text>
-          </Button>
-        </Content>
-      </Container>
-    );
+    return null;
+    // return (
+    //   <Container>
+    //     <Content>
+    //       <Kalendaryo
+    //         // Initially visible month. Default = Date()
+    //         current={Date()}
+    //         onDayPress={day => {
+    //           console.log("selected day", day);
+    //         }}
+    //         monthFormat={"yyyy MM"}
+    //         onMonthChange={month => {
+    //           console.log("month changed", month);
+    //         }}
+    //         hideArrows={true}
+    //         hideExtraDays={true}
+    //         disableMonthChange={true}
+    //         // Hide day names. Default = false
+    //         hideDayNames={true}
+    //         // Show week numbers to the left. Default = false
+    //         showWeekNumbers={true}
+    //         onPressArrowLeft={substractMonth => substractMonth()}
+    //       />
+    //       <Button block>
+    //         <Text onPress={this.handleProceedPress}>Proceed</Text>
+    //       </Button>
+    //     </Content>
+    //   </Container>
+    // );
   }
 }
 
