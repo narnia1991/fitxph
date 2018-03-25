@@ -48,7 +48,6 @@ class Day extends React.Component {
   render() {
     return (
       <Container>
-        <Header hasTabs />
         <Tabs initialPage={1}>{this.renderTabs}</Tabs>
       </Container>
     );

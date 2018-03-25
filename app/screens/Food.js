@@ -19,7 +19,6 @@ import React from "react";
 import { Image } from "react-native";
 import {
   Container,
-  Header,
   Content,
   Card,
   CardItem,
@@ -43,7 +42,6 @@ class Food extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
           <Card style={{ flex: 0 }}>
             <CardItem>

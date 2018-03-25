@@ -13,7 +13,15 @@ plan structure:
 }
 */
 import React from "react";
-import { Container, Content, List, ListItem, Text } from "native-base";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Fab,
+  Icon
+} from "native-base";
 import { StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
 
@@ -54,20 +62,20 @@ class PlanList extends React.Component {
     // items = [items, ...fetchedData]
     this.setState({ items });
   };
-  handleSelectPlan = item => {
-    //set initial plan data
-    //set initial progress data
-    //show initialdatascreen
-    Actions.initialdata({ user: this.state.user, plan: item });
-  };
-  renderList = () => {
-    if (this.state.items)
-      return this.state.items.map(item => (
-        <ListItem onPress={this.handleSelectPlan(item)}>
-          <Text>{item.name}</Text>
-          <Text>{item.creator}</Text>
-        </ListItem>
-      ));
+
+  renderlist = () => {
+    if (this.state.list) {
+      return (
+        <List
+          dataArray={this.state.list}
+          renderRow={(item, index) => (
+            <ListItem key={index}>
+              <Text>{item}</Text>
+            </ListItem>
+          )}
+        />
+      );
+    }
     return <Text>No Plans Available</Text>;
   };
 
@@ -77,6 +85,14 @@ class PlanList extends React.Component {
         <Content>
           <List>{this.renderList}</List>
         </Content>
+        <Fab
+          containerStyle={{}}
+          style={{ backgroundColor: "#5067FF" }}
+          position="bottomRight"
+          onPress={() => this.setState({ active: !this.state.active })}
+        >
+          <Icon name="md-add" />
+        </Fab>
       </Container>
     );
   }

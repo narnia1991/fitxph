@@ -1,13 +1,22 @@
 //food list
 //fab to add food
 import React from "react";
-import { Container, Header, Content, List, ListItem, Text } from "native-base";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Fab,
+  Icon
+} from "native-base";
 import { Actions } from "react-native-router-flux";
 
 class FoodList extends React.Component {
   state = {
     list: null,
-    user: null
+    user: null,
+    active: "true"
   };
 
   componentWillMount = () => {
@@ -23,9 +32,16 @@ class FoodList extends React.Component {
 
   renderlist = () => {
     if (this.state.list) {
-      return this.state.list.map(item => {
-        return <ListItem>{item.name}</ListItem>;
-      });
+      return (
+        <List
+          dataArray={this.state.list}
+          renderRow={(item, index) => (
+            <ListItem key={index}>
+              <Text>{item}</Text>
+            </ListItem>
+          )}
+        />
+      );
     }
     return <Text>Nothing To Show</Text>;
   };
@@ -33,18 +49,15 @@ class FoodList extends React.Component {
   render() {
     return (
       <Container>
-        <Header title="Food" />
-        <Content>
-          <List>{this.renderList}</List>
-          <Fab
-            containerStyle={{}}
-            style={{ backgroundColor: "#5067FF" }}
-            position="bottomRight"
-            onPress={this.handleAdd}
-          >
-            <Icon name="share" />
-          </Fab>
-        </Content>
+        <Content>{this.renderlist()}</Content>
+        <Fab
+          containerStyle={{}}
+          style={{ backgroundColor: "#5067FF" }}
+          position="bottomRight"
+          onPress={() => this.setState({ active: !this.state.active })}
+        >
+          <Icon name="md-add" />
+        </Fab>
       </Container>
     );
   }

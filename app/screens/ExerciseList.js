@@ -2,7 +2,15 @@
 // fab to add exercise
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import { Container, Header, Content, List, ListItem, Text } from "native-base";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Fab,
+  Icon
+} from "native-base";
 
 class ExerciseList extends React.Component {
   state = {
@@ -18,7 +26,6 @@ class ExerciseList extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
           <List
             dataArray={this.state.items}
@@ -29,6 +36,14 @@ class ExerciseList extends React.Component {
             )}
           />
         </Content>
+        <Fab
+          containerStyle={{}}
+          style={{ backgroundColor: "#5067FF" }}
+          position="bottomRight"
+          onPress={() => this.setState({ active: !this.state.active })}
+        >
+          <Icon name="md-add" />
+        </Fab>
       </Container>
     );
   }

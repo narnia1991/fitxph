@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   Button,
   Container,
@@ -8,25 +8,23 @@ import {
   Item,
   Label,
   Title
-} from 'native-base'
-import { Actions } from 'react-native-router-flux'
-import { Dimensions, StyleSheet, Text } from 'react-native'
-import Header from '../components/Header'
+} from "native-base";
+import { Actions } from "react-native-router-flux";
+import { Dimensions, StyleSheet, Text } from "react-native";
 
 class SignUp extends Component {
   state = {
-    username: '',
-    password: '',
-    confirm_password: ''
-  }
+    username: "",
+    password: "",
+    confirm_password: ""
+  };
   handleSignUp = () => {
-    Actions.sync()
-  }
-  title = () => <Title>SignUp</Title>
+    Actions.sync();
+  };
+  title = () => <Title>SignUp</Title>;
   render() {
     return (
       <Container>
-        <Header title="SignUp" body={this.title} />
         <Content padder>
           <Form>
             <Item floatingLabel>
@@ -49,11 +47,11 @@ class SignUp extends Component {
           </Form>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
-let { height, width } = Dimensions.get('window')
+let { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,6 +64,6 @@ const styles = StyleSheet.create({
   syncNowText: {
     paddingBottom: 30
   }
-})
+});
 
-export default SignUp
+export default SignUp;

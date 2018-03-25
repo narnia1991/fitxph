@@ -3789,6 +3789,10 @@ react-native-router-flux@^4.0.0-beta.28:
     prop-types "^15.6.0"
     react-navigation "1.0.0-beta.22"
 
+react-native-simple-table@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-simple-table/-/react-native-simple-table-0.0.3.tgz#5bb37337078d0043a5b4ee862b44173bb36a1fff"
+
 react-native-svg-charts@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/react-native-svg-charts/-/react-native-svg-charts-4.1.0.tgz#9dce138a323c2fba81a2450c7ce7e0eec0831b59"
