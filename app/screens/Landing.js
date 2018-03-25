@@ -9,6 +9,9 @@ class Landing extends Component {
   };
 
   componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
     this.setState({ user: this.props.user });
   };
 

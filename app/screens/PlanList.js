@@ -15,7 +15,10 @@ plan structure:
 import React from "react";
 import { Container, Content, List, ListItem, Text } from "native-base";
 import { StyleSheet } from "react-native";
+<<<<<<< HEAD
 import { Actions } from "react-native-router-flux";
+=======
+>>>>>>> bfd18f291cc7d169ac5866fec68b288b90482c72
 
 class PlanList extends React.Component {
   state = {
