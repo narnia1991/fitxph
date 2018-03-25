@@ -12,34 +12,41 @@ import {
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet, Text } from "react-native";
-import { getData, setData } from "./asyncStorage";
+import { getData, setData } from "../AsyncStorage";
 
 class Login extends React.Component {
   state = {
     username: "",
-    password: "",
-    errors:""
+    password: "potato",
+    errors: ""
   };
 
-  componentWillMount = async() => {
-    const user
-    const username = await getData('currentUser')
-    if(username)  user = await getData(username)
-    if(user) Actions.landing(user)
+  componentWillMount = async () => {
+    let user;
+    const username = await getData("currentUser");
+    if (username) user = await getData(username);
+    if (user) Actions.landing(user);
   };
 
   componentDidMount = () => {
     console.log(" potato");
   };
 
-  handleLogin = () => {
-    const user = await getData(this.state.username)
-  if(user&&(user.password===this.state.password)){
-    await setData('currentUser', user.username)
-    //upload to firebase
-    Actions.landing({ user });
-  }
- this.setState({errors:'invalid Username /  Password'})
+  handleLogin = async () => {
+    user = dummyUser;
+    console.log("====================================");
+    console.log(user, "user");
+    console.log(this.state, "state");
+    console.log("====================================");
+    // const user = await getData(this.state.username);
+    if (user && user.password == this.state.password) {
+      console.log(user, "user");
+
+      // await setData("currentUser", user.username);
+      //upload to firebase
+      Actions.landing({ user });
+    }
+    this.setState({ errors: "invalid Username /  Password" });
   };
 
   handleSignUp = () => {
@@ -50,18 +57,39 @@ class Login extends React.Component {
     return (
       <Container>
         <Content padder>
-        <Text style={styles.syncText()} onPress={Actions.syncnow}>Sync Now</Text>
+          <Text style={styles.syncText} onPress={() => Actions.syncnow()}>
+            Sync Now
+          </Text>
           <Form>
             <Text>{this.state.errors}</Text>
             <Item floatingLabel>
               <Label>Username</Label>
-              <Input onChange={input => this.setState({ username: input, errors:'' })} />
+              <Input
+                onChange={input =>
+                  this.setState({
+                    username: input,
+                    errors: ""
+                  })
+                }
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input onChange={input => this.setState({ password: input, errors:'' })} />
+              <Input
+                onChange={input =>
+                  this.setState({
+                    password: input,
+                    errors: ""
+                  })
+                }
+              />
             </Item>
-            <Text style={styles.createUserText} onPress={Actions.signup()}>Create new user</Text>
+            <Text
+              style={styles.createUserText}
+              onPress={() => Actions.signup()}
+            >
+              Create new user
+            </Text>
             <Button block onPress={this.handleLogin}>
               <Text>Login</Text>
             </Button>
@@ -90,10 +118,6 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   }
 });
-
-
-
-
 
 const dummyUser = {
   username: "puroyski",

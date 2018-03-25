@@ -15,20 +15,20 @@ import { Dimensions, StyleSheet, Text } from "react-native";
 
 class Sync extends React.Component {
   state = {
-    user:null
+    user: null
   };
 
   componentWillMount = () => {
-    this.setState({user:this.props.user})
-  }
+    this.setState({ user: this.props.user });
+  };
   componentDidMount = () => {
     console.log(" potato");
   };
 
-  handleSync = () => {
+  handleSync = async () => {
     //check for username availability online
     //upload data online
-    const user = await getData(this.state.user)
+    const user = await getData(this.state.user);
     Actions.landing({});
   };
   handleSignUp = () => {
