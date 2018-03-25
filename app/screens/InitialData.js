@@ -4,7 +4,6 @@ import React from "react";
 import { Actions } from "react-native-router-flux";
 import {
   Container,
-  Header,
   Content,
   Form,
   Item,
@@ -40,7 +39,6 @@ class InitialData extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
           <Form>
             <Item floatingLabel>

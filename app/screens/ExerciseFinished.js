@@ -2,7 +2,6 @@ import React from "react";
 import { Actions } from "react-native-router-flux";
 import {
   Container,
-  Header,
   Content,
   Card,
   CardItem,
@@ -32,7 +31,6 @@ class ExerciseFinished extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
           <Image source={imageLoader.Splash} />
           <Card>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header, Content, Tab, Tabs } from "native-base";
+import { Container, Content, Tab, Tabs } from "native-base";
 import { Actions } from "react-native-router-flux";
 
 class Day extends React.Component {
@@ -32,7 +32,6 @@ class Day extends React.Component {
   render() {
     return (
       <Container>
-        <Header hasTabs />
         <Tabs initialPage={1}>{this.renderTabs}</Tabs>
       </Container>
     );

@@ -3,7 +3,6 @@
 import React from "react";
 import {
   Container,
-  Header,
   Content,
   List,
   ListItem,
@@ -50,7 +49,6 @@ class FoodList extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>{this.renderlist()}</Content>
         <Fab
           containerStyle={{}}

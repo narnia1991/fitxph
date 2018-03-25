@@ -22,7 +22,6 @@ import { Container, Tabs, Tab } from "native-base";
 import { Actions } from "react-native-router-flux";
 import imageLoader from "./imageLoader";
 import PlanList from "./PlanList";
-import Header from "../components/Header";
 
 class Plan extends React.Component {
   state = {
@@ -38,7 +37,6 @@ class Plan extends React.Component {
   render() {
     return (
       <Container>
-        <Header title="Plan" hasTabs />
         <Tabs initialPage="1">
           <Tab heading="Workout Plan">
             <PlanList type="workout" />

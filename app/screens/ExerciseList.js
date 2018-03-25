@@ -4,7 +4,6 @@ import React from "react";
 import { Actions } from "react-native-router-flux";
 import {
   Container,
-  Header,
   Content,
   List,
   ListItem,
@@ -27,7 +26,6 @@ class ExerciseList extends React.Component {
   render() {
     return (
       <Container>
-        <Header />
         <Content>
           <List
             dataArray={this.state.items}
