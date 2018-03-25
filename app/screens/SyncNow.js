@@ -8,25 +8,36 @@ import {
   Item,
   Label,
   Title,
-  Body
+  Body,
+  Text
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet, Text } from "react-native";
-
+import { loginUser } from "../FireBase";
+import { setData } from "../AsyncStorage";
 class Sync extends React.Component {
   state = {
-    username: "",
-    password: ""
+    email: "",
+    password: "",
+    errors: ""
   };
 
   componentDidMount = () => {};
 
-  handleSync = () => {
-    //authnticate then get the data
-
-    //set the data to the database
-    //set current user
-    Actions.landing({ user });
+  handleSync = async () => {
+    const user = await loginUser(this.state.email, this.state.password);
+    if (user) {
+      const username = this.state.email;
+      const res = username.replace(/\./g, "__dot__");
+      const key = res.replace(/\@/g, "__at__");
+      const userData = await getSyncData(key);
+      if (userData) {
+        await setData(userData.username, userData);
+        Actions.landing({ user });
+      }
+    } else {
+      this.setState({ errors: "Invalid Credentials" });
+    }
   };
 
   render() {
@@ -34,9 +45,10 @@ class Sync extends React.Component {
       <Container>
         <Content padder>
           <Form>
+            <Text>{this.state.errors}</Text>
             <Item floatingLabel>
-              <Label>Username</Label>
-              <Input onChange={input => this.setState({ username: input })} />
+              <Label>Email</Label>
+              <Input onChange={input => this.setState({ email: input })} />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>

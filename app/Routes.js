@@ -24,7 +24,7 @@ import {
   SyncNow
 } from "./screens";
 
-export default class routes extends React.Component {
+class routes extends React.Component {
   render() {
     return (
       <Router>
@@ -131,3 +131,4 @@ export default class routes extends React.Component {
     );
   }
 }
+export default routes;
