@@ -15,42 +15,21 @@ import { Dimensions, StyleSheet, Text } from "react-native";
 
 class Sync extends React.Component {
   state = {
-    username: "",
-    password: ""
+    user:null
   };
 
+  componentWillMount = () => {
+    this.setState({user:this.props.user})
+  }
   componentDidMount = () => {
     console.log(" potato");
   };
 
   handleSync = () => {
-    const user = {
-      username: "puroyski",
-      password: "potato",
-      plan: "defaultfull",
-      progress: {
-        day: 10,
-        intitial_height: 169,
-        initial_weight: 68,
-        initial_date: Date(),
-        target_weight: 60,
-        progress: {
-          date: Date(),
-          weight: 67.5
-        }
-      },
-      notification: false,
-      sound: false,
-      sync: false,
-      custom_data: {
-        exercises: [],
-        dishes: [],
-        plans: []
-      },
-      date_created: Date(),
-      date_modified: Date()
-    };
-    Actions.landing({ user });
+    //check for username availability online
+    //upload data online
+    const user = await getData(this.state.user)
+    Actions.landing({});
   };
   handleSignUp = () => {
     Actions.signup();

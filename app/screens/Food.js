@@ -33,12 +33,12 @@ import {
 import { Actions } from "react-native-router-flux";
 
 class Food extends React.Component {
-  state = { user: null };
+  state = { user: null, food: null };
   componentWillMount = () => {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user });
+    this.setState({ user: this.props.user, food: this.props.food });
   };
   render() {
     return (

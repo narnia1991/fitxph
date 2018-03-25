@@ -20,12 +20,8 @@ import {
   Reference,
   SignUp,
   Splash,
-<<<<<<< HEAD
   Sync,
   SyncNow
-=======
-  Sync
->>>>>>> bfd18f291cc7d169ac5866fec68b288b90482c72
 } from "./screens";
 
 export default class routes extends React.Component {
@@ -123,15 +119,9 @@ export default class routes extends React.Component {
             hideNavBar={true}
             passProps
           />
-<<<<<<< HEAD
           <Scene key="syncnow" component={SyncNow} hideNavBar={true} />
-=======
->>>>>>> bfd18f291cc7d169ac5866fec68b288b90482c72
         </Scene>
       </Router>
     );
   }
 }
-
-/* 
-           */
