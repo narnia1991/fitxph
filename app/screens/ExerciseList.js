@@ -2,10 +2,12 @@
 // fab to add exercise
 import React from "react";
 import { Actions } from "react-native-router-flux";
+import { Container, Header, Content, List, ListItem, Text } from "native-base";
 
 class ExerciseList extends React.Component {
   state = {
-    user: {}
+    user: {},
+    items: ["Sit Ups", "Push Ups", "Lunges", "Squats", "Jumping Jacks"]
   };
   componentWillMount = () => {
     if (!this.props.user) {
@@ -14,7 +16,21 @@ class ExerciseList extends React.Component {
     this.setState({ user: this.props.user });
   };
   render() {
-    return;
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <List
+            dataArray={this.state.items}
+            renderRow={(item, index) => (
+              <ListItem key={index}>
+                <Text>{item}</Text>
+              </ListItem>
+            )}
+          />
+        </Content>
+      </Container>
+    );
   }
 }
 

@@ -120,6 +120,12 @@ export default class routes extends React.Component {
             passProps
           />
           <Scene key="syncnow" component={SyncNow} hideNavBar={true} />
+          <Scene
+            key="exerciselist"
+            component={ExerciseList}
+            hideNavBar={true}
+            passProps
+          />
         </Scene>
       </Router>
     );
