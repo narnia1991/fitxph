@@ -23,6 +23,7 @@ import {
   Sync,
   SyncNow
 } from "./screens";
+import NavBar from "./components/NavBar";
 
 class routes extends React.Component {
   render() {
@@ -44,7 +45,8 @@ class routes extends React.Component {
           <Scene
             key="landing"
             component={Landing}
-            hideNavBar={true}
+            navBar={NavBar}
+            title="FitXPH"
             passProps
           />
           <Scene key="signup" component={SignUp} hideNavBar={true} />

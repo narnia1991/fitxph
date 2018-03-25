@@ -32,6 +32,18 @@ class Progress extends React.Component {
     });
     this.setState({ user: this.props.user, data: dataset });
   };
+  renderList = () => {
+    const renders = [];
+    if (this.state.data)
+      this.state.data.map(item => {
+        renders.push(
+          <View>
+            <Text>{item.y}</Text>
+            <Text>{item.x}</Text>
+          </View>
+        );
+      });
+  };
 
   render() {
     return (
@@ -43,6 +55,7 @@ class Progress extends React.Component {
               data={this.state.data}
             />
           </VictoryChart>
+          <List>{this.renderList}</List>
         </Content>
       </Container>
     );

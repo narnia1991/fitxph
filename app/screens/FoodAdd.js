@@ -92,7 +92,7 @@ class FoodAdd extends React.Component {
             <Label>Video URL</Label>
             <Input />
           </Item>
-          <Button block light onPress={this.handleSignUp}>
+          <Button block light onPress={this.handleSubmit}>
             <Text>Submit</Text>
           </Button>
         </Form>

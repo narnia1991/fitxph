@@ -12,11 +12,13 @@ import {
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet, Text } from "react-native";
+import { loginUser } from "../FireBase";
 
 class Sync extends React.Component {
   state = {
     user: null,
-    email: ""
+    email: "",
+    errors: ""
   };
 
   componentWillMount = () => {
@@ -27,16 +29,27 @@ class Sync extends React.Component {
     console.log(" potato");
   };
 
+  handleSyncLater = () => {
+    Actions.landing({ user: this.state.user });
+  };
+
   handleSync = async () => {
     //check for username availability online
     //upload data online
     const user = this.state.user;
     user.email = this.state.email;
-    const syncUser = await loginUser(user.email, this.state.user.password);
-    if (syncUser) {
-      await setSyncData(user.email, user);
-      await setData(user.username, user);
-      Actions.landing(user);
+    try {
+      const syncUser = await loginUser(user.email, this.state.user.password);
+      if (syncUser) {
+        await setSyncData(user.email, user);
+        await setData(user.username, user);
+        Actions.landing(user);
+      }
+    } catch (error) {
+      this.setState({ errors: "Cannot sync data" });
+      console.log("====================================");
+      console.log(error);
+      console.log("====================================");
     }
   };
 
@@ -46,9 +59,16 @@ class Sync extends React.Component {
         <Content padder>
           <Form>
             <Item floatingLabel>
-              <Label>Username</Label>
-              <Input onChange={input => this.setState({ email: input })} />
+              <Label>Email</Label>
+              <Input
+                onChangeText={input =>
+                  this.setState({
+                    email: input
+                  })
+                }
+              />
             </Item>
+            <Text onPress={this.handleSyncLater}>Sync Later</Text>
             <Button block onPress={this.handleSync}>
               <Text>Sync</Text>
             </Button>

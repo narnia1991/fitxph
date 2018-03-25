@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet, Text } from "react-native";
-
+import { getData, setData } from "../AsyncStorage";
 class SignUp extends Component {
   state = {
     username: "",
@@ -20,22 +20,32 @@ class SignUp extends Component {
     errors: ""
   };
   handleSignUp = async () => {
-    const user = await getData(this.state.username);
-    if (password !== confirm_password) {
-      this.setState({ errors: "Password didn't match" });
-    } else if (user) {
-      this.setState({ errors: "Username already taken" });
-    } else {
-      await setData(username, {
-        username: this.state.username,
-        password: this.state.password
-      });
-      Actions.sync({
-        user: {
+    try {
+      console.log(this.state);
+      const user = await getData(this.state.username);
+      if (!user) {
+        console.log("====================================");
+        console.log("reselt", await getData(this.state.username));
+        console.log("====================================");
+        await setData(this.state.username, {
           username: this.state.username,
           password: this.state.password
-        }
-      });
+        });
+
+        Actions.sync({
+          user: {
+            username: this.state.username,
+            password: this.state.password
+          }
+        });
+      } else if (this.state.password !== this.state.confirm_password) {
+        this.setState({ errors: "Password didn't match" });
+      } else if (user) {
+        this.setState({ errors: "Username already taken" });
+      }
+    } catch (error) {
+      console.log(error);
+      this.setState({ errors: "Cannot Sign Up" });
     }
   };
   title = () => <Title>SignUp</Title>;
@@ -44,19 +54,38 @@ class SignUp extends Component {
       <Container>
         <Content padder>
           <Form>
-            <Text>{this.state.errors}</Text>
+            <Text style={styles.error}>{this.state.errors}</Text>
             <Item floatingLabel>
               <Label>Username</Label>
-              <Input onChange={input => this.setState({ username: input })} />
+              <Input
+                onChangeText={input =>
+                  this.setState({
+                    username: input
+                  })
+                }
+              />
             </Item>
-            <Item floatingLabel last>
+
+            <Item floatingLabel>
               <Label>Password</Label>
-              <Input onChange={input => this.setState({ password: input })} />
+              <Input
+                secureTextEntry
+                onChangeText={input =>
+                  this.setState({
+                    password: input
+                  })
+                }
+              />
             </Item>
             <Item floatingLabel last>
               <Label>Confirm Password</Label>
               <Input
-                onChange={input => this.setState({ confirm_password: input })}
+                secureTextEntry
+                onChangeText={input =>
+                  this.setState({
+                    confirm_password: input
+                  })
+                }
               />
             </Item>
             <Button block light onPress={this.handleSignUp}>
@@ -81,6 +110,9 @@ const styles = StyleSheet.create({
   },
   syncNowText: {
     paddingBottom: 30
+  },
+  errorText: {
+    color: "red"
   }
 });
 

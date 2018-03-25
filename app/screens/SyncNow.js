@@ -12,7 +12,7 @@ import {
   Text
 } from "native-base";
 import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet, Text } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { loginUser } from "../FireBase";
 import { setData } from "../AsyncStorage";
 class Sync extends React.Component {
@@ -45,11 +45,13 @@ class Sync extends React.Component {
             <Text>{this.state.errors}</Text>
             <Item floatingLabel>
               <Label>Email</Label>
-              <Input onChange={input => this.setState({ email: input })} />
+              <Input onChangeText={input => this.setState({ email: input })} />
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input onChange={input => this.setState({ password: input })} />
+              <Input
+                onChangeText={input => this.setState({ password: input })}
+              />
             </Item>
             <Button block onPress={this.handleSync}>
               <Text>Sync</Text>

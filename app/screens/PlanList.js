@@ -24,7 +24,7 @@ import {
 } from "native-base";
 import { StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
-
+import fullPlan from "../default/fullplan";
 
 class PlanList extends React.Component {
   state = {
@@ -36,14 +36,13 @@ class PlanList extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-    conct list = defaultlist
+    const list = fullPlan;
     this.setState({ user: this.props.user, list });
   };
 
   componentDidMount = async () => {
     //get plan list data
     let list = [];
-    
 
     // items = [items, ...fetchedData]
     this.setState({ items });

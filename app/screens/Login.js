@@ -17,15 +17,21 @@ import { getData, setData } from "../AsyncStorage";
 class Login extends React.Component {
   state = {
     username: "",
-    password: "potato",
+    password: "",
     errors: ""
   };
 
   componentWillMount = async () => {
     let user;
-    const username = await getData("currentUser");
-    if (username) user = await getData(username);
-    if (user) Actions.landing(user);
+    try {
+      const username = await getData("currentUser");
+      console.log("******", username);
+      if (username) user = await getData(username);
+    } catch (error) {
+      console.log("No user signed in");
+    }
+
+    if (user) Actions.landing({ user });
   };
 
   componentDidMount = () => {
@@ -33,13 +39,20 @@ class Login extends React.Component {
   };
 
   handleLogin = async () => {
-    const user = await getData(this.state.username);
-    if (user && user.password == this.state.password) {
-      console.log(user, "user");
-      await setData("currentUser", user.username);
-      const user = await setSyncData(user.email, user);
-      Actions.landing({ user });
-    } else this.setState({ errors: "invalid Username /  Password" });
+    try {
+      const user = await getData(this.state.username);
+      console.log(user.password);
+      console.log(this.state.password);
+      if (user.password == this.state.password) {
+        await setData("currentUser", user.username);
+        // const user = await setSyncData(user.email, user);
+        Actions.landing({ user });
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      this.setState({ errors: "invalid Username /  Password" });
+    }
   };
 
   handleSignUp = () => {
@@ -54,11 +67,11 @@ class Login extends React.Component {
             Sync Now
           </Text>
           <Form>
-            <Text>{this.state.errors}</Text>
+            <Text style={styles.errorText}>{this.state.errors}</Text>
             <Item floatingLabel>
               <Label>Username</Label>
               <Input
-                onChange={input =>
+                onChangeText={input =>
                   this.setState({
                     username: input,
                     errors: ""
@@ -69,7 +82,8 @@ class Login extends React.Component {
             <Item floatingLabel last>
               <Label>Password</Label>
               <Input
-                onChange={input =>
+                secureTextEntry
+                onChangeText={input =>
                   this.setState({
                     password: input,
                     errors: ""
@@ -109,6 +123,9 @@ const styles = StyleSheet.create({
   },
   syncNowText: {
     paddingBottom: 30
+  },
+  errorText: {
+    color: "red"
   }
 });
 
