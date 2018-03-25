@@ -42,9 +42,7 @@ class Progress extends React.Component {
         <Content padder>
           <VictoryChart theme={VictoryTheme.material} scale={{ x: "time" }}>
             <VictoryLine
-              style={{
-                data: { stroke: "#c43a31" }
-              }}
+              style={{ data: { stroke: "#c43a31" } }}
               data={this.state.data}
             />
           </VictoryChart>
@@ -61,5 +59,4 @@ const styles = StyleSheet.create({
     width: width
   }
 });
-
 export default Progress;
