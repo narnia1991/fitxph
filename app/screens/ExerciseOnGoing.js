@@ -10,8 +10,11 @@ import {
   Card,
   CardItem,
   Text,
-  Body
+  Body,
+  Fab
 } from "native-base";
+import { Image } from "react-native";
+import imageLoader from "./imageLoader";
 
 class ExerciseOnGoing extends React.Component {
   state = {
@@ -28,6 +31,7 @@ class ExerciseOnGoing extends React.Component {
       <Container>
         <Header />
         <Content>
+          <Image source={imageLoader.Splash} />
           <Card>
             <CardItem header>
               <Text>NativeBase</Text>
