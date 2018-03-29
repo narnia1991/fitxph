@@ -10,10 +10,10 @@ import {
   CardItem,
   Text,
   Body,
-  Fab
-} from "native-base";
+  Fab,
+  StyleProvider } from "native-base";
 import { Image } from "react-native";
-import imageLoader from "./imageLoader";
+import imageLoader from "../utils/imageLoader";
 
 class ExerciseOnGoing extends React.Component {
   state = {

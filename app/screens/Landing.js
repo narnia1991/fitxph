@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { Container, Content } from "native-base";
 import Tile from "../components/Tile";
-import imageLoader from "./imageLoader";
+import imageLoader from "../utils/imageLoader";
 class Landing extends Component {
   state = {
     user: null

@@ -20,7 +20,7 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Container, Tabs, Tab } from "native-base";
 import { Actions } from "react-native-router-flux";
-import imageLoader from "./imageLoader";
+import imageLoader from "../utils/imageLoader";
 import PlanList from "./PlanList";
 
 class Plan extends React.Component {
