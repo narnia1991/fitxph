@@ -44,11 +44,8 @@ class Login extends React.Component {
   handleLogin = async () => {
     try {
       const user = await getData(this.state.username);
-      console.log(user.password);
-      console.log(this.state.password);
       if (user.password == this.state.password) {
         await setData("currentUser", user.username);
-        // const user = await setSyncData(user.email, user);
         Actions.landing({ user });
       } else {
         throw new Error();
@@ -67,8 +64,9 @@ class Login extends React.Component {
       <Wrapper>
         <Text style={styles.syncText} onPress={() => Actions.syncnow()}>
           Sync Now
-          </Text>
+        </Text>
         <Form>
+          <Text style={styles.errorText}>{this.state.errors}</Text>
           <TextBox
             label="Username"
             onChangeText={input =>
@@ -77,32 +75,18 @@ class Login extends React.Component {
                 errors: ""
               })
             }
-            errors={this.state.errors}
           />
-          {/* <Text style={styles.errorText}>{this.state.errors}</Text>
-          <Item floatingLabel>
-            <Label>Username</Label>
-            <Input
-              onChangeText={input =>
-                this.setState({
-                  username: input,
-                  errors: ""
-                })
-              }
-            />
-          </Item> */}
-          <Item floatingLabel>
-            <Label>Password</Label>
-            <Input
-              secureTextEntry
-              onChangeText={input =>
-                this.setState({
-                  password: input,
-                  errors: ""
-                })
-              }
-            />
-          </Item>
+          <TextBox
+            label="Password"
+            secureTextEntry
+            onChangeText={input =>
+              this.setState({
+                password: input,
+                errors: ""
+              })
+            }
+          />
+
           <Text
             style={styles.createUserText}
             onPress={() => Actions.signup()}
