@@ -8,11 +8,14 @@ import {
   Item,
   Label,
   Title,
-  Body
+  Body,
+  StyleProvider
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet, Text } from "react-native";
 import { getData, setData } from "../AsyncStorage";
+import getTheme from '../../native-base-theme/components';
+import material from '../../native-base-theme/variables/material';
 
 class Login extends React.Component {
   state = {
@@ -61,48 +64,50 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Content padder>
-          <Text style={styles.syncText} onPress={() => Actions.syncnow()}>
-            Sync Now
+      <StyleProvider style={getTheme(material)}>
+        <Container>
+          <Content padder>
+            <Text style={styles.syncText} onPress={() => Actions.syncnow()}>
+              Sync Now
           </Text>
-          <Form>
-            <Text style={styles.errorText}>{this.state.errors}</Text>
-            <Item floatingLabel>
-              <Label>Username</Label>
-              <Input
-                onChangeText={input =>
-                  this.setState({
-                    username: input,
-                    errors: ""
-                  })
-                }
-              />
-            </Item>
-            <Item floatingLabel last>
-              <Label>Password</Label>
-              <Input
-                secureTextEntry
-                onChangeText={input =>
-                  this.setState({
-                    password: input,
-                    errors: ""
-                  })
-                }
-              />
-            </Item>
-            <Text
-              style={styles.createUserText}
-              onPress={() => Actions.signup()}
-            >
-              Create new user
+            <Form>
+              <Text style={styles.errorText}>{this.state.errors}</Text>
+              <Item floatingLabel>
+                <Label>Username</Label>
+                <Input
+                  onChangeText={input =>
+                    this.setState({
+                      username: input,
+                      errors: ""
+                    })
+                  }
+                />
+              </Item>
+              <Item floatingLabel last>
+                <Label>Password</Label>
+                <Input
+                  secureTextEntry
+                  onChangeText={input =>
+                    this.setState({
+                      password: input,
+                      errors: ""
+                    })
+                  }
+                />
+              </Item>
+              <Text
+                style={styles.createUserText}
+                onPress={() => Actions.signup()}
+              >
+                Create new user
             </Text>
-            <Button block onPress={this.handleLogin}>
-              <Text>Login</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
+              <Button block onPress={this.handleLogin}>
+                <Text>Login</Text>
+              </Button>
+            </Form>
+          </Content>
+        </Container>
+      </StyleProvider>
     );
   }
 }
