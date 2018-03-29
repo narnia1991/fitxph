@@ -1,0 +1,14 @@
+{
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": 2,
+  "prettier.parser": "flow",
+  "editor.tabSize": 2,
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "workbench.startupEditor": "newUntitledFile",
+  "files.trimTrailingWhitespace": true,
+  "javascript.validate.enable": false,
+  "editor.minimap.enabled": false
+}

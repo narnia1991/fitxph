@@ -131,7 +131,7 @@ export default {
 
   // Header
   toolbarBtnColor: "#fff",
-  toolbarDefaultBg: "#3F51B5",
+  toolbarDefaultBg: "#000",
   toolbarHeight: 56,
   toolbarSearchIconSize: 23,
   toolbarInputColor: "#fff",
@@ -166,7 +166,7 @@ export default {
     return this.textColor;
   },
   get inputColorPlaceholder() {
-    return "#575757";
+    return "#00CED1"; //dark turquoise
   },
 
   // Line Height
@@ -221,8 +221,8 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
-  inverseTextColor: "#fff",
+  textColor: "#FFF",
+  inverseTextColor: "#000",
   noteFontSize: 14,
   get defaultTextColor() {
     return this.textColor;
@@ -233,7 +233,7 @@ export default {
   titleFontSize: 19,
   subTitleFontSize: 14,
   subtitleColor: "#FFF",
-  titleFontColor: "#FFF",
+  titleFontColor: "#00FFFF",
 
   // Other
   borderRadiusBase: 2,
