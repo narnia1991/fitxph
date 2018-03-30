@@ -19,7 +19,7 @@ class Wrapper extends Component {
           style={{ flex: 1, width: null, height: null }}
           imageStyle={{ resizeMode: 'cover' }}
         >
-          <Content padder>
+          <Content padder={this.props.padder}>
             {this.props.children}
           </Content>
         </ImageBackground>

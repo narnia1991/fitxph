@@ -45,9 +45,9 @@ class NavBar extends Component {
       <StyleProvider style={getTheme(material)}>
         <Header>
           <Left>
-            {/* <Button transparent>
-            <Icon name="md-menu" />
-          </Button> */}
+            <Button transparent>
+              <Icon name="md-menu" />
+            </Button>
           </Left>
           <Body>
             <Title>{this.props.title}</Title>

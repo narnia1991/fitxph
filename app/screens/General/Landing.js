@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { Container, Content } from "native-base";
-import Tile from "../../components/Tile";
+import { Container, Content, Text, View } from "native-base";
+import { Tile } from "../../components";
 import imageLoader from "../../utils/imageLoader";
+
 class Landing extends Component {
   state = {
     user: null
@@ -20,10 +21,12 @@ class Landing extends Component {
     Actions.planlist({ user: this.state.user });
     // Actions.planlist({ user: this.state.user });
   };
+
   handleProgressPress = () => {
     if (!this.state.user.plan) return false;
     else Actions.progress({ user: this.state.user });
   };
+
   handleReferencePress = () => {
     Actions.reference({ user: this.state.user });
   };
@@ -34,27 +37,23 @@ class Landing extends Component {
         uri={imageLoader.Plans}
         content="Plan"
         key="Plan"
-        contentColor="#fff"
-        backGroundColor="rgba(9,9,9,.8)"
+        contentColor="#FFF"
+        backGroundColor="rgba(0,139,139,.5)"  //dark cyan
         onPress={this.handlePlanPress}
       />,
       <Tile
         uri={imageLoader.Progress}
         content="Progress"
         key="Progress"
-        contentColor="#fff"
-        backGroundColor="rgba(9,9,9,.8)"
         onPress={this.handleProgressPress}
       />,
       <Tile
         uri={imageLoader.Reference}
         content="Reference"
         key="Reference"
-        contentColor="#fff"
-        backGroundColor="rgba(9,9,9,.8)"
         onPress={this.handleReferencePress}
       />
-    ];
+    ]
   }
 }
 

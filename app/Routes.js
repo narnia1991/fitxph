@@ -16,7 +16,7 @@ import {
   // FoodAdd,
   // FoodList,
   // InitialData,
-  // Landing,
+  Landing,
   Login,
   // Plan,
   // PlanList,
@@ -50,13 +50,15 @@ class routes extends React.Component {
                 title="login"
                 hideNavBar={true}
               />
-              {/* <Scene
-            key="landing"
-            component={Landing}
-            navBar={NavBar}
-            title="FitXPH"
-            passProps
-          />
+              <Scene
+                key="landing"
+                initial={true}
+                component={Landing}
+                navBar={NavBar}
+                title="FitXPH"
+                passProps
+              />
+              {/*
           <Scene key="signup" component={SignUp} hideNavBar={true} />
            <Scene
             key="calendar"

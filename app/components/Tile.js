@@ -9,31 +9,6 @@ import {
 
 class Tile extends React.Component {
   render() {
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        alignItems: "stretch",
-        justifyContent: "center"
-      },
-      image: {
-        flexGrow: 1,
-        height: null,
-        width: null,
-        alignItems: "center",
-        justifyContent: "center"
-      },
-      paragraph: {
-        textAlign: "center",
-        color: this.props.contentColor,
-        fontSize: 35
-      },
-      opaque: {
-        backgroundColor: this.props.backGroundColor,
-        padding: 5,
-        elevation: 3
-      }
-    });
-
     return (
       <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
         <ImageBackground source={this.props.uri} style={styles.image}>
@@ -45,5 +20,30 @@ class Tile extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center"
+  },
+  image: {
+    flexGrow: 1,
+    height: null,
+    width: null,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  paragraph: {
+    textAlign: "center",
+    color: "#FFF",
+    fontSize: 35
+  },
+  opaque: {
+    backgroundColor: "rgba(0,139,139,.8)",  //dark cyan,
+    padding: 5,
+    elevation: 3
+  }
+});
 
 export default Tile;

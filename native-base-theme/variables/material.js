@@ -130,14 +130,14 @@ export default {
   tabActiveBgColor: "#40E0D0",     //turquoise
 
   // Header
-  toolbarBtnColor: "#fff",
-  toolbarDefaultBg: "#000",
+  toolbarBtnColor: "#000",
+  toolbarDefaultBg: "#40E0D0",  // turquoise
   toolbarHeight: 56,
   toolbarSearchIconSize: 23,
-  toolbarInputColor: "#fff",
+  toolbarInputColor: "#000",
   searchBarHeight: platform === "ios" ? 30 : 40,
   searchBarInputHeight: platform === "ios" ? 40 : 50,
-  toolbarBtnTextColor: "#fff",
+  toolbarBtnTextColor: "#000",
   toolbarDefaultBorder: "#3F51B5",
   iosStatusbar: "light-content",
   get statusBarColor() {
@@ -233,7 +233,7 @@ export default {
   titleFontSize: 19,
   subTitleFontSize: 14,
   subtitleColor: "#FFF",
-  titleFontColor: "#00FFFF",
+  titleFontColor: "#000",
 
   // Other
   borderRadiusBase: 2,
