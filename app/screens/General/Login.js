@@ -52,7 +52,7 @@ class Login extends React.Component {
         throw new Error();
       }
     } catch (error) {
-      this.setState({ errors: "invalid Username /  Password" });
+      this.setState({ errors: "Invalid Username /  Password" });
     }
   };
 
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30
   },
   errorText: {
-    color: "red"
+    color: "red",
+    paddingTop: 10
   }
 });
 
