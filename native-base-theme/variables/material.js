@@ -25,7 +25,7 @@ export default {
   badgePadding: 0,
 
   // Button
-  btnFontFamily: "Roboto",
+  btnFontFamily: "Roboto_medium",
   btnDisabledBg: "#b5b5b5",
   buttonPadding: 6,
   get btnPrimaryBg() {
@@ -122,12 +122,12 @@ export default {
   footerPaddingBottom: isIphoneX ? 34 : 0,
 
   // FooterTab
-  tabBarTextColor: "#bfc6ea",
+  tabBarTextColor: "#000",
   tabBarTextSize: 11,
-  activeTab: "#fff",
+  activeTab: "#E0FFFF",           //light cyan
   sTabBarActiveTextColor: "#007aff",
   tabBarActiveTextColor: "#fff",
-  tabActiveBgColor: "#3F51B5",
+  tabActiveBgColor: "#40E0D0",     //turquoise
 
   // Header
   toolbarBtnColor: "#fff",

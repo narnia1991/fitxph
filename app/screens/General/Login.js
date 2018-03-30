@@ -9,13 +9,14 @@ import {
   Label,
   Title,
   Body,
-  Text
+  Text,
+  Footer,
+  FooterTab
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet } from "react-native";
 import { getData, setData } from "../../AsyncStorage";
-import Wrapper from '../../components/Wrapper';
-import TextBox from '../../components/TextBox';
+import { TextBox, ScreenLabel, Submit, Wrapper } from "../../components";
 
 class Login extends React.Component {
   state = {
@@ -60,11 +61,12 @@ class Login extends React.Component {
   };
 
   render() {
-    return (
-      <Wrapper>
+    return [
+      <Wrapper key={1}>
         <Text style={styles.syncText} onPress={() => Actions.syncnow()}>
           Sync Now
         </Text>
+        <ScreenLabel text="Login" />
         <Form>
           <Text style={styles.errorText}>{this.state.errors}</Text>
           <TextBox
@@ -86,19 +88,16 @@ class Login extends React.Component {
               })
             }
           />
-
           <Text
             style={styles.createUserText}
             onPress={() => Actions.signup()}
           >
             Create new user
             </Text>
-          <Button block onPress={this.handleLogin}>
-            <Text>Login</Text>
-          </Button>
         </Form>
-      </Wrapper>
-    );
+      </Wrapper>,
+      <Submit key={2} onSubmit={this.handleLogin} text="Login" />
+    ];
   }
 }
 
@@ -114,7 +113,8 @@ const styles = StyleSheet.create({
   },
   syncText: {
     paddingTop: 30,
-    paddingBottom: 30
+    paddingBottom: 30,
+    textAlign: 'right',
   },
   syncNowText: {
     paddingBottom: 30
