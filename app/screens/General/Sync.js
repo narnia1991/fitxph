@@ -1,18 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Content,
-  Form,
-  Input,
-  Item,
-  Label,
-  Title,
-  Body
-} from "native-base";
+import { Form, Text } from "native-base";
 import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet, Text } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { loginUser } from "../../FireBase";
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
 
 class Sync extends React.Component {
   state = {
@@ -54,43 +45,25 @@ class Sync extends React.Component {
   };
 
   render() {
-    return (
-      <Container>
-        <Content padder>
-          <Form>
-            <Item floatingLabel>
-              <Label>Email</Label>
-              <Input
-                onChangeText={input =>
-                  this.setState({
-                    email: input
-                  })
-                }
-              />
-            </Item>
-            <Text onPress={this.handleSyncLater}>Sync Later</Text>
-            <Button block onPress={this.handleSync}>
-              <Text>Sync</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
-    );
+    return [
+      <Wrapper padder key={1}>
+        <ScreenLabel text="Sync" />
+        <Form>
+          <Error message={this.state.errors} />
+          <TextBox label="Email" onChangeText={input => this.setState({
+            email: input
+          })} />
+          <Text onPress={this.handleSyncLater} style={styles.syncLater}>Maybe Later</Text>
+        </Form>
+      </Wrapper>,
+      <Submit key={2} text="Sync" onSubmit={this.handleSync} />
+    ]
   }
 }
 
-let { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: width
-  },
-  createUserText: {
-    paddingTop: 30,
-    paddingBottom: 30
-  },
-  syncNowText: {
-    paddingBottom: 30
+  syncLater: {
+    padding: 15
   }
 });
 

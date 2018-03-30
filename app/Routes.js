@@ -24,7 +24,7 @@ import {
   // Reference,
   SignUp,
   Splash,
-  // Sync,
+  Sync,
   // SyncNow
 } from "./screens";
 import NavBar from "./components/NavBar";
@@ -52,14 +52,14 @@ class routes extends React.Component {
               />
               <Scene
                 key="landing"
-                initial={true}
                 component={Landing}
                 navBar={NavBar}
                 title="FitXPH"
                 passProps
               />
-
               <Scene key="signup" component={SignUp} hideNavBar={true} />
+              <Scene key="sync"
+                component={Sync} hideNavBar={true} passProps />
               {/*
            <Scene
             key="calendar"
@@ -74,7 +74,7 @@ class routes extends React.Component {
             hideNavBar={true}
             passProps
           />
-          <Scene key="sync" component={Sync} hideNavBar={true} passProps />
+
           <Scene key="day" component={Day} hideNavBar={true} passProps />
           <Scene
             key="exercise"
