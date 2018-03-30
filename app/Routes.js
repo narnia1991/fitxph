@@ -25,7 +25,7 @@ import {
   SignUp,
   Splash,
   Sync,
-  // SyncNow
+  SyncNow
 } from "./screens";
 import NavBar from "./components/NavBar";
 import getTheme from '../native-base-theme/components';
@@ -40,7 +40,7 @@ class routes extends React.Component {
             <Scene key="root">
               <Scene
                 key="splash"
-                initial={true}
+                // initial={true}
                 component={Splash}
                 hideNavBar={true}
               />
@@ -60,6 +60,10 @@ class routes extends React.Component {
               <Scene key="signup" component={SignUp} hideNavBar={true} />
               <Scene key="sync"
                 component={Sync} hideNavBar={true} passProps />
+
+              <Scene key="syncnow"
+                initial={true}
+                component={SyncNow} hideNavBar={true} passProps />
               {/*
            <Scene
             key="calendar"

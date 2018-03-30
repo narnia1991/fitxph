@@ -1,21 +1,13 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Content,
-  Form,
-  Input,
-  Item,
-  Label,
-  Title,
-  Body,
-  Text
-} from "native-base";
+import { Form, Text } from "native-base";
 import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { loginUser } from "../../FireBase";
 import { setData } from "../../AsyncStorage";
-class Sync extends React.Component {
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components"
+
+
+class SyncNow extends React.Component {
   state = {
     email: "",
     password: "",
@@ -38,44 +30,41 @@ class Sync extends React.Component {
   };
 
   render() {
-    return (
-      <Container>
-        <Content padder>
-          <Form>
-            <Text>{this.state.errors}</Text>
-            <Item floatingLabel>
-              <Label>Email</Label>
-              <Input onChangeText={input => this.setState({ email: input })} />
-            </Item>
-            <Item floatingLabel last>
-              <Label>Password</Label>
-              <Input
-                onChangeText={input => this.setState({ password: input })}
-              />
-            </Item>
-            <Button block onPress={this.handleSync}>
-              <Text>Sync</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
-    );
+    return [
+      <Wrapper key={1} padder>
+        <ScreenLabel text="Sync" />
+        <Form>
+          <Error message={this.state.errors} />
+          <TextBox
+            label="Username"
+            onChangeText={input =>
+              this.setState({
+                username: input,
+                errors: ""
+              })
+            }
+          />
+          <TextBox
+            label="Password"
+            secureTextEntry
+            onChangeText={input =>
+              this.setState({
+                password: input,
+                errors: ""
+              })
+            }
+          />
+        </Form>
+      </Wrapper>,
+      <Submit key={2} onSubmit={this.handleSync} text="Sync Now" />
+    ];
   }
 }
 
-let { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: width
-  },
-  createUserText: {
-    paddingTop: 30,
-    paddingBottom: 30
-  },
   syncNowText: {
     paddingBottom: 30
   }
 });
 
-export default Sync;
+export default SyncNow;
