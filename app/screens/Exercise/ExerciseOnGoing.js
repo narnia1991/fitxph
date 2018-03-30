@@ -13,7 +13,7 @@ import {
   Fab,
   StyleProvider } from "native-base";
 import { Image } from "react-native";
-import imageLoader from "../utils/imageLoader";
+import imageLoader from "../../utils/imageLoader";
 
 class ExerciseOnGoing extends React.Component {
   state = {

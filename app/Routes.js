@@ -1,32 +1,7 @@
 import React from "react";
-import {
-  Root,
-  StyleProvider
-} from "native-base";
-import { Lightbox, Router, Scene } from "react-native-router-flux";
-import {
-  // Calendar,
-  // Day,
-  // Exercise,
-  // ExerciseFinished,
-  // ExerciseList,
-  // ExerciseOnGoing,
-  // Featured,
-  // Food,
-  // FoodAdd,
-  // FoodList,
-  // InitialData,
-  Landing,
-  Login,
-  // Plan,
-  // PlanList,
-  // Progress,
-  // Reference,
-  SignUp,
-  Splash,
-  Sync,
-  SyncNow
-} from "./screens";
+import { Root, StyleProvider } from "native-base";
+import { Router, Scene } from "react-native-router-flux";
+import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General'
 import NavBar from "./components/NavBar";
 import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
@@ -62,6 +37,8 @@ class routes extends React.Component {
                 component={Sync} hideNavBar={true} passProps />
               <Scene key="syncnow"
                 component={SyncNow} hideNavBar={true} passProps />
+
+
               {/*
            <Scene
             key="calendar"

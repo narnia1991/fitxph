@@ -95,8 +95,8 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: "#00FFFF",  //cyan
-  brandInfo: "#40E0D0",     //turquoise
+  brandPrimary: "#40E0D0", //turquoise
+  brandInfo: "#00FFFF",     //cyan
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
   brandWarning: "#f0ad4e",

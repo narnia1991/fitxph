@@ -74,7 +74,7 @@ class PlanList extends React.Component {
           containerStyle={{}}
           style={{ backgroundColor: "#5067FF" }}
           position="bottomRight"
-          onPress={() => this.setState({ active: !this.state.active })}
+          onPress={() => Actions.addplan({ user: this.state.user })}
         >
           <Icon name="md-add" />
         </Fab>

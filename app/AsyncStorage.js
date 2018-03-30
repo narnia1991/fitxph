@@ -3,9 +3,8 @@ import { AsyncStorage } from "react-native";
 
 export const getData = async key => {
   try {
-    console.log(key);
     const data = await AsyncStorage.getItem(key);
-    console.log(data);
+    if (!data) return false
     return JSON.parse(data);
   } catch (error) {
     throw new Error("Cannot get item", error);

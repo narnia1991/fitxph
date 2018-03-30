@@ -43,8 +43,13 @@ class Login extends React.Component {
   };
 
   handleLogin = async () => {
+    console.log('potoato', this.state)
     try {
       const user = await getData(this.state.username);
+
+      if (!user) throw new Error()
+      console.log(user, 'user')
+
       if (user.password == this.state.password) {
         await setData("currentUser", user.username);
         Actions.landing({ user });
