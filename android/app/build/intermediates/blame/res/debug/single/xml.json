@@ -1,6 +1,6 @@
 [
     {
-        "merged": "D:\\Projects\\fitxph\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
-        "source": "D:\\Projects\\fitxph\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.52.0\\res\\xml\\preferences.xml"
+        "merged": "D:\\fitxph\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "D:\\fitxph\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.52.0\\res\\xml\\preferences.xml"
     }
 ]
