@@ -1,3 +1,4 @@
+import Error from "./Error";
 import NavBar from "./NavBar";
 import ScreenLabel from "./ScreenLabel";
 import Submit from "./Submit";
@@ -6,6 +7,7 @@ import Tile from "./Tile";
 import Wrapper from "./Wrapper";
 
 export {
+  Error,
   NavBar,
   ScreenLabel,
   Submit,
