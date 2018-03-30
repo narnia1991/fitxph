@@ -22,7 +22,7 @@ import {
   // PlanList,
   // Progress,
   // Reference,
-  // SignUp,
+  SignUp,
   Splash,
   // Sync,
   // SyncNow
@@ -58,8 +58,9 @@ class routes extends React.Component {
                 title="FitXPH"
                 passProps
               />
+
+              <Scene key="signup" component={SignUp} hideNavBar={true} />
               {/*
-          <Scene key="signup" component={SignUp} hideNavBar={true} />
            <Scene
             key="calendar"
             component={Calendar}

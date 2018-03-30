@@ -1,17 +1,10 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Container,
-  Content,
-  Form,
-  Input,
-  Item,
-  Label,
-  Title
-} from "native-base";
+import { Form, Text } from "native-base";
 import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet, Text } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { getData, setData } from "../../AsyncStorage";
+import { ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
+
 class SignUp extends Component {
   state = {
     username: "",
@@ -19,6 +12,7 @@ class SignUp extends Component {
     confirm_password: "",
     errors: ""
   };
+
   handleSignUp = async () => {
     try {
       console.log(this.state);
@@ -48,55 +42,51 @@ class SignUp extends Component {
       this.setState({ errors: "Cannot Sign Up" });
     }
   };
-  title = () => <Title>SignUp</Title>;
-  render() {
-    return (
-      <Container>
-        <Content padder>
-          <Form>
-            <Text style={styles.error}>{this.state.errors}</Text>
-            <Item floatingLabel>
-              <Label>Username</Label>
-              <Input
-                onChangeText={input =>
-                  this.setState({
-                    username: input
-                  })
-                }
-              />
-            </Item>
 
-            <Item floatingLabel>
-              <Label>Password</Label>
-              <Input
-                secureTextEntry
-                onChangeText={input =>
-                  this.setState({
-                    password: input
-                  })
-                }
-              />
-            </Item>
-            <Item floatingLabel last>
-              <Label>Confirm Password</Label>
-              <Input
-                secureTextEntry
-                onChangeText={input =>
-                  this.setState({
-                    confirm_password: input
-                  })
-                }
-              />
-            </Item>
-            <Button block light onPress={this.handleSignUp}>
-              <Text>Submit</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
-    );
+  render() {
+    return [
+      <Wrapper key={1} padder>
+        <ScreenLabel text="Create" />
+        <Form>
+          <Text style={styles.errorText}>{this.state.errors}</Text>
+          <TextBox
+            label="Username"
+            onChangeText={input =>
+              this.setState({
+                username: input,
+                errors: ""
+              })
+            }
+          />
+          <TextBox
+            label="Password"
+            secureTextEntry
+            onChangeText={input =>
+              this.setState({
+                password: input,
+                errors: ""
+              })
+            }
+          />
+          <TextBox
+            label="Confirm Password"
+            secureTextEntry
+            onChangeText={input =>
+              this.setState({
+                confirm_password: input,
+                errors: ""
+              })
+            }
+          />
+        </Form>
+      </Wrapper>,
+      <Submit key={2} onSubmit={this.handleSignUp} text="Submit" />
+    ];
   }
 }
+
+// <Form>
+
 
 let { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
