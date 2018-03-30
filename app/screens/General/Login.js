@@ -16,7 +16,7 @@ import {
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet } from "react-native";
 import { getData, setData } from "../../AsyncStorage";
-import { TextBox, ScreenLabel, Submit, Wrapper } from "../../components";
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
 
 class Login extends React.Component {
   state = {
@@ -68,7 +68,7 @@ class Login extends React.Component {
         </Text>
         <ScreenLabel text="Login" />
         <Form>
-          <Text style={styles.errorText}>{this.state.errors}</Text>
+          <Error message={this.state.errors} />
           <TextBox
             label="Username"
             onChangeText={input =>

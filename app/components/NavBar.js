@@ -7,15 +7,9 @@ import {
   Button,
   Icon,
   Title,
-  Picker,
-  StyleProvider
 } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { deleteData } from "../AsyncStorage";
-import getTheme from '../../native-base-theme/components';
-import material from '../../native-base-theme/variables/material';
-
-const Item = Picker.Item;
 
 class NavBar extends Component {
   constructor(props) {
@@ -42,23 +36,21 @@ class NavBar extends Component {
 
   render() {
     return (
-      <StyleProvider style={getTheme(material)}>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name="md-menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>{this.props.title}</Title>
-          </Body>
-          <Right>
-            <Button transparent onPress={this.handleLogout}>
-              <Icon name="md-log-out" />
-            </Button>
-          </Right>
-        </Header>
-      </StyleProvider>
+      <Header>
+        <Left>
+          <Button transparent>
+            <Icon name="md-menu" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>{this.props.title}</Title>
+        </Body>
+        <Right>
+          <Button transparent onPress={this.handleLogout}>
+            <Icon name="md-log-out" />
+          </Button>
+        </Right>
+      </Header>
     );
   }
 }

@@ -5,26 +5,14 @@ import {
   Label,
 } from "native-base";
 
-class TextBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
-    return (
-      <Item floatingLabel>
-        <Label>{this.props.label}</Label>
-        <Input
-          secureTextEntry={this.props.secureTextEntry}
-          onChangeText={this.props.onChangeText}
-        />
-      </Item>
-    );
-  }
-}
-
-
+const TextBox = ({ label, secureTextEntry, onChangeText }) => (
+  <Item floatingLabel>
+    <Label>{label}</Label>
+    <Input
+      secureTextEntry={secureTextEntry}
+      onChangeText={onChangeText}
+    />
+  </Item>
+)
 
 export default TextBox;

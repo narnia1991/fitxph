@@ -7,19 +7,15 @@ import {
   TouchableOpacity
 } from "react-native";
 
-class Tile extends React.Component {
-  render() {
-    return (
-      <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
-        <ImageBackground source={this.props.uri} style={styles.image}>
-          <View style={styles.opaque}>
-            <Text style={styles.paragraph}>{this.props.content}</Text>
-          </View>
-        </ImageBackground>
-      </TouchableOpacity>
-    );
-  }
-}
+const Tile = ({ content, onPress, uri }) => (
+  <TouchableOpacity style={styles.container} onPress={onPress}>
+    <ImageBackground source={uri} style={styles.image}>
+      <View style={styles.opaque}>
+        <Text style={styles.paragraph}>{content}</Text>
+      </View>
+    </ImageBackground>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   container: {

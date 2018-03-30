@@ -6,22 +6,14 @@ import {
   Text
 } from "native-base";
 
-class Submit extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Submit = ({ onSubmit, text }) => (
+  <Footer>
+    <FooterTab>
+      <Button large onPress={onSubmit}>
+        <Text>{text}</Text>
+      </Button>
+    </FooterTab>
+  </Footer>
+)
 
-  render() {
-    return (
-      <Footer>
-        <FooterTab>
-          <Button large onPress={this.props.onSubmit}>
-            <Text>{this.props.text}</Text>
-          </Button>
-        </FooterTab>
-      </Footer>
-    );
-  }
-}
-
-export default Submit;
+export default Submit

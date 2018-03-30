@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Form, Text } from "native-base";
 import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet } from "react-native";
 import { getData, setData } from "../../AsyncStorage";
-import { ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
 
 class SignUp extends Component {
   state = {
@@ -48,7 +47,7 @@ class SignUp extends Component {
       <Wrapper key={1} padder>
         <ScreenLabel text="Create" />
         <Form>
-          <Text style={styles.errorText}>{this.state.errors}</Text>
+          <Error message={this.state.errors} />
           <TextBox
             label="Username"
             onChangeText={input =>
@@ -80,30 +79,10 @@ class SignUp extends Component {
           />
         </Form>
       </Wrapper>,
-      <Submit key={2} onSubmit={this.handleSignUp} text="Submit" />
+      <Submit key={2} onSubmit={this.handleSignUp} text="Signup" />
     ];
   }
 }
 
-// <Form>
-
-
-let { height, width } = Dimensions.get("window");
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: width
-  },
-  createUserText: {
-    paddingTop: 30,
-    paddingBottom: 30
-  },
-  syncNowText: {
-    paddingBottom: 30
-  },
-  errorText: {
-    color: "red"
-  }
-});
 
 export default SignUp;

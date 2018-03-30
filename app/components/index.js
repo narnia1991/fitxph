@@ -1,6 +1,5 @@
-import Error from "./Error";
+import { Error, ScreenLabel } from "./Labels";
 import NavBar from "./NavBar";
-import ScreenLabel from "./ScreenLabel";
 import Submit from "./Submit";
 import TextBox from "./TextBox";
 import Tile from "./Tile";
