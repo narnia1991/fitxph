@@ -5,8 +5,8 @@ import {
   Label,
 } from "native-base";
 
-const TextBox = ({ label, secureTextEntry, onChangeText }) => (
-  <Item floatingLabel>
+const TextBox = ({ label, last, secureTextEntry, onChangeText }) => (
+  <Item floatingLabel last={last}>
     <Label>{label}</Label>
     <Input
       secureTextEntry={secureTextEntry}

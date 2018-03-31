@@ -78,7 +78,7 @@ export default {
   },
 
   // Card
-  cardDefaultBg: "#fff",
+  cardDefaultBg: "rgba(47,79,79,.6)",
   cardBorderColor: "#ccc",
 
   // CheckBox

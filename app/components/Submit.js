@@ -17,3 +17,4 @@ const Submit = ({ onSubmit, text }) => (
 )
 
 export default Submit
+

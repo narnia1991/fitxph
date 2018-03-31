@@ -1,10 +1,10 @@
-// import AddPlan from './AddPlan'
+import PlanAdd from './PlanAdd'
 // import Calendar from './Calendar'
 // import Day from './Day'
 import PlanList from './PlanList'
 
 export {
-  // AddPlan,
+  PlanAdd,
   // Calendar,
   // Day,
   PlanList

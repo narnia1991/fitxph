@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Root, StyleProvider } from "native-base";
 import { Router, Scene } from "react-native-router-flux";
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
-import { PlanList } from './screens/Plan';
+import { PlanAdd, PlanList } from './screens/Plan';
 import { Nav, NavBar } from "./components";
 import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
@@ -39,12 +39,19 @@ class routes extends React.Component {
                   component={Sync} hideNavBar={true} passProps />
                 <Scene key="syncnow"
                   component={SyncNow} hideNavBar={true} passProps />
+
+                {/*
+                Plan
+                */}
                 <Scene key="plan"
                   title="Plan"
                   initial={true}
                   navBar={Nav}
                   component={PlanList} passProps />
-
+                <Scene key="planAdd"
+                  title="Add a Plan"
+                  hideNavBar={true}
+                  component={PlanAdd} passProps />
                 {/*
            <Scene
             key="calendar"

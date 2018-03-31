@@ -16,7 +16,7 @@ import React from "react";
 import { Body, Left, Right, Text, Title, Fab, Icon } from "native-base";
 import { StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { Lists, Tile, Wrapper } from "../../components";
+import { Lists, Wrapper } from "../../components";
 // import fullPlan from "../default/fullplan";
 
 class PlanList extends React.Component {
@@ -55,7 +55,7 @@ class PlanList extends React.Component {
         containerStyle={{}}
         style={{ backgroundColor: "#5067FF" }}
         position="bottomRight"
-        onPress={() => Actions.addplan({ user: this.state.user })}
+        onPress={() => Actions.planAdd({ user: this.state.user })}
       >
         <Icon name="md-add" />
       </Fab>
