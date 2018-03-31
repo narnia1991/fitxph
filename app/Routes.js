@@ -1,8 +1,9 @@
 import React from "react";
-import { Root, StyleProvider } from "native-base";
+import { Container, Root, StyleProvider } from "native-base";
 import { Router, Scene } from "react-native-router-flux";
-import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General'
-import NavBar from "./components/NavBar";
+import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
+import { PlanList } from './screens/Plan';
+import { Nav, NavBar } from "./components";
 import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
 
@@ -11,35 +12,40 @@ class routes extends React.Component {
     return (
       <Root>
         <StyleProvider style={getTheme(material)}>
-          <Router>
-            <Scene key="root">
-              <Scene
-                key="splash"
-                initial={true}
-                component={Splash}
-                hideNavBar={true}
-              />
-              <Scene
-                key="login"
-                component={Login}
-                title="login"
-                hideNavBar={true}
-              />
-              <Scene
-                key="landing"
-                component={Landing}
-                navBar={NavBar}
-                title="FitXPH"
-                passProps
-              />
-              <Scene key="signup" component={SignUp} hideNavBar={true} />
-              <Scene key="sync"
-                component={Sync} hideNavBar={true} passProps />
-              <Scene key="syncnow"
-                component={SyncNow} hideNavBar={true} passProps />
+          <Container>
+            <Router>
+              <Scene key="root">
+                <Scene
+                  key="splash"
+                  // initial={true}
+                  component={Splash}
+                  hideNavBar={true}
+                />
+                <Scene
+                  key="login"
+                  component={Login}
+                  title="login"
+                  hideNavBar={true}
+                />
+                <Scene
+                  key="landing"
+                  component={Landing}
+                  navBar={NavBar}
+                  title="FitXPH"
+                  passProps
+                />
+                <Scene key="signup" component={SignUp} hideNavBar={true} />
+                <Scene key="sync"
+                  component={Sync} hideNavBar={true} passProps />
+                <Scene key="syncnow"
+                  component={SyncNow} hideNavBar={true} passProps />
+                <Scene key="plan"
+                  title="Plan"
+                  initial={true}
+                  navBar={Nav}
+                  component={PlanList} passProps />
 
-
-              {/*
+                {/*
            <Scene
             key="calendar"
             component={Calendar}
@@ -118,8 +124,9 @@ class routes extends React.Component {
             hideNavBar={true}
             passProps
           /> */}
-            </Scene>
-          </Router>
+              </Scene>
+            </Router>
+          </Container>
         </StyleProvider>
       </Root>
     );

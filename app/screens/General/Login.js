@@ -1,18 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Content,
-  Form,
-  Input,
-  Item,
-  Label,
-  Title,
-  Body,
-  Text,
-  Footer,
-  FooterTab
-} from "native-base";
+import { Form, Text } from "native-base";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, StyleSheet } from "react-native";
 import { getData, setData } from "../../AsyncStorage";
@@ -124,10 +111,6 @@ const styles = StyleSheet.create({
   syncNowText: {
     paddingBottom: 30
   },
-  errorText: {
-    color: "red",
-    paddingTop: 10
-  }
 });
 
 const dummyUser = {

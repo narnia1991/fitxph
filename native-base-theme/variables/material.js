@@ -131,7 +131,7 @@ export default {
 
   // Header
   toolbarBtnColor: "#000",
-  toolbarDefaultBg: "#40E0D0",  // turquoise
+  toolbarDefaultBg: "#00CED1",  //  dark turquoise
   toolbarHeight: 56,
   toolbarSearchIconSize: 23,
   toolbarInputColor: "#000",
@@ -221,7 +221,7 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#FFF",
+  textColor: "#fff",
   inverseTextColor: "#000",
   noteFontSize: 14,
   get defaultTextColor() {
