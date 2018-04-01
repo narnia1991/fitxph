@@ -6,6 +6,8 @@ export const Error = ({ message }) => <Text style={{ color: "red" }}>{message}</
 
 export const ScreenLabel = ({ text }) => <Text style={styles.label}>{text}</Text>
 
+export const SectionLabel = ({ text }) => <Text style={{ fontSize: 20 }}>{text}</Text>
+
 const styles = StyleSheet.create({
   label: {
     fontSize: 60,

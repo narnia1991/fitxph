@@ -17,7 +17,7 @@ export const weight_loss = {
                     {
                         "food": "rice",
                         "quantity": "1 cup"
-                
+                    },
                     {
                         "food": "non fat milk",
                         "quantity": "4 tablespoons"
