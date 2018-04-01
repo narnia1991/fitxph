@@ -39,6 +39,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
           <Dropdown
             label="Morning Snack"
@@ -48,6 +49,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
           <Dropdown
             label="Lunch"
@@ -57,6 +59,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
           <Dropdown
             label="Afternoon Snack"
@@ -66,6 +69,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
           <Dropdown
             label="Supper"
@@ -75,6 +79,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" },
             ]}
+            prompt
           />
           <Dropdown
             label="Bedtime Snack"
@@ -84,6 +89,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
           <Text style={styles.margin}>Exercises:</Text>
           <Dropdown
@@ -93,6 +99,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
           <Dropdown
             selected={this.state.selected1}
@@ -101,6 +108,7 @@ class PlanAdd extends Component {
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
             ]}
+            prompt
           />
         </Form>
       </Wrapper>,

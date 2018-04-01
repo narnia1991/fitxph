@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import { StyleSheet, TouchableOpacity,View } from "react-native";
-import { Form, Label, Picker, Text} from "native-base";
+import React, { Component } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Form, Label, Picker, Text } from "native-base";
 import Link from "./Link";
 
 const Option = Picker.Item
@@ -15,7 +15,7 @@ class Dropdown extends Component {
 
   addPicker = () => {
     this.setState({
-      picker: picker+1
+      picker: picker + 1
     })
   }
 
@@ -26,13 +26,13 @@ class Dropdown extends Component {
   }
 
   render() {
-    const { label, onValueChange, options, selected } = this.props
+    const { label, onValueChange, options, prompt, selected } = this.props
     return (
       <View style={styles.mainDiv}>
         <Text style={styles.label}>{label}</Text>
-        <View  style={styles.subDiv}>
+        <View style={styles.subDiv}>
           <Picker
-            prompt="Select One"
+            prompt={prompt ? "Select One" : ""}
             selectedValue={selected}
             onValueChange={onValueChange}
           >
@@ -41,7 +41,7 @@ class Dropdown extends Component {
             ))}
           </Picker>
         </View>
-        <Link text="Add" onPress={this.addPicker}/>
+        <Link text="Add" onPress={this.addPicker} />
       </View>
     )
   }

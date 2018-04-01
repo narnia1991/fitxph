@@ -113,26 +113,13 @@ class routes extends React.Component {
                   hideNavBar={true}
                   passProps
                 />
-                <Scene
-                  key="initialdata"
-                  component={InitialData}
-                  hideNavBar={true}
-                  passProps
-                />
-                <Scene key="plan" component={Plan} hideNavBar={true} passProps />
-                <Scene
-                  key="planlist"
-                  component={PlanList}
-                  hideNavBar={true}
-                  passProps
-                />
+
                 <Scene
                   key="progress"
                   component={Progress}
                   hideNavBar={true}
                   passProps
                 />
-                <Scene key="syncnow" component={SyncNow} hideNavBar={true} />
                 <Scene
                   key="exerciselist"
                   component={ExerciseList}

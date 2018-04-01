@@ -1,4 +1,5 @@
 import { Error, ScreenLabel, SectionLabel } from "./Labels";
+import DatePicker from "./DatePicker";
 import Dropdown from "./Dropdown";
 import Link from "./Link";
 import Lists from "./Lists";
@@ -10,6 +11,7 @@ import Tile from "./Tile";
 import Wrapper from "./Wrapper";
 
 export {
+  DatePicker,
   Dropdown,
   Error,
   Link,
