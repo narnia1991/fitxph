@@ -15,7 +15,7 @@ class Dropdown extends Component {
 
   addPicker = () => {
     this.setState({
-      picker: picker + 1
+      picker: this.state.picker + 1
     })
   }
 
@@ -25,16 +25,24 @@ class Dropdown extends Component {
     })
   }
 
+  onValueChange(value: string) {
+    this.setState({
+      selected: value
+    });
+
+    this.props.onChange(value)
+  }
+
   render() {
-    const { label, onValueChange, options, prompt, selected } = this.props
+    const { label, onValueChange, options, prompt } = this.props
     return (
       <View style={styles.mainDiv}>
         <Text style={styles.label}>{label}</Text>
         <View style={styles.subDiv}>
           <Picker
             prompt={prompt ? "Select One" : ""}
-            selectedValue={selected}
-            onValueChange={onValueChange}
+            selectedValue={this.state.selected}
+            onValueChange={this.onValueChange.bind(this)}
           >
             {options.map((item, index) => (
               <Option key={index} label={item.name} value={item.value} />
@@ -42,7 +50,7 @@ class Dropdown extends Component {
           </Picker>
         </View>
         <Link text="Add" onPress={this.addPicker} />
-      </View>
+      </View >
     )
   }
 }

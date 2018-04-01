@@ -20,21 +20,22 @@ class PlanAdd extends Component {
     });
   }
 
-  handleSubmit = values => {
-    return
+  handleSubmit = () => {
+    const { planName, purpose, breakfast, morningSnack, lunch, afternoonSnack, supper, bedtimeSnack } = this
+
   }
 
   render() {
     return [
       <Wrapper key={1} padder>
         <Form>
-          <TextBox label="Name of Plan" />
-          <TextBox label="Purpose" />
+          <TextBox label="Name of Plan" onChangeText={(input) => this.planName = input} />
+          <TextBox label="Purpose" onChangeText={(input) => this.purpose = input} />
           <Text style={styles.margin}>Meal:</Text>
           <Dropdown
             label="Breakfast"
             selected={this.state.selected1}
-            onValueChange={this.onValueChange.bind(this)}
+            onChange={(value) => this.breakfast = value}
             options={[
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
@@ -45,6 +46,7 @@ class PlanAdd extends Component {
             label="Morning Snack"
             selected={this.state.selected1}
             onValueChange={this.onValueChange.bind(this)}
+            onChange={(value) => this.morningSnack = value}
             options={[
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
@@ -55,6 +57,7 @@ class PlanAdd extends Component {
             label="Lunch"
             selected={this.state.selected1}
             onValueChange={this.onValueChange.bind(this)}
+            onChange={(value) => this.lunch = value}
             options={[
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
@@ -65,6 +68,7 @@ class PlanAdd extends Component {
             label="Afternoon Snack"
             selected={this.state.selected1}
             onValueChange={this.onValueChange.bind(this)}
+            onChange={(value) => this.afternoonSnack = value}
             options={[
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
@@ -75,6 +79,7 @@ class PlanAdd extends Component {
             label="Supper"
             selected={this.state.selected1}
             onValueChange={this.onValueChange.bind(this)}
+            onChange={(value) => this.supper = value}
             options={[
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" },
@@ -85,6 +90,7 @@ class PlanAdd extends Component {
             label="Bedtime Snack"
             selected={this.state.selected1}
             onValueChange={this.onValueChange.bind(this)}
+            onChange={(value) => this.bedtimeSnack = value}
             options={[
               { name: "Wallet", value: "key0" },
               { name: "ATM Card", value: "key1" }
@@ -116,16 +122,6 @@ class PlanAdd extends Component {
     ]
   }
 }
-
-{/* <Dropdown
-  mode="dropdown"
-  selectedValue={this.state.selected1}
-  onValueChange={this.onValueChange.bind(this)}
-  options={[
-    { name: "Wallet", value: "key0" },
-    { name: "ATM Card", value: "key1" }
-  ]}
-/> */}
 
 const styles = StyleSheet.create({
   div: {

@@ -49,12 +49,12 @@ class routes extends React.Component {
                   component={PlanList} passProps />
                 <Scene key="planAdd"
                   title="Add a Plan"
+                  initial={true}
                   hideNavBar={true}
                   component={PlanAdd} passProps />
 
                 <Scene
                   key="initialData"
-                  initial={true}
                   component={InitialData}
                   hideNavBar={true}
                   passProps
