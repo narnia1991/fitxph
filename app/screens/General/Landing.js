@@ -22,8 +22,9 @@ class Landing extends Component {
   };
 
   handleProgressPress = () => {
-    if (!this.state.user.plan) return false;
-    else Actions.progress({ user: this.state.user });
+    // if (!this.state.user.plan) return false;
+    // else
+    Actions.progress({ user: this.state.user });
   };
 
   handleReferencePress = () => {

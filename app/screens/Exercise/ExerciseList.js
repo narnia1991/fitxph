@@ -11,41 +11,44 @@ import {
   Fab,
   Icon
 } from "native-base";
+import { Nav, Wrapper } from "../../components";
 
 class ExerciseList extends React.Component {
   state = {
     user: {},
     items: ["Sit Ups", "Push Ups", "Lunges", "Squats", "Jumping Jacks"]
   };
-  componentWillMount = () => {
-    if (!this.props.user) {
-      Actions.login();
-    }
-    this.setState({ user: this.props.user });
-  };
+
+  // componentWillMount = () => {
+  //   if (!this.props.user) {
+  //     Actions.login();
+  //   }
+  //   this.setState({ user: this.props.user });
+  // };
+
   render() {
-    return (
-      <Container>
-        <Content>
-          <List
-            dataArray={this.state.items}
-            renderRow={(item, index) => (
-              <ListItem key={index}>
-                <Text>{item}</Text>
-              </ListItem>
-            )}
-          />
-        </Content>
-        <Fab
-          containerStyle={{}}
-          style={{ backgroundColor: "#5067FF" }}
-          position="bottomRight"
-          onPress={() => this.setState({ active: !this.state.active })}
-        >
-          <Icon name="md-add" />
-        </Fab>
-      </Container>
-    );
+    return [
+      <Nav key={0} title="Exercises" />,
+      <Wrapper key={1}>
+        <List
+          dataArray={this.state.items}
+          renderRow={(item, index) => (
+            <ListItem key={index}>
+              <Text>{item}</Text>
+            </ListItem>
+          )}
+        />
+      </Wrapper>,
+      <Fab
+        key={2}
+        containerStyle={{}}
+        style={{ backgroundColor: "#5067FF" }}
+        position="bottomRight"
+        onPress={() => this.setState({ active: !this.state.active })}
+      >
+        <Icon name="md-add" />
+      </Fab>
+    ];
   }
 }
 

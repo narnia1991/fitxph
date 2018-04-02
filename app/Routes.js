@@ -4,6 +4,7 @@ import { Router, Scene } from "react-native-router-flux";
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
+import { ExerciseList } from './screens/Exercise';
 
 import { Nav, NavBar } from "./components";
 import getTheme from '../native-base-theme/components';
@@ -20,7 +21,7 @@ class routes extends React.Component {
               <Scene key="root">
                 <Scene
                   key="splash"
-                  initial={true}
+                  // initial={true}
                   component={Splash}
                   hideNavBar={true}
                 />
@@ -72,6 +73,13 @@ class routes extends React.Component {
                   passProps
                 />
 
+                <Scene
+                  key="exerciselist"
+                  initial={true}
+                  component={ExerciseList}
+                  hideNavBar={true}
+                  passProps
+                />
                 {/*
                 <Scene
                   key="calendar"
@@ -81,19 +89,14 @@ class routes extends React.Component {
                 />
 
                 <Scene
-                  key="reference"
-                  component={Reference}
-                  hideNavBar={true}
-                  passProps
-                />
-
-                <Scene key="day" component={Day} hideNavBar={true} passProps />
-                <Scene
                   key="exercise"
                   component={Exercise}
                   hideNavBar={true}
                   passProps
                 />
+
+                <Scene key="day" component={Day} hideNavBar={true} passProps />
+
                 <Scene
                   key="exercisefinished"
                   component={ExerciseFinished}
@@ -132,12 +135,7 @@ class routes extends React.Component {
                   hideNavBar={true}
                   passProps
                 />
-                <Scene
-                  key="exerciselist"
-                  component={ExerciseList}
-                  hideNavBar={true}
-                  passProps
-                /> */}
+                 */}
               </Scene>
             </Router>
           </Container>

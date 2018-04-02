@@ -1,13 +1,13 @@
-import Exercise from './Exercise'
-import ExerciseAdd from './ExerciseAdd'
-import ExerciseFinished from './ExerciseFinished'
+// import Exercise from './Exercise'
+// import ExerciseAdd from './ExerciseAdd'
+// import ExerciseFinished from './ExerciseFinished'
 import ExerciseList from './ExerciseList'
-import ExerciseOnGoing from './ExerciseOnGoing'
+// import ExerciseOnGoing from './ExerciseOnGoing'
 
 export {
-  Exercise,
-  ExerciseAdd,
-  ExerciseFinished,
+  // Exercise,
+  // ExerciseAdd,
+  // ExerciseFinished,
   ExerciseList,
-  ExerciseOnGoing
+  // ExerciseOnGoing
 }
