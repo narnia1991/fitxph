@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { Container, Content } from "native-base";
-import Tile from "../../components/Tile";
+import { Tile } from "../../components";
 import imageLoader from "../../utils/imageLoader";
-class Landing extends Component {
+
+class Reference extends Component {
   state = {
     user: null
   };
@@ -29,6 +29,7 @@ class Landing extends Component {
   render() {
     return [
       <Tile
+        key={1}
         uri={imageLoader.Workout}
         content="Exercises"
         contentColor="#fff"
@@ -36,6 +37,7 @@ class Landing extends Component {
         onPress={this.handleExercisePress}
       />,
       <Tile
+        key={2}
         uri={imageLoader.Eat}
         content="Foods"
         contentColor="#fff"
@@ -43,6 +45,7 @@ class Landing extends Component {
         onPress={this.handleFoodPress}
       />,
       <Tile
+        key={3}
         uri={imageLoader.Discover}
         content="Discover"
         contentColor="#fff"
@@ -53,4 +56,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default Reference;

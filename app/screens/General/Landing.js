@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { Container, Content, Text, View } from "native-base";
 import { Tile } from "../../components";
 import imageLoader from "../../utils/imageLoader";
 

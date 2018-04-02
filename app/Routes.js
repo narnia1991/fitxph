@@ -65,6 +65,13 @@ class routes extends React.Component {
                   passProps
                 />
 
+                <Scene
+                  key="reference"
+                  component={Reference}
+                  hideNavBar={true}
+                  passProps
+                />
+
                 {/*
                 <Scene
                   key="calendar"
