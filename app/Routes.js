@@ -3,7 +3,7 @@ import { Container, Root, StyleProvider } from "native-base";
 import { Router, Scene } from "react-native-router-flux";
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { PlanAdd, PlanList } from './screens/Plan';
-import { InitialData } from './screens/Profile';
+import { InitialData, Progress } from './screens/Profile';
 
 import { Nav, NavBar } from "./components";
 import getTheme from '../native-base-theme/components';
@@ -20,7 +20,7 @@ class routes extends React.Component {
               <Scene key="root">
                 <Scene
                   key="splash"
-                  // initial={true}
+                  initial={true}
                   component={Splash}
                   hideNavBar={true}
                 />
@@ -49,13 +49,18 @@ class routes extends React.Component {
                   component={PlanList} passProps />
                 <Scene key="planAdd"
                   title="Add a Plan"
-                  initial={true}
                   hideNavBar={true}
                   component={PlanAdd} passProps />
 
                 <Scene
                   key="initialData"
                   component={InitialData}
+                  hideNavBar={true}
+                  passProps
+                />
+                <Scene
+                  key="progress"
+                  component={Progress}
                   hideNavBar={true}
                   passProps
                 />
