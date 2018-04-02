@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Container,
-  Content,
-  Form,
-  Item,
-  Input,
-  Label,
-  Text,
-  Button
-} from "native-base";
+import { Form } from "native-base";
+import { Dropdown, SectionLabel, Submit, TextBox, Wrapper } from "../../components";
 
 class ExerciseAdd extends React.Component {
   state = {
@@ -37,67 +29,42 @@ class ExerciseAdd extends React.Component {
     });
   }
 
-  handleSubmit(calue) {
+  handleSubmit() {
+    const { exerciseName, difficulty, muscleGroup, equipment, classification, description, instructions, imageUrl, videoUrl } = this
     console.log("====================================");
     console.log("handleClick");
     console.log("====================================");
   }
 
   render() {
-    return;
-    <Container>
-      <Content>
+    return [
+      <Wrapper key={1} padder>
         <Form>
-          <Item floatingLabel>
-            <Label>Name of Exercise</Label>
-            <Input />
-          </Item>
-          <Item stackedLabel>
-            <Label>Difficulty</Label>
-            <Picker
-              mode="dropdown"
-              placeholder="Select Difficulty"
-              onValueChange={this.onValueChange.bind(this)}
-            >
-              <Item label="Hard" value="hard" />
-              <Item label="Medium" value="medium" />
-              <Item label="Medium" value="easy" />
-            </Picker>
-          </Item>
-          <Item floatingLabel>
-            <Label>Target Muscle Group</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel>
-            <Label>Equipment</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel>
-            <Label>Classification</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel>
-            <Label>Description</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel>
-            <Label>instructions</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel>
-            <Label>Image URL</Label>
-            <Input />
-          </Item>
-          <Item floatingLabel last>
-            <Label>Video URL</Label>
-            <Input />
-          </Item>
-          <Button block light onPress={this.handleSubmit}>
-            <Text>Submit</Text>
-          </Button>
+          <TextBox label="Name of Exercise" onChangeText={(input) => this.exerciseName = input} />
+          <Dropdown
+            label="Difficulty"
+            selected={this.state.selected1}
+            onChange={(value) => this.difficulty = value}
+            options={[
+              { name: "Hard", value: "hard" },
+              { name: "Medium", value: "medium" },
+              { name: "Easy", value: "easy" }
+            ]}
+            prompt
+          />
+          <TextBox label="Target Muscle Group" onChangeText={(input) => this.muscleGroup = input} />
+          <TextBox label="Equipment" onChangeText={(input) => this.equipment = input} />
+          <TextBox label="Classification" onChangeText={(input) => this.classification = input} />
+          <TextBox label="Description" onChangeText={(input) => this.description = input} />
+          <TextBox label="Instructions" onChangeText={(input) => this.instructions = input} />
+          <TextBox label="Image URL" onChangeText={(input) => this.imageUrl = input} />
+          <TextBox label="Video URL" onChangeText={(input) => this.videoUrl = input} />
         </Form>
-      </Content>
-    </Container>;
+      </Wrapper>,
+      <Submit key={2} text="Add Exercise" onSubmit={this.handleSubmit} />
+    ];
   }
 }
+
 export default ExerciseAdd;
+

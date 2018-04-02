@@ -4,7 +4,7 @@ import { Router, Scene } from "react-native-router-flux";
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
-import { ExerciseList } from './screens/Exercise';
+import { ExerciseAdd, ExerciseList } from './screens/Exercise';
 
 import { Nav, NavBar } from "./components";
 import getTheme from '../native-base-theme/components';
@@ -75,11 +75,19 @@ class routes extends React.Component {
 
                 <Scene
                   key="exerciselist"
-                  initial={true}
                   component={ExerciseList}
                   hideNavBar={true}
                   passProps
                 />
+
+                <Scene
+                  key="exerciseAdd"
+                  initial={true}
+                  component={ExerciseAdd}
+                  hideNavBar={true}
+                  passProps
+                />
+
                 {/*
                 <Scene
                   key="calendar"
@@ -88,14 +96,7 @@ class routes extends React.Component {
                   passProps
                 />
 
-                <Scene
-                  key="exercise"
-                  component={Exercise}
-                  hideNavBar={true}
-                  passProps
-                />
-
-                <Scene key="day" component={Day} hideNavBar={true} passProps />
+                              <Scene key="day" component={Day} hideNavBar={true} passProps />
 
                 <Scene
                   key="exercisefinished"
