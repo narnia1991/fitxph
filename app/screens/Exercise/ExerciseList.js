@@ -1,30 +1,24 @@
 // exercise list
 // fab to add exercise
-import React from "react";
-import { Actions } from "react-native-router-flux";
-import {
-  Container,
-  Content,
-  List,
-  ListItem,
-  Text,
-  Fab,
-  Icon
-} from "native-base";
-import { Nav, Wrapper } from "../../components";
+import React from 'react';
+import { Actions } from 'react-native-router-flux';
+import { Container, Content, List, ListItem, Text, Fab, Icon } from 'native-base';
+import { Nav, Wrapper } from '../../components';
+import { exercises } from '../../default/exercises';
 
 class ExerciseList extends React.Component {
   state = {
     user: {},
-    items: ["Sit Ups", "Push Ups", "Lunges", "Squats", "Jumping Jacks"]
+    items: []
   };
 
-  // componentWillMount = () => {
-  //   if (!this.props.user) {
-  //     Actions.login();
-  //   }
-  //   this.setState({ user: this.props.user });
-  // };
+  componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+    this.setState({ user: this.props.user, items: exercises });
+    console.log(this.state.items);
+  };
 
   render() {
     return [
@@ -34,7 +28,7 @@ class ExerciseList extends React.Component {
           dataArray={this.state.items}
           renderRow={(item, index) => (
             <ListItem key={index}>
-              <Text>{item}</Text>
+              <Text>{item.name}</Text>
             </ListItem>
           )}
         />
@@ -42,7 +36,7 @@ class ExerciseList extends React.Component {
       <Fab
         key={2}
         containerStyle={{}}
-        style={{ backgroundColor: "#5067FF" }}
+        style={{ backgroundColor: '#5067FF' }}
         position="bottomRight"
         onPress={() => this.setState({ active: !this.state.active })}
       >
