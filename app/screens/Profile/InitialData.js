@@ -3,6 +3,7 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
 import { DatePickerAndroid, TouchableOpacity } from "react-native";
+import moment from "moment";
 import { Form, Text } from "native-base";
 import { DatePicker, Dropdown, ScreenLabel, SectionLabel, Submit, TextBox, Wrapper } from "../../components";
 import { setData } from "../../AsyncStorage";
@@ -32,9 +33,17 @@ class InitialData extends React.Component {
   }
 
   handleSubmit = async () => {
-    const { name, dob, weight, height } = this
+    const { name, dob,gender, weight, height } = this
 
-    await setData(this.state.user.username, { name, dob, weight, height, ...this.state.user })
+    const user = {
+       ...this.state.user,
+       name, dob, gender,weight, height,
+       start_date: moment(options.date).format("YYYY-d-MM")
+    }
+
+    await setData(this.state.user.username, user)
+
+    Actions.landing({user})
   }
 
 
@@ -46,7 +55,9 @@ class InitialData extends React.Component {
           <TextBox label="Name" onChangeText={(text) => this.name = text}
           />
           <DatePicker label="Date of Birth(MM/DD/YYYY)" onChangeText={(text) => this.dob = text} />
-          <Dropdown label="Gender" options={[
+          <Dropdown label="Gender"
+           onChange={(value) => this.gender = value}
+            options={[
             { name: "Male", value: "male" },
             { name: "Female", value: "female" }
           ]} />

@@ -52,7 +52,7 @@ class DayMeal extends React.Component {
     console.log('render', this.state);
     return [
       <Wrapper key={1}>{this.renderMealPlan}</Wrapper>,
-      <Submit text="Workouts" onSubmit={() => Actions.dayworkout({ user: this.state.user })} />
+      <Submit  key={2} text="Workouts" onSubmit={() => Actions.dayworkout({ user: this.state.user })} />
     ];
   }
 }

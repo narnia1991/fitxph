@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "native-base";
 import { Dropdown, SectionLabel, Submit, TextBox, Wrapper } from "../../components";
+import {setData} from "../../AsyncStorage";
 
 class ExerciseAdd extends React.Component {
   state = {
@@ -29,11 +30,21 @@ class ExerciseAdd extends React.Component {
     });
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     const { exerciseName, difficulty, muscleGroup, equipment, classification, description, instructions, imageUrl, videoUrl } = this
-    console.log("====================================");
-    console.log("handleClick");
-    console.log("====================================");
+
+    const customExercise = {
+      exerciseName, difficulty, muscleGroup, equipment, classification, description, instructions, imageUrl, videoUrl
+    }
+
+    const user = {
+      ...this.state.user,
+      customExercise: [...this.state.user.customExercise, customExercise]
+    }
+
+    await setData(this.state.user, user)
+
+    Actions.landing({user})
   }
 
   render() {

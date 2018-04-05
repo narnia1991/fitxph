@@ -29,11 +29,21 @@ class FoodAdd extends React.Component {
     });
   }
 
-  handleSubmit(value) {
+  async handleSubmit(value) {
     const { foodName, calories, difficulty, preparationTime, ingredients, description, instructions, imageUrl, videoUrl } = this
-    console.log("====================================");
-    console.log("handleClick");
-    console.log("====================================");
+
+    const customFood = {
+      foodName, calories, difficulty, preparationTime, ingredients, description, instructions, imageUrl, videoUrl
+    }
+
+    const user = {
+      ...this.state.user,
+      customFood: [...this.state.user.customFood, customFood]
+    }
+
+    await setData(this.state.user, user)
+
+    Actions.landing({user})
   }
 
   render() {

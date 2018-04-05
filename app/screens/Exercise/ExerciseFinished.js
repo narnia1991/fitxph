@@ -1,14 +1,8 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Body,
-  Button
-} from "native-base";
+import { Card, CardItem, Text, Body, Button} from "native-base";
+import { Image } from 'react-native';
+import {Wrapper, Submit} from "../../components";
 
 class ExerciseFinished extends React.Component {
   state = {
@@ -23,16 +17,13 @@ class ExerciseFinished extends React.Component {
   };
 
   handleClick() {
-    console.log("====================================");
-    console.log("handleClick");
-    console.log("====================================");
+   return Action.landing({ user: this.state.user })
   }
 
   render() {
-    return (
-      <Container>
-        <Content>
-          <Image source={imageLoader.Splash} />
+    return [
+      <Wrapper key={1}>
+        <Image source={imageLoader.Splash} />
           <Card>
             <CardItem header>
               <Text>Congratulations!!!</Text>
@@ -43,12 +34,9 @@ class ExerciseFinished extends React.Component {
               </Body>
             </CardItem>
           </Card>
-          <Button block onPress={this.handleClick}>
-            <Text>Go to Home Screen</Text>
-          </Button>
-        </Content>
-      </Container>
-    );
+      </Wrapper>,
+      <Submit key={2} text="Go to Home Screen" onSubmit={this.handleClick} />
+    ];
   }
 }
 

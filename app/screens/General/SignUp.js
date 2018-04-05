@@ -25,10 +25,9 @@ class SignUp extends Component {
           password: this.state.password
         });
 
-        Actions.landing({
+        Actions.initialData({
           user: {
             username: this.state.username,
-            password: this.state.password
           }
         });
       } else if (this.state.password !== this.state.confirm_password) {

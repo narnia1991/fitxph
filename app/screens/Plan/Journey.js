@@ -44,8 +44,8 @@ class Journey extends React.Component {
   }
   render() {
     return [
-      <Wrapper>{this.renderCalendar()}</Wrapper>,
-      <Submit text="Proceed" onSubmit={() => Actions.daymeal({ user: this.state.user })} />
+      <Wrapper padder key={1}>{this.renderCalendar()}</Wrapper>,
+      <Submit key={2} text="Proceed" onSubmit={() => Actions.daymeal({ user: this.state.user })} />
     ];
   }
 }

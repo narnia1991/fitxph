@@ -49,7 +49,7 @@ class ExerciseOnGoing extends React.Component {
   render() {
     const item = this.state.exercises[this.state.currentExercise];
     return [
-      <Wrapper>
+      <Wrapper key={1}>
         <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
         <Text> </Text>
         <Card>

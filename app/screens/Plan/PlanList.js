@@ -85,15 +85,15 @@ class PlanList extends React.Component {
           }}
         />
       </Wrapper>,
-      <Fab
-        key={2}
-        containerStyle={{}}
-        style={{ backgroundColor: '#5067FF' }}
-        position="bottomRight"
-        onPress={() => Actions.planAdd({ user: this.state.user })}
-      >
-        <Icon name="md-add" />
-      </Fab>
+      // <Fab
+      //   key={2}
+      //   containerStyle={{}}
+      //   style={{ backgroundColor: '#5067FF' }}
+      //   position="bottomRight"
+      //   onPress={() => Actions.planAdd({ user: this.state.user })}
+      // >
+      //   <Icon name="md-add" />
+      // </Fab>
     ];
   }
 }

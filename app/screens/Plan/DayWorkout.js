@@ -42,6 +42,7 @@ class DayWorkout extends React.Component {
         <Lists items={this.state.items} keyValue="Workout" subKey="Reps" handlePress={() => {}} />
       </Wrapper>,
       <Submit
+       key={2}
         text="Proceed"
         onSubmit={() => Actions.exerciseongoing({ user: this.state.user, exercises: this.state.items })}
       />
