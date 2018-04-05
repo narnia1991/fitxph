@@ -50,15 +50,15 @@ class ExerciseOnGoing extends React.Component {
     const item = this.state.exercises[this.state.currentExercise];
     return [
       <Wrapper>
-        <Image source={imageLoader.Splash} />
-        <Text>{item.reps}</Text>
+        <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
+        <Text> </Text>
         <Card>
           <CardItem header>
-            <Text>NativeBase</Text>
+            <Text>{item.Workout}</Text>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>{item.Workout}</Text>
+              <Text>{item.Reps}</Text>
             </Body>
           </CardItem>
         </Card>
@@ -69,7 +69,7 @@ class ExerciseOnGoing extends React.Component {
         onSubmit={() => {
           if (this.state.currentExercise < this.state.exercises.length - 1)
             this.setState({ currentExercise: this.state.currentExercise + 1 });
-          else Actions.exerciseFinished({ use: this.state.user });
+          else Actions.exercisefinished({ user: this.state.user });
         }}
         text={this.state.buttonText}
       />
