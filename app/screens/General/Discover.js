@@ -12,7 +12,7 @@ class Discover extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user, item: this.props.item });
+    this.setState({ user: this.props.user });
   };
 
   render() {

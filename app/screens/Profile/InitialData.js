@@ -5,6 +5,7 @@ import { Actions } from "react-native-router-flux";
 import { DatePickerAndroid, TouchableOpacity } from "react-native";
 import { Form, Text } from "native-base";
 import { DatePicker, Dropdown, ScreenLabel, SectionLabel, Submit, TextBox, Wrapper } from "../../components";
+import { setData } from "../../AsyncStorage";
 
 const options = {
   date: new Date(),
@@ -17,12 +18,12 @@ class InitialData extends React.Component {
     gender: ""
   };
 
-  // componentWillMount = () => {
-  //   if (!this.props.user) {
-  //     Actions.login();
-  //   }
-  //   this.setState({ user: this.props.user });
-  // };
+  componentWillMount = () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+    this.setState({ user: this.props.user });
+  };
 
   onValueChange(value) {
     this.setState({
@@ -30,8 +31,10 @@ class InitialData extends React.Component {
     });
   }
 
-  handleSubmit = () => {
-    const { name, dob, weight, height, weightGoal } = this
+  handleSubmit = async () => {
+    const { name, dob, weight, height } = this
+
+    await setData(this.state.user.username, { name, dob, weight, height, ...this.state.user })
   }
 
 
@@ -50,7 +53,7 @@ class InitialData extends React.Component {
           <SectionLabel text="Target Information" />
           <TextBox label="Weight" onChangeText={(text) => this.weight = text} />
           <TextBox label="Height" onChangeText={(text) => this.height = text} />
-          <TextBox label="Weight Goal" onChangeText={(text) => this.weightGoal = text} />
+
         </Form>
       </Wrapper>,
       <Submit key={2} text="Submit" onSubmit={this.handleSubmit} />
