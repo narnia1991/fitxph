@@ -5,8 +5,7 @@ import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './scre
 import { Calendar, DayMeal, DayWorkout, Journey, PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
 import { Exercise, ExerciseAdd, ExerciseList } from './screens/Exercise';
-import { FoodList } from './screens/Recipe';
-
+import { Food, FoodAdd, FoodList } from './screens/Recipe';
 
 import { Nav, NavBar } from './components';
 import getTheme from '../native-base-theme/components';
@@ -26,6 +25,9 @@ class routes extends React.Component {
                 <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
                 <Scene key="exerciseAdd" component={ExerciseAdd} hideNavBar={true} passProps />
                 <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />
+                <Scene key="food" component={Food} hideNavBar={true} />
+                <Scene key="foodAdd" component={FoodAdd} hideNavBar={true} />
+                <Scene key="foodlist" component={FoodList} initial={true} hideNavBar={true} />
                 <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
                 <Scene key="journey" component={Journey} hideNavBar={true} passProps />
                 <Scene key="landing" component={Landing} navBar={NavBar} title="FitXPH" passProps />
@@ -38,7 +40,7 @@ class routes extends React.Component {
                 <Scene key="signup" component={SignUp} hideNavBar={true} />
                 <Scene key="splash" component={Splash} hideNavBar={true} />
                 <Scene key="sync" component={Sync} hideNavBar={true} passProps />
-                <Scene key="syncnow" component={SyncNow} hideNavBar={true} passProps />  */}
+                <Scene key="syncnow" component={SyncNow} hideNavBar={true} passProps />
 
 
                 {/*

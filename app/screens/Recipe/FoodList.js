@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { Container, Content, List, ListItem, Text, Fab, Icon } from 'native-base';
+import { List, ListItem, Text, Fab, Icon } from 'native-base';
 import { Nav, Wrapper } from '../../components';
 import { recipes } from '../../default/recipes';
 
@@ -11,9 +11,9 @@ class FoodList extends React.Component {
   };
 
   componentWillMount = () => {
-    // if (!this.props.user) {
-    //   Actions.login();
-    // }
+    if (!this.props.user) {
+      Actions.login();
+    }
     this.setState({ user: this.props.user, items: recipes });
   };
 
@@ -27,8 +27,7 @@ class FoodList extends React.Component {
             <ListItem
               key={index}
               onPress={() => {
-                console.log(item);
-                Actions.recipe({ user: this.state.user, item });
+                Actions.food({ user: this.state.user, item });
               }}
             >
               <Text>{item.name}</Text>
