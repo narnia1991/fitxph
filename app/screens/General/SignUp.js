@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Form, Text } from "native-base";
-import { Actions } from "react-native-router-flux";
-import { getData, setData } from "../../AsyncStorage";
-import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
+import React, { Component } from 'react';
+import { Form, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import { getData, setData } from '../../AsyncStorage';
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from '../../components';
 
 class SignUp extends Component {
   state = {
-    username: "",
-    password: "",
-    confirm_password: "",
-    errors: ""
+    username: '',
+    password: '',
+    confirm_password: '',
+    errors: ''
   };
 
   handleSignUp = async () => {
@@ -17,15 +17,15 @@ class SignUp extends Component {
       console.log(this.state);
       const user = await getData(this.state.username);
       if (!user) {
-        console.log("====================================");
-        console.log("reselt", await getData(this.state.username));
-        console.log("====================================");
+        console.log('====================================');
+        console.log('reselt', await getData(this.state.username));
+        console.log('====================================');
         await setData(this.state.username, {
           username: this.state.username,
           password: this.state.password
         });
 
-        Actions.sync({
+        Actions.landing({
           user: {
             username: this.state.username,
             password: this.state.password
@@ -34,11 +34,11 @@ class SignUp extends Component {
       } else if (this.state.password !== this.state.confirm_password) {
         this.setState({ errors: "Password didn't match" });
       } else if (user) {
-        this.setState({ errors: "Username already taken" });
+        this.setState({ errors: 'Username already taken' });
       }
     } catch (error) {
       console.log(error);
-      this.setState({ errors: "Cannot Sign Up" });
+      this.setState({ errors: 'Cannot Sign Up' });
     }
   };
 
@@ -53,7 +53,7 @@ class SignUp extends Component {
             onChangeText={input =>
               this.setState({
                 username: input,
-                errors: ""
+                errors: ''
               })
             }
           />
@@ -63,7 +63,7 @@ class SignUp extends Component {
             onChangeText={input =>
               this.setState({
                 password: input,
-                errors: ""
+                errors: ''
               })
             }
           />
@@ -73,7 +73,7 @@ class SignUp extends Component {
             onChangeText={input =>
               this.setState({
                 confirm_password: input,
-                errors: ""
+                errors: ''
               })
             }
           />
@@ -83,6 +83,5 @@ class SignUp extends Component {
     ];
   }
 }
-
 
 export default SignUp;

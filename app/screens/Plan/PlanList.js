@@ -37,6 +37,10 @@ class PlanList extends React.Component {
       { name: weight_loss.name, purpose: weight_loss.purpose },
       { name: weight_gain.name, purpose: weight_gain.purpose }
     ];
+
+    if (this.props.user.plan) {
+      Actions.journey({ user: this.props.user });
+    }
     this.setState({ user: this.props.user, items });
   };
 

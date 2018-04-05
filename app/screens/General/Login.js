@@ -56,9 +56,6 @@ class Login extends React.Component {
   render() {
     return [
       <Wrapper key={1} padder>
-        <Text style={styles.syncText} onPress={() => Actions.syncnow()}>
-          Sync Now
-        </Text>
         <ScreenLabel text="Login" />
         <Form>
           <Error message={this.state.errors} />

@@ -9,7 +9,7 @@ const Lists = ({ items, keyValue, subKey, handlePress }) => {
       <List
         dataArray={items}
         renderRow={(item, index) => (
-          <ListItem onPress={handlePress(item)}>
+          <ListItem onPress={() => handlePress(item)}>
             <Body>
               <Text>{item[keyValue]}</Text>
             </Body>

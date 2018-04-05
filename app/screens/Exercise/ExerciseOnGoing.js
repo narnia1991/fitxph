@@ -6,26 +6,30 @@ import { Actions } from 'react-native-router-flux';
 import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
 import { Image } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
-import { Wrapper } from "../../components";
+import { Wrapper, Submit } from '../../components';
 
 class ExerciseOnGoing extends React.Component {
   state = {
+    buttonText: 'Next',
     user: {},
     exercises: [],
     finished: [],
     currentExercise: 0,
     exerciseFinished: false,
-    routineFinished: false
+    routineFinished: false,
+    exerciseOnGoing: false,
+    routineLength: 0
   };
   componentWillMount = () => {
     if (!this.props.user) {
       Actions.login();
     }
+
     this.setState({
       user: this.props.user,
-      exercises: this.props.user.plan.exercise_plan[this.props.user.progress.day]
+      exercises: this.props.exercises,
+      routineLength: this.props.exercises.length
     });
-
     console.log('exercise ongoing', this.state);
   };
 
@@ -43,6 +47,7 @@ class ExerciseOnGoing extends React.Component {
   };
 
   render() {
+    const item = this.state.exercises[this.state.currentExercise];
     return [
       <Wrapper>
         <Image source={imageLoader.Splash} />
@@ -58,7 +63,16 @@ class ExerciseOnGoing extends React.Component {
           </CardItem>
         </Card>
       </Wrapper>,
-      <Submit key={2} onSubmit={this.handleLogin} text="Login" />
+      <Submit
+        disabled={this.state.exerciseOnGoing}
+        key={2}
+        onSubmit={() => {
+          if (this.state.currentExercise < this.state.exercises.length - 1)
+            this.setState({ currentExercise: this.state.currentExercise + 1 });
+          else Actions.exerciseFinished({ use: this.state.user });
+        }}
+        text={this.state.buttonText}
+      />
     ];
   }
 }
