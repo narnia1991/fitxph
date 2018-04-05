@@ -24,16 +24,18 @@ import { SectionLabel, Wrapper } from '../../components';
 import imageLoader from '../../utils/imageLoader';
 
 class Exercise extends React.Component {
-  state = { user: nul, item: null };
+  state = { user: null, item: null };
 
   componentWillMount = () => {
     if (!this.props.user) {
       Actions.login();
     }
     this.setState({ user: this.props.user, item: this.props.item });
+    console.log('exercise', this.state);
   };
 
   render() {
+    console.log(this.state);
     const item = this.state.item;
     return (
       <Wrapper>
@@ -47,11 +49,7 @@ class Exercise extends React.Component {
           </CardItem>
           <CardItem>
             <Body>
-              <Image
-                source={imageLoader[item.image_url] || { uri: item.image_url }}
-                style={{ height: 200, width: 200, flex: 1 }}
-              />
-              <Text>{item}</Text>
+              <Text>{item.description}</Text>
             </Body>
           </CardItem>
         </Card>

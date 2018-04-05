@@ -17,10 +17,11 @@ class ExerciseList extends React.Component {
       Actions.login();
     }
     this.setState({ user: this.props.user, items: exercises });
-    console.log(this.state.items);
+    console.log('exerciselist', this.state);
   };
 
   render() {
+    console.log(this.state);
     return [
       <Nav key={0} title="Exercises" />,
       <Wrapper key={1}>
@@ -29,7 +30,8 @@ class ExerciseList extends React.Component {
           renderRow={(item, index) => (
             <ListItem
               key={index}
-              onPress={item => {
+              onPress={() => {
+                console.log(item);
                 Actions.exercise({ user: this.state.user, item });
               }}
             >

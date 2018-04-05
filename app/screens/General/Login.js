@@ -1,50 +1,51 @@
-import React from "react";
-import { Form, Text } from "native-base";
-import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet } from "react-native";
-import { getData, setData } from "../../AsyncStorage";
-import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
+import React from 'react';
+import { Form, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import { Dimensions, StyleSheet } from 'react-native';
+import { getData, setData } from '../../AsyncStorage';
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from '../../components';
 
 class Login extends React.Component {
   state = {
-    username: "",
-    password: "",
-    errors: ""
+    username: '',
+    password: '',
+    errors: ''
   };
 
   componentWillMount = async () => {
     let user;
     try {
-      const username = await getData("currentUser");
-      console.log("******", username);
+      const username = await getData('currentUser');
+      console.log('******', username);
       if (username) user = await getData(username);
     } catch (error) {
-      console.log("No user signed in");
+      console.log('No user signed in');
     }
-
+    console.log('login', this.state);
+    console.log('login', user);
     if (user) Actions.landing({ user });
   };
 
   componentDidMount = () => {
-    console.log(" potato");
+    console.log(' potato');
   };
 
   handleLogin = async () => {
-    console.log('potoato', this.state)
+    console.log('potoato', this.state);
     try {
       const user = await getData(this.state.username);
 
-      if (!user) throw new Error()
-      console.log(user, 'user')
+      if (!user) throw new Error();
+      console.log(user, 'user');
 
       if (user.password == this.state.password) {
-        await setData("currentUser", user.username);
+        await setData('currentUser', user.username);
         Actions.landing({ user });
       } else {
         throw new Error();
       }
     } catch (error) {
-      this.setState({ errors: "Invalid Username /  Password" });
+      this.setState({ errors: 'Invalid Username /  Password' });
     }
   };
 
@@ -66,7 +67,7 @@ class Login extends React.Component {
             onChangeText={input =>
               this.setState({
                 username: input,
-                errors: ""
+                errors: ''
               })
             }
           />
@@ -76,16 +77,13 @@ class Login extends React.Component {
             onChangeText={input =>
               this.setState({
                 password: input,
-                errors: ""
+                errors: ''
               })
             }
           />
-          <Text
-            style={styles.createUserText}
-            onPress={() => Actions.signup()}
-          >
+          <Text style={styles.createUserText} onPress={() => Actions.signup()}>
             Create new user
-            </Text>
+          </Text>
         </Form>
       </Wrapper>,
       <Submit key={2} onSubmit={this.handleLogin} text="Login" />
@@ -93,7 +91,7 @@ class Login extends React.Component {
   }
 }
 
-let { height, width } = Dimensions.get("window");
+let { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -106,17 +104,17 @@ const styles = StyleSheet.create({
   syncText: {
     paddingTop: 30,
     paddingBottom: 30,
-    textAlign: 'right',
+    textAlign: 'right'
   },
   syncNowText: {
     paddingBottom: 30
-  },
+  }
 });
 
 const dummyUser = {
-  username: "puroyski",
-  password: "potato",
-  plan: "defaultfull",
+  username: 'puroyski',
+  password: 'potato',
+  plan: 'defaultfull',
   progress: {
     day: 10,
     intitial_height: 169,
@@ -153,7 +151,6 @@ const dummyUser = {
 };
 
 export default Login;
-
 
 // <Container>
 //   <Content padder>

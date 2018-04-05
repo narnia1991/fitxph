@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Actions } from "react-native-router-flux";
-import { Tile } from "../../components";
-import imageLoader from "../../utils/imageLoader";
+import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
+import { Tile } from '../../components';
+import imageLoader from '../../utils/imageLoader';
 
 class Reference extends Component {
   state = {
@@ -14,6 +14,7 @@ class Reference extends Component {
     } else {
       this.setState({ user: this.props.user });
     }
+    console.log('reference', this.state);
   };
 
   handleExercisePress = () => {
