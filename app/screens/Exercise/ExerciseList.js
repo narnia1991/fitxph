@@ -27,7 +27,12 @@ class ExerciseList extends React.Component {
         <List
           dataArray={this.state.items}
           renderRow={(item, index) => (
-            <ListItem key={index}>
+            <ListItem
+              key={index}
+              onPress={item => {
+                Actions.exercise({ user: this.state.user, item });
+              }}
+            >
               <Text>{item.name}</Text>
             </ListItem>
           )}
@@ -38,7 +43,7 @@ class ExerciseList extends React.Component {
         containerStyle={{}}
         style={{ backgroundColor: '#5067FF' }}
         position="bottomRight"
-        onPress={() => this.setState({ active: !this.state.active })}
+        onPress={() => Actions.exerciseAdd({ user: this.state.user })}
       >
         <Icon name="md-add" />
       </Fab>
