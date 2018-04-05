@@ -1,33 +1,30 @@
 // TODO: chart
 // TODO: add update button to update progress
-import React from "react";
-import { Actions } from "react-native-router-flux";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
-import { Body, Left, List, ListItem, Right, Text } from "native-base";
-import { VictoryBrushContainer, VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
-import { ScreenLabel, Wrapper } from "../../components";
+import React from 'react';
+import { Actions } from 'react-native-router-flux';
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Body, Left, List, ListItem, Right, Text } from 'native-base';
+import { VictoryBrushContainer, VictoryLine, VictoryChart, VictoryTheme } from 'victory-native';
+import { ScreenLabel, Wrapper } from '../../components';
 import PureChart from 'react-native-pure-chart';
 // import Table from 'react-native-simple-table'
 
 class Progress extends React.Component {
   state = {
     series1: [
-      { x: '2018-02-02', y: 55 },
-      { x: '2018-02-09', y: 54 },
-      { x: '2018-02-16', y: 50 },
-      { x: '2018-02-23', y: 49 },
+      { x: '2018-02-26', y: 64 },
+      { x: '2018-03-04', y: 66 },
+      { x: '2018-03-13', y: 64 },
+      { x: '2018-03-26', y: 64 }
     ],
     series2: [
-      { x: '2018-02-02', y: 55 },
-      { x: '2018-02-09', y: 53 },
-      { x: '2018-02-16', y: 50 },
-      { x: '2018-02-23', y: 48 },
+      { x: '2018-02-26', y: 63 },
+      { x: '2018-03-04', y: 62 },
+      { x: '2018-03-13', y: 61 },
+      { x: '2018-03-26', y: 60 }
     ],
     user: null,
-    columns: [
-      { title: "Date", dataIndex: 'x' },
-      { title: "Weight", dataIndex: 'y' },
-    ]
+    columns: [{ title: 'Date', dataIndex: 'x' }, { title: 'Weight', dataIndex: 'y' }]
   };
 
   // componentWillMount = () => {
@@ -48,40 +45,38 @@ class Progress extends React.Component {
           <Left key={index} style={[styles.headerItem]}>
             <Text>{col.title}</Text>
           </Left>
-        )
+        );
       } else {
         return (
           <Right key={index} style={[styles.headerItem]}>
             <Text>{col.title}</Text>
           </Right>
-        )
+        );
       }
-    })
+    });
   }
 
   renderRow(rowData, index) {
     return (
       <View key={index} style={styles.row}>
-        {
-          this.state.columns.map(col => this.renderCell(rowData[col.dataIndex], col))
-        }
+        {this.state.columns.map(col => this.renderCell(rowData[col.dataIndex], col))}
       </View>
     );
   }
 
   renderCell(cellData, col) {
-    if (typeof cellData === "object") {
+    if (typeof cellData === 'object') {
       return (
         <Left key={col.dataIndex}>
           <Text>{cellData.toLocaleDateString()}</Text>
         </Left>
-      )
+      );
     } else {
       return (
         <Right key={col.dataIndex} style={[styles.cell]}>
           <Text>{cellData}</Text>
         </Right>
-      )
+      );
     }
   }
 
@@ -97,36 +92,31 @@ class Progress extends React.Component {
         data: this.state.series2,
         color: 'yellow'
       }
-    ]
+    ];
     return (
       <Wrapper padder>
         <ScreenLabel text="Progress" />
-        <PureChart data={sampleData} type='line' />
+        <PureChart data={sampleData} type="line" />
 
         <View>
-          <View style={styles.header}>
-            {this.renderHeader()}
-          </View>
-          <ScrollView
-            style={styles.dataView}
-            contentContainerStyle={styles.dataViewContent} >
+          <View style={styles.header}>{this.renderHeader()}</View>
+          <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
             {this.state.series1.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
         </View>
-
       </Wrapper>
     );
   }
 }
 
-let { height, width } = Dimensions.get("window");
+let { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: width
   },
   header: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   headerItem: {
     minHeight: 30,
@@ -140,13 +130,12 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     marginBottom: 10
   },
-  dataViewContent: {
-  },
+  dataViewContent: {},
   row: {
     flexDirection: 'row',
     backgroundColor: '#000',
     borderBottomWidth: 1,
-    borderBottomColor: '#dfdfdf',
+    borderBottomColor: '#dfdfdf'
   },
   cell: {
     minHeight: 25,
@@ -159,8 +148,8 @@ const styles = StyleSheet.create({
 });
 export default Progress;
 
-
-{/* <Container>
+{
+  /* <Container>
   <Content padder>
     <VictoryChart theme={VictoryTheme.material} scale={{ x: "time" }}>
       <VictoryLine
@@ -170,4 +159,5 @@ export default Progress;
     </VictoryChart>
     <List>{this.renderList}</List>
   </Content>
-</Container> */}
+</Container> */
+}
