@@ -17,17 +17,24 @@ class ExerciseList extends React.Component {
       Actions.login();
     }
     this.setState({ user: this.props.user, items: exercises });
-    console.log(this.state.items);
+    console.log('exerciselist', this.state);
   };
 
   render() {
+    console.log(this.state);
     return [
       <Nav key={0} title="Exercises" />,
       <Wrapper key={1}>
         <List
           dataArray={this.state.items}
           renderRow={(item, index) => (
-            <ListItem key={index}>
+            <ListItem
+              key={index}
+              onPress={() => {
+                console.log(item);
+                Actions.exercise({ user: this.state.user, item });
+              }}
+            >
               <Text>{item.name}</Text>
             </ListItem>
           )}
@@ -38,7 +45,7 @@ class ExerciseList extends React.Component {
         containerStyle={{}}
         style={{ backgroundColor: '#5067FF' }}
         position="bottomRight"
-        onPress={() => this.setState({ active: !this.state.active })}
+        onPress={() => Actions.exerciseAdd({ user: this.state.user })}
       >
         <Icon name="md-add" />
       </Fab>

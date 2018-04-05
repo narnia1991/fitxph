@@ -4,7 +4,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
-import { ExerciseAdd, ExerciseList } from './screens/Exercise';
+import { Exercise, ExerciseAdd, ExerciseList } from './screens/Exercise';
 
 import { Nav, NavBar } from './components';
 import getTheme from '../native-base-theme/components';
@@ -18,6 +18,7 @@ class routes extends React.Component {
           <Container>
             <Router>
               <Scene key="root">
+                <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
                 <Scene key="exerciseAdd" component={ExerciseAdd} hideNavBar={true} passProps />
                 <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />
                 <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />

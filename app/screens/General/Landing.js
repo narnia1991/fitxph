@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Actions } from "react-native-router-flux";
-import { Tile } from "../../components";
-import imageLoader from "../../utils/imageLoader";
+import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
+import { Tile } from '../../components';
+import imageLoader from '../../utils/imageLoader';
 
 class Landing extends Component {
   state = {
@@ -9,6 +9,7 @@ class Landing extends Component {
   };
 
   componentWillMount = () => {
+    console.log('landing', this.props.user);
     if (!this.props.user) {
       Actions.login();
     }
@@ -38,22 +39,12 @@ class Landing extends Component {
         content="Plan"
         key="Plan"
         contentColor="#FFF"
-        backGroundColor="rgba(0,139,139,.5)"  //dark cyan
+        backGroundColor="rgba(0,139,139,.5)" //dark cyan
         onPress={this.handlePlanPress}
       />,
-      <Tile
-        uri={imageLoader.Progress}
-        content="Progress"
-        key="Progress"
-        onPress={this.handleProgressPress}
-      />,
-      <Tile
-        uri={imageLoader.Reference}
-        content="Reference"
-        key="Reference"
-        onPress={this.handleReferencePress}
-      />
-    ]
+      <Tile uri={imageLoader.Progress} content="Progress" key="Progress" onPress={this.handleProgressPress} />,
+      <Tile uri={imageLoader.Reference} content="Reference" key="Reference" onPress={this.handleReferencePress} />
+    ];
   }
 }
 
