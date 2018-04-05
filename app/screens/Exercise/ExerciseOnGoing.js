@@ -3,9 +3,10 @@
 //exercise image
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { Container, Content, Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
+import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
 import { Image } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
+import { Wrapper } from "../../components";
 
 class ExerciseOnGoing extends React.Component {
   state = {
@@ -43,22 +44,20 @@ class ExerciseOnGoing extends React.Component {
 
   render() {
     return [
-      <Container>
-        <Content>
-          <Image source={imageLoader.Splash} />
-          <Text>{item.reps}</Text>
-          <Card>
-            <CardItem header>
-              <Text>NativeBase</Text>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Text>{item.Workout}</Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>,
+      <Wrapper>
+        <Image source={imageLoader.Splash} />
+        <Text>{item.reps}</Text>
+        <Card>
+          <CardItem header>
+            <Text>NativeBase</Text>
+          </CardItem>
+          <CardItem>
+            <Body>
+              <Text>{item.Workout}</Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </Wrapper>,
       <Submit key={2} onSubmit={this.handleLogin} text="Login" />
     ];
   }
