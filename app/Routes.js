@@ -5,6 +5,8 @@ import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './scre
 import { PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
 import { Exercise, ExerciseAdd, ExerciseList } from './screens/Exercise';
+import { FoodList } from './screens/Recipe';
+
 
 import { Nav, NavBar } from './components';
 import getTheme from '../native-base-theme/components';
@@ -18,25 +20,22 @@ class routes extends React.Component {
           <Container>
             <Router>
               <Scene key="root">
-                <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
+                {/* <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
                 <Scene key="exerciseAdd" component={ExerciseAdd} hideNavBar={true} passProps />
-                <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />
-                <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
+                <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />*/}
+                <Scene key="foodlist" initial={true} component={FoodList} hideNavBar={true} passProps />
+                {/* <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
                 <Scene key="landing" component={Landing} navBar={NavBar} title="FitXPH" passProps />
                 <Scene key="login" component={Login} title="login" hideNavBar={true} />
-
                 <Scene key="plan" title="Plan" navBar={Nav} component={PlanList} passProps />
-
                 <Scene key="planAdd" title="Add a Plan" hideNavBar={true} component={PlanAdd} passProps />
-
                 <Scene key="progress" component={Progress} hideNavBar={true} passProps />
-
                 <Scene key="reference" component={Reference} hideNavBar={true} passProps />
-
                 <Scene key="signup" component={SignUp} hideNavBar={true} />
-                <Scene key="splash" initial={true} component={Splash} hideNavBar={true} />
+                <Scene key="splash" component={Splash} hideNavBar={true} />
                 <Scene key="sync" component={Sync} hideNavBar={true} passProps />
-                <Scene key="syncnow" component={SyncNow} hideNavBar={true} passProps />
+                <Scene key="syncnow" component={SyncNow} hideNavBar={true} passProps />  */}
+
 
                 {/*
                 <Scene
