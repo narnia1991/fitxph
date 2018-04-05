@@ -4,18 +4,24 @@ import React from "react";
 import { Actions } from "react-native-router-flux";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import { Body, Left, List, ListItem, Right, Text } from "native-base";
-import { VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
-import { ScreenLabel, Wrapper } from "../../components"
+import { VictoryBrushContainer, VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
+import { ScreenLabel, Wrapper } from "../../components";
+import PureChart from 'react-native-pure-chart';
 // import Table from 'react-native-simple-table'
 
 class Progress extends React.Component {
   state = {
-    data: [
-      { x: new Date(1992, 1, 21), y: 2 },
-      { x: new Date(1992, 1, 22), y: 3 },
-      { x: new Date(1992, 1, 23), y: 5 },
-      { x: new Date(1992, 1, 24), y: 4 },
-      { x: new Date(1992, 1, 25), y: 7 }
+    series1: [
+      { x: '2018-02-02', y: 55 },
+      { x: '2018-02-09', y: 54 },
+      { x: '2018-02-16', y: 50 },
+      { x: '2018-02-23', y: 49 },
+    ],
+    series2: [
+      { x: '2018-02-02', y: 55 },
+      { x: '2018-02-09', y: 53 },
+      { x: '2018-02-16', y: 50 },
+      { x: '2018-02-23', y: 48 },
     ],
     user: null,
     columns: [
@@ -80,17 +86,24 @@ class Progress extends React.Component {
   }
 
   render() {
-    const { data } = this.state
+    let sampleData = [
+      {
+        seriesName: 'series1',
+        data: this.state.series1,
+        color: '#297AB1'
+      },
+      {
+        seriesName: 'series2',
+        data: this.state.series2,
+        color: 'yellow'
+      }
+    ]
     return (
       <Wrapper padder>
         <ScreenLabel text="Progress" />
-        <VictoryChart theme={VictoryTheme.material} scale={{ x: "time" }}>
-          <VictoryLine
-            style={{ data: { stroke: "#c43a31" } }}
-            data={this.state.data}
-          />
-        </VictoryChart>
-        <View>
+        <PureChart data={sampleData} type='line' />
+
+        {/* <View>
           <View style={styles.header}>
             {this.renderHeader()}
           </View>
@@ -99,7 +112,7 @@ class Progress extends React.Component {
             contentContainerStyle={styles.dataViewContent} >
             {data.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
-        </View>
+        </View> */}
 
       </Wrapper>
     );
