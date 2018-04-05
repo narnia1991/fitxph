@@ -1,21 +1,13 @@
-import React, { Component } from "react";
-import {
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-} from "native-base";
-import { Actions } from "react-native-router-flux";
-import { deleteData } from "../AsyncStorage";
+import React, { Component } from 'react';
+import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import { deleteData } from '../AsyncStorage';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected1: "key1"
+      selected1: 'key1'
     };
   }
   onValueChange(value) {
@@ -26,8 +18,7 @@ class NavBar extends Component {
 
   handleLogout = async () => {
     try {
-      await deleteData("currentUser");
-
+      await deleteData('currentUser');
       Actions.login();
     } catch (error) {
       console.log(error);

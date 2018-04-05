@@ -4,7 +4,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import { Discover, Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { Calendar, DayMeal, DayWorkout, Journey, PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
-import { Exercise, ExerciseAdd, ExerciseList } from './screens/Exercise';
+import { Exercise, ExerciseAdd, ExerciseFinished, ExerciseList, ExerciseOnGoing } from './screens/Exercise';
 import { Food, FoodAdd, FoodList } from './screens/Recipe';
 
 import { Nav, NavBar } from './components';
@@ -26,6 +26,8 @@ class routes extends React.Component {
                 <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
                 <Scene key="exerciseAdd" component={ExerciseAdd} hideNavBar={true} passProps />
                 <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />
+                <Scene key="exercisefinished" component={ExerciseFinished} hideNavBar={true} passProps />
+                <Scene key="exerciseongoing" component={ExerciseOnGoing} hideNavBar={true} passProps />
                 <Scene key="food" component={Food} hideNavBar={true} />
                 <Scene key="foodAdd" component={FoodAdd} hideNavBar={true} />
                 <Scene key="foodlist" component={FoodList} hideNavBar={true} />
@@ -42,7 +44,6 @@ class routes extends React.Component {
                 <Scene key="splash" initial={true} component={Splash} hideNavBar={true} />
                 <Scene key="sync" component={Sync} hideNavBar={true} passProps />
                 <Scene key="syncnow" component={SyncNow} hideNavBar={true} passProps />
-
 
                 {/*
                 <Scene
