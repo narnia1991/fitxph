@@ -20,7 +20,7 @@ class ExerciseAdd extends React.Component {
   };
 
   componentWillMount = () => {
-    this.setState({ user: this.state.user });
+    this.setState({ user: this.props.user });
   };
 
   onValueChange(value) {

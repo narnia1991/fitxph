@@ -15,64 +15,43 @@
 //         date_modified: ''
 //       } */
 
-import React from "react";
-import { Image } from "react-native";
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Icon,
-  Left,
-  Body
-} from "native-base";
-import { Actions } from "react-native-router-flux";
+import React from 'react';
+import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+import { Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { SectionLabel, Wrapper } from '../../components';
+import imageLoader from '../../utils/imageLoader';
 
 class Food extends React.Component {
-  state = { user: null, food: null };
+  state = { user: null, item: null };
+
   componentWillMount = () => {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user, food: this.props.food });
+    this.setState({ user: this.props.user, item: this.props.item });
   };
+
   render() {
+    const { item } = this.state;
     return (
-      <Container>
-        <Content>
-          <Card style={{ flex: 0 }}>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{ uri: "Image URL" }} />
-                <Body>
-                  <Text>NativeBase</Text>
-                  <Text note>April 15, 2016</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <CardItem>
+      <Wrapper>
+        <Card style={{ flex: 0 }}>
+          <CardItem>
+            <Left>
               <Body>
-                <Image
-                  source={{ uri: "Image URL" }}
-                  style={{ height: 200, width: 200, flex: 1 }}
-                />
-                <Text>//Your text here</Text>
+                <Text>{item.name}</Text>
               </Body>
-            </CardItem>
-            <CardItem>
-              <Left>
-                <Button transparent textStyle={{ color: "#87838B" }}>
-                  <Icon name="logo-github" />
-                  <Text>1,926 stars</Text>
-                </Button>
-              </Left>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
+            </Left>
+          </CardItem>
+          <CardItem>
+            <Body>
+              <Text>{item.description}</Text>
+              <Text>{item.ingredients}</Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </Wrapper>
     );
   }
 }
