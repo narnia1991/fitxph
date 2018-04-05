@@ -28,7 +28,7 @@ class ExerciseOnGoing extends React.Component {
     console.log('exercise ongoing', this.state);
   };
 
-  handleNextClick = () => { };
+  handleNextClick = () => {};
 
   countdown = timeCount => {
     timeCount = timeCount - 1;

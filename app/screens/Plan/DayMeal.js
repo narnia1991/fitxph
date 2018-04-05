@@ -45,7 +45,7 @@ class DayMeal extends React.Component {
   };
 
   renderMeals = item => {
-    return <Lists key={item.meal} items={item.dish} keyValue="food" subKey="quantity" />;
+    return <Lists key={item.meal} items={item.dish} keyValue="food" subKey="quantity" handlePress={() => {}} />;
   };
 
   render() {

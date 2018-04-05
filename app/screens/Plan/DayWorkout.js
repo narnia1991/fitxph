@@ -39,9 +39,9 @@ class DayWorkout extends React.Component {
     console.log(this.state);
     return [
       <Wrapper key={1}>
-        <Lists key={item.exercise} items={item.dish} keyValue="Workout" subKey="Reps" />
+        <Lists items={this.state.items} keyValue="Workout" subKey="Reps" handlePress={() => {}} />
       </Wrapper>,
-      <Submit text="Workouts" onSubmit={() => Actions.exerciseongoing({ user: this.state.user })} />
+      <Submit text="Proceed" onSubmit={() => Actions.exerciseongoing({ user: this.state.user })} />
     ];
   }
 }
