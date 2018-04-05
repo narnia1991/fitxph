@@ -13,8 +13,8 @@ plan structure:
 }
 */
 import React from 'react';
-import { Body, Left, Right, Text, Title, Fab, Icon } from 'native-base';
-import { StyleSheet, Modal, TouchableHighlight, View } from 'react-native';
+import { Body, Button, Left, Right, Text, Title, Fab, Icon } from 'native-base';
+import { Alert, StyleSheet, Modal, TouchableHighlight, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Lists, Wrapper } from '../../components';
 import { weight_loss } from '../../default/plan';
@@ -48,44 +48,35 @@ class PlanList extends React.Component {
   };
 
   handlePlanPress = async () => {
-    const user = { ...this.state.user, plan: this.state.selectedPlan };
-    await setData(this.state.user.username);
-    Actions.journey({ user: this.state.user });
+    console.log('pressed', this.state);
+    const user = { ...this.state.user, plan: this.state.selectedPlan, progress: { day: 0 } };
+    console.log(user);
+    await setData(this.state.user.username, user);
+    Actions.journey({ user });
   };
 
   render() {
     return [
       <Wrapper key={1}>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            alert('Modal has been closed.');
-          }}
-        >
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <Text>Are You Sure You Want this Plan?</Text>
-
-              <TouchableHighlight
-                onPress={() => {
-                  this.setState({ modalVisible: !this.state.modalVisible });
-                }}
-              >
-                <Text>No</Text>
-              </TouchableHighlight>
-              <TouchableHighlight onPress={this.handlePlanPress}>
-                <Text>Yes</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
         <Lists
           items={this.state.items}
           keyValue="name"
           subKey="purpose"
           handlePress={item => {
+            Alert.alert(
+              'Select Plan',
+              'Are You Sure You Want to Select this Plan?',
+              [
+                {
+                  text: 'Cancel',
+                  onPress: () => {
+                    style: 'cancel';
+                  }
+                },
+                { text: 'OK', onPress: this.handlePlanPress }
+              ],
+              { cancelable: false }
+            );
             this.setState({ selectedPlan: item });
           }}
         />
