@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Root, StyleProvider } from 'native-base';
 import { Router, Scene } from 'react-native-router-flux';
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
-import { PlanAdd, PlanList } from './screens/Plan';
+import { Calendar, DayMeal, DayWorkout, Journey, PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
 import { Exercise, ExerciseAdd, ExerciseList } from './screens/Exercise';
 import { FoodList } from './screens/Recipe';
@@ -20,13 +20,17 @@ class routes extends React.Component {
           <Container>
             <Router>
               <Scene key="root">
-                {/* <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
+                <Scene key="calendar" component={Calendar} hideNavBar={true} passProps />
+                <Scene key="daymeal" component={DayMeal} hideNavBar={true} passProps />
+                <Scene key="dayworkout" component={DayWorkout} hideNavBar={true} passProps />
+                <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
                 <Scene key="exerciseAdd" component={ExerciseAdd} hideNavBar={true} passProps />
-                <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />*/}
-                <Scene key="foodlist" initial={true} component={FoodList} hideNavBar={true} passProps />
-                {/* <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
+                <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />
+                <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
+                <Scene key="journey" component={Journey} hideNavBar={true} passProps />
                 <Scene key="landing" component={Landing} navBar={NavBar} title="FitXPH" passProps />
-                <Scene key="login" component={Login} title="login" hideNavBar={true} />
+                <Scene key="login" component={Login} title="login" hideNavBar={true} type="reset" />
+
                 <Scene key="plan" title="Plan" navBar={Nav} component={PlanList} passProps />
                 <Scene key="planAdd" title="Add a Plan" hideNavBar={true} component={PlanAdd} passProps />
                 <Scene key="progress" component={Progress} hideNavBar={true} passProps />

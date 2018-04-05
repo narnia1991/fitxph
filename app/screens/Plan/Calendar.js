@@ -1,8 +1,8 @@
 // calendar to track the exercises
-import React from "react";
-import { Calendar as Kalendaryo } from "react-native-calendars";
-import { Button, Container, Content } from "native-base";
-import { Actions } from "react-native-router-flux";
+import React from 'react';
+import { Calendar as Kalendaryo } from 'react-native-calendars';
+import { Button, Container, Content } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 class Calendar extends React.Component {
   state = {
@@ -13,7 +13,7 @@ class Calendar extends React.Component {
     // if (!this.props.user) {
     //   Actions.login();
     // }
-    console.log("calendar");
+    console.log('calendar');
     // this.setState({
     //   user: this.props.user,
     //   progress: this.props.user.progress
@@ -24,7 +24,7 @@ class Calendar extends React.Component {
     //get progressdata from asyncstorage
   };
   handleProceedPress = () => {
-    Actions.day({ user: this.state.user });
+    Actions.day({ user: this.state.user, progress: { day: 1 } });
   };
 
   render() {
