@@ -103,16 +103,16 @@ class Progress extends React.Component {
         <ScreenLabel text="Progress" />
         <PureChart data={sampleData} type='line' />
 
-        {/* <View>
+        <View>
           <View style={styles.header}>
             {this.renderHeader()}
           </View>
           <ScrollView
             style={styles.dataView}
             contentContainerStyle={styles.dataViewContent} >
-            {data.map((rowData, index) => this.renderRow(rowData, index))}
+            {this.state.series1.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
-        </View> */}
+        </View>
 
       </Wrapper>
     );
