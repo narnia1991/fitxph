@@ -49,7 +49,7 @@ class Dropdown extends Component {
             ))}
           </Picker>
         </View>
-        <Link text="Add" onPress={this.addPicker} />
+        {/* <Link text="Add" onPress={this.addPicker} /> */}
       </View >
     )
   }
