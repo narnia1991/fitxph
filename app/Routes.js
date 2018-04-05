@@ -4,7 +4,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import { Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { Calendar, DayMeal, DayWorkout, Journey, PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress } from './screens/Profile';
-import { Exercise, ExerciseAdd, ExerciseList } from './screens/Exercise';
+import { Exercise, ExerciseAdd, ExerciseFinished, ExerciseList, ExerciseOnGoing } from './screens/Exercise';
 
 import { Nav, NavBar } from './components';
 import getTheme from '../native-base-theme/components';
@@ -24,6 +24,8 @@ class routes extends React.Component {
                 <Scene key="exercise" component={Exercise} hideNavBar={true} passProps />
                 <Scene key="exerciseAdd" component={ExerciseAdd} hideNavBar={true} passProps />
                 <Scene key="exerciselist" component={ExerciseList} hideNavBar={true} passProps />
+                <Scene key="exercisefinished" component={ExerciseFinished} hideNavBar={true} passProps />
+                <Scene key="exerciseongoing" component={ExerciseOnGoing} hideNavBar={true} passProps />
                 <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
                 <Scene key="journey" component={Journey} hideNavBar={true} passProps />
                 <Scene key="landing" component={Landing} navBar={NavBar} title="FitXPH" passProps />

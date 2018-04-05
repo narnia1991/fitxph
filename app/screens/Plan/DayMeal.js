@@ -26,14 +26,9 @@ class DayMeal extends React.Component {
     console.log(plan);
     if (plan) {
       const mealPlan = plan[0].meal_plan;
-      console.log('plan', mealPlan);
-
       if (mealPlan) {
         const meals = mealPlan[this.props.user.progress.day];
-        console.log('mealplan', meals);
-
         if (meals) {
-          console.log('meals');
           this.setState({ items: meals });
         }
       }
@@ -41,16 +36,22 @@ class DayMeal extends React.Component {
     this.setState({ user: this.props.user });
   };
 
-  renderMeals = () => {
-    return foreach(this.state.items, item => {
-      <Lists items={this.state.item.dish} keyValue="food" subKey="quantity" />;
+  renderMealPlan = () => {
+    const meals = [];
+    this.state.items.map(item => {
+      meals.push(renderMeals(item));
     });
+    return meals;
+  };
+
+  renderMeals = item => {
+    return <Lists key={item.meal} items={item.dish} keyValue="food" subKey="quantity" />;
   };
 
   render() {
-    console.log(this.state);
+    console.log('render', this.state);
     return [
-      <Wrapper key={1}>{this.renderMeals}</Wrapper>,
+      <Wrapper key={1}>{this.renderMealPlan}</Wrapper>,
       <Submit text="Workouts" onSubmit={() => Actions.dayworkout({ user: this.state.user })} />
     ];
   }
