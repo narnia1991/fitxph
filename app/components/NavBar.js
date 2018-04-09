@@ -18,7 +18,7 @@ class NavBar extends Component {
 
   handleLogout = async () => {
     try {
-      await deleteData('currentUser');
+      await deleteData('current_user');
       Actions.login();
     } catch (error) {
       console.log(error);

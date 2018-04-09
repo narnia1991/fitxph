@@ -1,13 +1,14 @@
 import React from 'react';
-import { Button, View, Text, StyleSheet, Dimensions } from 'react-native';
+import { Button, Right, Text } from 'native-base';
+import { StyleSheet, Dimensions, View } from 'react-native';
 import { Wrapper, Submit } from '../../components';
 import { Actions } from 'react-native-router-flux';
+import { setData } from '../../AsyncStorage';
 
 class Journey extends React.Component {
   state = {
-    progress: {},
     user: {},
-    day: 0
+    day: 1
   };
 
   componentWillMount() {
@@ -15,15 +16,27 @@ class Journey extends React.Component {
       Actions.login();
     }
     this.setState({ user: this.props.user });
-    if (this.state.user.progress && this.state.user.progress.day) this.setState({ day: this.state.user.progress.day });
-    console.log('exerciselist', this.state);
+    console.log('currentday', this.props.user.current_day);
   }
+
+  componentDidMount = () => {
+    this.setState({ day: this.props.user.current_day });
+  };
+
+  handleReset = async () => {
+    user = this.state.user;
+    delete user.current_plan;
+    delete user.current_day;
+    console.log(user);
+    await setData(user.username, user);
+    Actions.replace('plan', { user });
+  };
+
   renderWeek(day) {
     let week = [];
     for (x = 1; x <= 7; x++) {
       let j = day * 7 + x - 7;
       if (j < 31) {
-        console.log(j);
         week.push(
           <View key={j} style={this.state.day && this.state.day < j ? styles.dayBox : styles.dayBoxFinished}>
             <Text style={{ fontWeight: 'bold' }}>{this.state.day && this.state.day < j ? j : 'X'}</Text>
@@ -45,8 +58,13 @@ class Journey extends React.Component {
     return month;
   }
   render() {
+    console.log('exerciselist', this.state);
+
     return [
-      <Wrapper padder key={1} style={styles.container}>
+      <Wrapper key={1} style={styles.container}>
+        <Button style={{ left: 0, marginBottom: 5 }} onPress={this.handleReset}>
+          <Text>Reset Plan</Text>
+        </Button>
         {this.renderCalendar()}
       </Wrapper>,
       <Submit key={2} text="Proceed" onSubmit={() => Actions.daymeal({ user: this.state.user })} />
@@ -58,12 +76,10 @@ let { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: width,
-    height: height,
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    padding: width / 7
+    paddingTop: width / 7
   },
   week: {
     flex: 1,

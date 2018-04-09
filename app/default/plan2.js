@@ -1,6 +1,6 @@
 export const weight_gain = {
   name: 'Bigatin',
-  purpose: 'weight gain',
+  purpose: 'Weight Gain',
   meal_plan: [
     [
       {

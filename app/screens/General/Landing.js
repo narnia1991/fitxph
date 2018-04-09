@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
+import { Toast } from 'native-base';
 import { Tile } from '../../components';
 import imageLoader from '../../utils/imageLoader';
+import { getProgress } from './LandingModel';
 
 class Landing extends Component {
   state = {
@@ -18,13 +20,18 @@ class Landing extends Component {
 
   handlePlanPress = () => {
     console.log(Actions.plan);
-    Actions.plan({ user: this.state.user });
-    // Actions.planlist({ user: this.state.user });
+    if (!this.state.user.current_plan) return Actions.plan({ user: this.state.user });
+    Actions.journey({ user: this.state.user });
   };
 
-  handleProgressPress = () => {
-    // if (!this.state.user.plan) return false;
-    // else
+  handleProgressPress = async () => {
+    const progress = await getProgress(this.state.user.username);
+    if (!progress)
+      Toast.show({
+        text: "You haven't set up your plan yet",
+        position: 'bottom',
+        buttonText: 'Okay'
+      });
     Actions.progress({ user: this.state.user });
   };
 

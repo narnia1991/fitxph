@@ -1,25 +1,13 @@
-//list of plans
-/*
-plan structure:
-{
-    name,
-    creator,
-    type,
-    difficulty,
-    exerciseplan
-    dietplan
-    exercises,
-    dishes
-}
-*/
 import React from 'react';
 import { Body, Button, Left, Right, Text, Title, Fab, Icon } from 'native-base';
 import { Alert, StyleSheet, Modal, TouchableHighlight, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Lists, Wrapper } from '../../components';
+import { getData, setData } from '../../AsyncStorage';
+
 import { weight_loss } from '../../default/plan';
 import { weight_gain } from '../../default/plan2';
-import { getData, setData } from '../../AsyncStorage';
+import { maintain } from '../../default/plan3';
 
 class PlanList extends React.Component {
   state = {
@@ -35,28 +23,17 @@ class PlanList extends React.Component {
     }
     const items = [
       { name: weight_loss.name, purpose: weight_loss.purpose },
-      { name: weight_gain.name, purpose: weight_gain.purpose }
+      { name: weight_gain.name, purpose: weight_gain.purpose },
+      { name: maintain.name, purpose: maintain.purpose }
     ];
-
-    if (this.props.user.plan) {
-      Actions.journey({ user: this.props.user });
-    }
     this.setState({ user: this.props.user, items });
-  };
-
-  componentDidMount = async () => {
-    //get plan list data
-    // let items = [{ name: 'Easy', purpose: 'Weight Loss' }, { name: 'Easy', purpose: 'Weight Gain' }];
-    // items = [items, ...fetchedData]
-    // this.setState({ items });
   };
 
   handlePlanPress = async () => {
     console.log('pressed', this.state);
-    const user = { ...this.state.user, plan: this.state.selectedPlan, progress: { day: 0 } };
-    console.log(user);
-    await setData(this.state.user.username, user);
-    Actions.journey({ user });
+    const user = { ...this.state.user, current_plan: this.state.selectedPlan, current_day: 1 };
+    await setData(user.username, user);
+    Actions.replace('journey', { user });
   };
 
   render() {
@@ -84,7 +61,7 @@ class PlanList extends React.Component {
             this.setState({ selectedPlan: item });
           }}
         />
-      </Wrapper>,
+      </Wrapper>
       // <Fab
       //   key={2}
       //   containerStyle={{}}

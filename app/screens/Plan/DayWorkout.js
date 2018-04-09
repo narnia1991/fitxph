@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import { getData } from '../../AsyncStorage';
 import { weight_loss } from '../../default/plan';
 import { weight_gain } from '../../default/plan2';
+import { maintain } from '../../default/plan3';
 
 class DayWorkout extends React.Component {
   state = {
@@ -20,13 +21,13 @@ class DayWorkout extends React.Component {
     }
 
     console.log('dayexercise');
-    let plans = [weight_loss, weight_gain];
+    let plans = [weight_loss, weight_gain, maintain];
     //get custom plans from asyncstorage
-    const plan = plans.filter(plan => plan.name === this.props.user.plan.name);
+    const plan = plans.filter(plan => plan.name === this.props.user.current_plan.name);
     if (plan) {
       const exercisePlan = plan[0].exercise_plan;
       if (exercisePlan) {
-        const exercise = exercisePlan[this.props.user.progress.day];
+        const exercise = exercisePlan[this.props.user.current_day - 1];
         if (exercise) {
           this.setState({ items: exercise });
         }
@@ -42,7 +43,7 @@ class DayWorkout extends React.Component {
         <Lists items={this.state.items} keyValue="Workout" subKey="Reps" handlePress={() => {}} />
       </Wrapper>,
       <Submit
-       key={2}
+        key={2}
         text="Proceed"
         onSubmit={() => Actions.exerciseongoing({ user: this.state.user, exercises: this.state.items })}
       />

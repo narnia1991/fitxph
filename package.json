@@ -15,7 +15,8 @@
     "link": "react-native link",
     "unlink": "react-native unlink",
     "build": "(cd android/ && ./gradlew assembleDebug)",
-    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
+    "bundle-android":
+      "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "jest": {
     "preset": "react-native"
@@ -26,15 +27,13 @@
     "native-base": "^2.3.10",
     "react": "16.2.0",
     "react-native": "0.52.0",
-    "react-native-ble-plx": "^0.8.0",
     "react-native-calendars": "^1.17.4",
     "react-native-pure-chart": "^0.0.19",
-    "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-router-flux": "4.0.0-beta.27",
     "react-native-simple-table": "0.0.3",
-    "react-native-svg": "^6.3.1",
     "react-native-svg-charts": "^4.1.0",
     "react-native-tts": "^1.5.0",
     "react-native-vector-icons": "^4.5.0",
-    "victory-native": "^0.17.2"
+    "regression": "^2.0.1"
   }
 }

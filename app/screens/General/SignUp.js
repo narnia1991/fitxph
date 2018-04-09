@@ -5,14 +5,18 @@ import { getData, setData } from '../../AsyncStorage';
 import { Error, ScreenLabel, Submit, TextBox, Wrapper } from '../../components';
 
 class SignUp extends Component {
-  state = {
+  initialState = {
     username: '',
     password: '',
     confirm_password: '',
     errors: ''
   };
 
+  state = this.initialState;
+
   handleSignUp = async () => {
+    if (!this.state.username || !this.state.password || !this.state.confirm_password)
+      return this.setState({ errors: 'Username / Password required' });
     try {
       console.log(this.state);
       const user = await getData(this.state.username);
@@ -20,15 +24,12 @@ class SignUp extends Component {
         console.log('====================================');
         console.log('reselt', await getData(this.state.username));
         console.log('====================================');
-        await setData(this.state.username, {
-          username: this.state.username,
-          password: this.state.password
-        });
+        const newUser = { username: this.state.username, password: this.state.password };
+        await setData(this.state.username, newUser);
+        await setData('current_user', newUser.username);
 
-        Actions.initialData({
-          user: {
-            username: this.state.username,
-          }
+        Actions.replace('initialData', {
+          user: newUser
         });
       } else if (this.state.password !== this.state.confirm_password) {
         this.setState({ errors: "Password didn't match" });

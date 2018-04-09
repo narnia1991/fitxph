@@ -1,6 +1,6 @@
-export const weight_gain = {
-  name: 'Bigatin',
-  purpose: 'weight gain',
+export const maintain = {
+  name: 'Keeping Up',
+  purpose: 'Maintenance',
   meal_plan: [
     [
       {

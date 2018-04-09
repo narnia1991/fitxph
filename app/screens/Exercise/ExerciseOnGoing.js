@@ -7,6 +7,7 @@ import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
 import { Image } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
 import { Wrapper, Submit } from '../../components';
+import Tts from 'react-native-tts';
 
 class ExerciseOnGoing extends React.Component {
   state = {
@@ -33,8 +34,12 @@ class ExerciseOnGoing extends React.Component {
     console.log('exercise ongoing', this.state);
   };
 
-  handleNextClick = () => {};
-
+  handleNextClick = () => {
+    Tts.stop();
+    if (this.state.currentExercise < this.state.exercises.length - 1) {
+      this.setState({ currentExercise: this.state.currentExercise + 1 });
+    } else Actions.exercisefinished({ user: this.state.user });
+  };
   countdown = timeCount => {
     timeCount = timeCount - 1;
     if (timeCount > -1) {
@@ -49,7 +54,7 @@ class ExerciseOnGoing extends React.Component {
   render() {
     const item = this.state.exercises[this.state.currentExercise];
     return [
-      <Wrapper key={1}>
+      <Wrapper>
         <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
         <Text> </Text>
         <Card>
@@ -66,12 +71,7 @@ class ExerciseOnGoing extends React.Component {
       <Submit
         disabled={this.state.exerciseOnGoing}
         key={2}
-        onSubmit={() => {
-          console.log(this.state.exercises.length, 'lehtoooooo');
-          if (this.state.currentExercise < this.state.exercises.length - 1)
-            this.setState({ currentExercise: this.state.currentExercise + 1 });
-          else Actions.exercisefinished({ user: this.state.user });
-        }}
+        onSubmit={this.handleNextClick}
         text={this.state.buttonText}
       />
     ];

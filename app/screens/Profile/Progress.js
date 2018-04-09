@@ -1,42 +1,70 @@
 // TODO: chart
 // TODO: add update button to update progress
 import React from 'react';
+import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import { Body, Left, List, ListItem, Right, Text } from 'native-base';
-import { VictoryBrushContainer, VictoryLine, VictoryChart, VictoryTheme } from 'victory-native';
 import { ScreenLabel, Wrapper } from '../../components';
 import PureChart from 'react-native-pure-chart';
+import { getUnix } from '../../utils';
 // import Table from 'react-native-simple-table'
+
+const dummyProgress = {
+  initial_weight: 76,
+  initial_height: 166,
+  initial_heart_rate: 89,
+  initial_date: 1519677976,
+  target_weight: 72,
+  data: [
+    {
+      date: 1520023576,
+      weight: 76
+    },
+    {
+      date: 1520628376,
+      weight: 75.5
+    },
+    {
+      date: 1521233176,
+      weight: 74
+    },
+    {
+      date: 1521837976,
+      weight: 73.7
+    }
+  ]
+};
 
 class Progress extends React.Component {
   state = {
-    series1: [
-      { x: '2018-02-26', y: 64 },
-      { x: '2018-03-04', y: 66 },
-      { x: '2018-03-13', y: 64 },
-      { x: '2018-03-26', y: 64 }
-    ],
-    series2: [
-      { x: '2018-02-26', y: 63 },
-      { x: '2018-03-04', y: 62 },
-      { x: '2018-03-13', y: 61 },
-      { x: '2018-03-26', y: 60 }
-    ],
     user: null,
     columns: [{ title: 'Date', dataIndex: 'x' }, { title: 'Weight', dataIndex: 'y' }]
   };
 
-  // componentWillMount = () => {
-  //   if (!this.props.user) {
-  //     Actions.login();
-  //   }
-  //   dataset = [];
-  //   this.props.user.progress.progress.map(data => {
-  //     dataset.push({ y: data.date, x: data.weight });
-  //   });
-  //   this.setState({ user: this.props.user, data: dataset });
-  // };
+  componentWillMount = async () => {
+    if (!this.props.user) {
+      Actions.login();
+    }
+
+    // const progress = await getData(`${this.props.user.username}_progress`)
+    const progress = dummyProgress;
+
+    dataset1 = [];
+    dataset2 = [];
+    targetSlope =
+      (progress.target_weight - progress.initial_weight) / progress.initial_date + 2592000 - progress.initial_date;
+
+    progress.data.forEach(data => {
+      console.log(targetSlope);
+      console.log(moment.unix(data.date).format('MM/DD/YYYY'));
+
+      dataset1.push({ x: data.date, y: data.weight });
+      dataset2.push({ x: data.date, y: targetSlope * (data.date - progress.initial_date) + progress.initial_weight });
+    });
+
+    this.setState({ user: this.props.user, dataset1, dataset2 });
+  };
 
   renderHeader() {
     return this.state.columns.map((col, index) => {
@@ -65,10 +93,12 @@ class Progress extends React.Component {
   }
 
   renderCell(cellData, col) {
-    if (typeof cellData === 'object') {
+    console.log(col);
+
+    if (col.dataIndex === 'x') {
       return (
         <Left key={col.dataIndex}>
-          <Text>{cellData.toLocaleDateString()}</Text>
+          <Text>{moment(cellData, 'MM/dd/YYYY')}</Text>
         </Left>
       );
     } else {
@@ -83,13 +113,13 @@ class Progress extends React.Component {
   render() {
     let sampleData = [
       {
-        seriesName: 'series1',
-        data: this.state.series1,
+        seriesName: 'progress',
+        data: this.state.dataset1,
         color: '#297AB1'
       },
       {
-        seriesName: 'series2',
-        data: this.state.series2,
+        seriesName: 'target',
+        data: this.state.dataset2,
         color: 'yellow'
       }
     ];
@@ -101,7 +131,7 @@ class Progress extends React.Component {
         <View>
           <View style={styles.header}>{this.renderHeader()}</View>
           <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
-            {this.state.series1.map((rowData, index) => this.renderRow(rowData, index))}
+            {this.state.dataset1.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
         </View>
       </Wrapper>
@@ -148,16 +178,33 @@ const styles = StyleSheet.create({
 });
 export default Progress;
 
-{
-  /* <Container>
-  <Content padder>
-    <VictoryChart theme={VictoryTheme.material} scale={{ x: "time" }}>
-      <VictoryLine
-        style={{ data: { stroke: "#c43a31" } }}
-        data={this.state.data}
-      />
-    </VictoryChart>
-    <List>{this.renderList}</List>
-  </Content>
-</Container> */
-}
+const dummyUser = [
+  {
+    day: 1,
+    initial_heart_rate: 89,
+    end_heart_rate: 123,
+    date: 1523306784,
+    data: [
+      {
+        exercise: 'Jumping Jacks',
+        time: 60
+      },
+      {
+        exercise: 'High Knees',
+        time: 60
+      },
+      {
+        exercise: 'Sit Ups',
+        time: 60
+      },
+      {
+        exercise: 'Squats',
+        time: 60
+      },
+      {
+        exercise: 'Push Ups',
+        time: 60
+      }
+    ]
+  }
+];
