@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, View, Text, StyleSheet, Dimensions } from 'react-native';
 import { Wrapper, Submit } from '../../components';
 import { Actions } from 'react-native-router-flux';
 
@@ -22,12 +22,14 @@ class Journey extends React.Component {
     let week = [];
     for (x = 1; x <= 7; x++) {
       let j = day * 7 + x - 7;
-      if (j < 31)
+      if (j < 31) {
+        console.log(j);
         week.push(
           <View key={j} style={this.state.day && this.state.day < j ? styles.dayBox : styles.dayBoxFinished}>
             <Text style={{ fontWeight: 'bold' }}>{this.state.day && this.state.day < j ? j : 'X'}</Text>
           </View>
         );
+      }
     }
     return week;
   }
@@ -44,28 +46,46 @@ class Journey extends React.Component {
   }
   render() {
     return [
-      <Wrapper padder key={1}>{this.renderCalendar()}</Wrapper>,
+      <Wrapper padder key={1} style={styles.container}>
+        {this.renderCalendar()}
+      </Wrapper>,
       <Submit key={2} text="Proceed" onSubmit={() => Actions.daymeal({ user: this.state.user })} />
     ];
   }
 }
 
+let { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: width,
+    height: height,
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    padding: width / 7
+  },
   week: {
     flex: 1,
     flexDirection: 'row'
   },
   dayBox: {
-    flex: 1,
-    width: 20,
-    height: 20,
-    backgroundColor: 'green'
+    width: width / 7 * 5 / 7,
+    height: width / 7 * 5 / 7,
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: width / 500,
+    elevation: 5
   },
   dayBoxFinished: {
-    flex: 1,
-    width: 20,
-    height: 20,
-    backgroundColor: 'red'
+    width: width / 7 * 5 / 7,
+    height: width / 7 * 5 / 7,
+    backgroundColor: 'cyan',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: width / 500,
+    elevation: 5
   }
 });
 export default Journey;

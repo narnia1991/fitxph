@@ -67,6 +67,7 @@ class ExerciseOnGoing extends React.Component {
         disabled={this.state.exerciseOnGoing}
         key={2}
         onSubmit={() => {
+          console.log(this.state.exercises.length, 'lehtoooooo');
           if (this.state.currentExercise < this.state.exercises.length - 1)
             this.setState({ currentExercise: this.state.currentExercise + 1 });
           else Actions.exercisefinished({ user: this.state.user });
