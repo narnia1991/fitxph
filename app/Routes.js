@@ -3,7 +3,7 @@ import { Container, Root, StyleProvider } from 'native-base';
 import { Router, Scene } from 'react-native-router-flux';
 import { Discover, Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { Calendar, DayMeal, DayWorkout, Journey, PlanAdd, PlanList } from './screens/Plan';
-import { InitialData, Progress } from './screens/Profile';
+import { InitialData, Progress, InputProgress } from './screens/Profile';
 import { Exercise, ExerciseAdd, ExerciseFinished, ExerciseList, ExerciseOnGoing } from './screens/Exercise';
 import { Food, FoodAdd, FoodList } from './screens/Recipe';
 
@@ -32,6 +32,7 @@ class routes extends React.Component {
                 <Scene key="foodAdd" component={FoodAdd} hideNavBar={true} />
                 <Scene key="foodlist" component={FoodList} hideNavBar={true} />
                 <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
+                <Scene key="inputprogress" component={InputProgress} hideNavBar={true} passProps />
                 <Scene key="journey" component={Journey} hideNavBar={true} passProps />
                 <Scene key="landing" component={Landing} navBar={NavBar} title="FitXPH" passProps />
                 <Scene key="login" component={Login} title="login" hideNavBar={true} type="reset" />

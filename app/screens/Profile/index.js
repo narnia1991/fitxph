@@ -1,7 +1,5 @@
-import InitialData from './InitialData'
-import Progress from './Progress'
+import InitialData from './InitialData';
+import InputProgress from './InputProgress';
+import Progress from './Progress';
 
-export {
-  InitialData,
-  Progress
-}
+export { InitialData, InputProgress, Progress };
