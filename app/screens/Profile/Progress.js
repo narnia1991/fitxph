@@ -70,13 +70,11 @@ const linear = (data, options) => {
 };
 
 const calculateRegression = formattedData => {
-  console.log(formattedData);
   let regressionData = [];
   regressionData = formattedData.map(el => {
     return [Math.round(el.date / 86400 * 100) / 100, el.weight];
   });
   const result = linear(regressionData);
-  console.log(' results', result);
   return result.points;
   // const gradient = result.equation[0];
   // const yIntercept = result.equation[1];
@@ -97,7 +95,7 @@ class Progress extends React.Component {
       { title: 'Date', dataIndex: 'x' },
       { title: 'Weight', dataIndex: 'y' },
       { title: ' Target Weight', dataIndex: 'z' },
-      { title: 'Regressiont', dataIndex: 'm' }
+      { title: 'Regression', dataIndex: 'm' }
     ]
   };
 
@@ -112,6 +110,7 @@ class Progress extends React.Component {
     dataset1 = [];
     dataset2 = [];
     dataset3 = calculateRegression(progress.data);
+    dataset4 = [];
     datasets = [];
     targetSlope = (progress.target_weight - progress.initial_weight) / 2592000;
 
@@ -121,12 +120,13 @@ class Progress extends React.Component {
       let targetWeight = targetSlope * (data.date - progress.initial_date) + progress.initial_weight;
       dataset1.push({ x: data.date, y: data.weight });
       dataset2.push({ x: data.date, y: targetWeight });
-
+      console.log(dataset3[len][1]);
+      dataset4.push({ x: data.date, y: dataset3[len][1] });
       datasets.push({ x: data.date, y: data.weight, z: Math.round(targetWeight).toFixed(2), m: dataset3[len][1] });
       len++;
     });
 
-    this.setState({ user: this.props.user, dataset1, dataset2, datasets });
+    this.setState({ user: this.props.user, dataset1, dataset2, datasets, dataset4 });
   };
 
   renderHeader() {
@@ -156,8 +156,6 @@ class Progress extends React.Component {
   }
 
   renderCell(cellData, col) {
-    console.log(col);
-
     if (col.dataIndex === 'x') {
       return (
         <Left key={col.dataIndex}>
@@ -181,7 +179,7 @@ class Progress extends React.Component {
     let sampleData = [
       { seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' },
       { seriesName: 'target', data: this.state.dataset2, color: 'yellow' },
-      { seriesName: 'Regression', data: this.state.dataset3, color: 'black' }
+      { seriesName: 'Regression', data: this.state.dataset4, color: 'black' }
     ];
     return [
       <Wrapper key={1} padder>
