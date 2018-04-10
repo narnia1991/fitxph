@@ -15,6 +15,7 @@ class ExerciseOnGoing extends React.Component {
     user: {},
     exercises: [],
     finished: [],
+    isCountdown: false,
     currentExercise: 0,
     exerciseFinished: false,
     routineFinished: false,
@@ -35,11 +36,24 @@ class ExerciseOnGoing extends React.Component {
   };
 
   handleNextClick = () => {
+    if (this.state.isCountdown) {
+      this.countdown(this.state.currentExercise.reps.match(/\d+/)[0]);
+      if (!this.state.timer) {
+        this.setState({ isCountdown: false });
+      }
+    }
+    this.setState({ isCountdown: false });
     Tts.stop();
     if (this.state.currentExercise < this.state.exercises.length - 1) {
       this.setState({ currentExercise: this.state.currentExercise + 1 });
+      if (isNaN(this.state.currentExercise.reps))
+        this.setState({
+          isCountdown: true,
+          buttonText: 'Start'
+        });
     } else Actions.exercisefinished({ user: this.state.user });
   };
+
   countdown = timeCount => {
     timeCount = timeCount - 1;
     if (timeCount > -1) {
@@ -63,7 +77,7 @@ class ExerciseOnGoing extends React.Component {
           </CardItem>
           <CardItem>
             <Body>
-              <Text>{item.Reps}</Text>
+              <Text>{this.state.isCountdown?this.state.timer:item.Reps}</Text>
             </Body>
           </CardItem>
         </Card>

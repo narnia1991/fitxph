@@ -39,7 +39,11 @@ const dummyProgress = {
 class Progress extends React.Component {
   state = {
     user: null,
-    columns: [{ title: 'Date', dataIndex: 'x' }, { title: 'Weight', dataIndex: 'y' }]
+    columns: [
+      { title: 'Date', dataIndex: 'x' },
+      { title: 'Weight', dataIndex: 'y' },
+      { title: ' Target Weight', dataIndex: 'z' }
+    ]
   };
 
   componentWillMount = async () => {
@@ -52,18 +56,18 @@ class Progress extends React.Component {
 
     dataset1 = [];
     dataset2 = [];
-    targetSlope =
-      (progress.target_weight - progress.initial_weight) / progress.initial_date + 2592000 - progress.initial_date;
+    datasets = [];
+    targetSlope = (progress.target_weight - progress.initial_weight) / 2592000;
 
+    console.log(targetSlope);
     progress.data.forEach(data => {
-      console.log(targetSlope);
-      console.log(moment.unix(data.date).format('MM/DD/YYYY'));
-
+      let targetWeight = targetSlope * (data.date - progress.initial_date) + progress.initial_weight;
       dataset1.push({ x: data.date, y: data.weight });
-      dataset2.push({ x: data.date, y: targetSlope * (data.date - progress.initial_date) + progress.initial_weight });
+      dataset2.push({ x: data.date, y: targetWeight });
+      datasets.push({ x: data.date, y: data.weight, z: Math.round(targetWeight).toFixed(2) });
     });
 
-    this.setState({ user: this.props.user, dataset1, dataset2 });
+    this.setState({ user: this.props.user, dataset1, dataset2, datasets });
   };
 
   renderHeader() {
@@ -98,7 +102,7 @@ class Progress extends React.Component {
     if (col.dataIndex === 'x') {
       return (
         <Left key={col.dataIndex}>
-          <Text>{moment(cellData, 'MM/dd/YYYY')}</Text>
+          <Text>{moment.unix(cellData).format('MM/DD/YYYY')}</Text>
         </Left>
       );
     } else {
@@ -131,7 +135,7 @@ class Progress extends React.Component {
         <View>
           <View style={styles.header}>{this.renderHeader()}</View>
           <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
-            {this.state.dataset1.map((rowData, index) => this.renderRow(rowData, index))}
+            {this.state.datasets.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
         </View>
       </Wrapper>
