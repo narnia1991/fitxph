@@ -35,16 +35,17 @@ class InitialData extends React.Component {
   }
 
   handleSubmit = async () => {
-    const { name, dob, gender, initial_weight, intial_height } = this;
-
-    if (!name || !dob || !gender || !initial_weight || !intial_height) return this.setState({ errors: 'All fields are required' });
+    const { name, dob, gender, weight, height } = this;
+    console.log('data', name, dob, gender, weight, height);
+    console.log('state', this.state);
+    if (!name || !dob || !gender || !weight || !height) return this.setState({ errors: 'All fields are required' });
     const user = {
       ...this.state.user,
       name,
       dob,
       gender,
-      initial_weight,
-      intial_height,
+      initial_weight: weight,
+      initial_height: height,
       start_date: moment(options.date).format('YYYY-d-MM')
     };
 
@@ -67,8 +68,8 @@ class InitialData extends React.Component {
             defaultValue={{ name: 'Male', value: 'male' }}
           />
           <SectionLabel text="Target Information" />
-          <TextBox label="Weight(kg)" onChangeText={text => (this.initial_weight = text)} />
-          <TextBox label="Height(m)" onChangeText={text => (this.initial_height = text)} />
+          <TextBox label="Weight(kg)" onChangeText={text => (this.weight = text)} />
+          <TextBox label="Height(m)" onChangeText={text => (this.height = text)} />
         </Form>
       </Wrapper>,
       <Submit key={2} text="Submit" onSubmit={this.handleSubmit} />

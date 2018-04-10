@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-export const bmi = (weight, height) => weight / height(height);
+export const bmi = (weight, height) => weight / (height * height);
 
-export const reverseBMI = (height, bmi) => height(height) * bmi;
+export const reverseBMI = (height, bmi) => (height * height) * bmi;
 
 export const bmiStatus = bmi => {
   switch (true) {

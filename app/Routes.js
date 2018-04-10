@@ -2,13 +2,8 @@ import React from 'react';
 import { Container, Root, StyleProvider } from 'native-base';
 import { Router, Scene } from 'react-native-router-flux';
 import { Discover, Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
-<<<<<<< HEAD
 import { Calendar, DayMeal, DayWorkout, Journey, Goal, PlanAdd, PlanList } from './screens/Plan';
-import { InitialData, Progress } from './screens/Profile';
-=======
-import { Calendar, DayMeal, DayWorkout, Journey, PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress, InputProgress } from './screens/Profile';
->>>>>>> 88bb5f7d97b4ef3cfc516a924ee432f50af6c807
 import { Exercise, ExerciseAdd, ExerciseFinished, ExerciseList, ExerciseOnGoing } from './screens/Exercise';
 import { Food, FoodAdd, FoodList } from './screens/Recipe';
 

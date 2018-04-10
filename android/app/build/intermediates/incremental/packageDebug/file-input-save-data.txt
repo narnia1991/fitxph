@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Apr 10 20:21:40 CST 2018
+#Tue Apr 10 21:18:12 CST 2018
 20.base=D\:\\fitxph\\android\\app\\build\\intermediates\\res\\resources-debug.ap_
 143.base=D\:\\fitxph\\android\\app\\build\\intermediates\\assets\\debug
 340.file=D\:\\fitxph\\android\\app\\build\\intermediates\\transforms\\mergeJniLibs\\debug\\folders\\2000\\1f\\main\\lib\\armeabi\\libimagepipeline.so
