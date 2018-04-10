@@ -1,5 +1,5 @@
 {
-  "name": "fitc",
+  "name": "fitxph",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -15,8 +15,7 @@
     "link": "react-native link",
     "unlink": "react-native unlink",
     "build": "(cd android/ && ./gradlew assembleDebug)",
-    "bundle-android":
-      "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "jest": {
     "preset": "react-native"
