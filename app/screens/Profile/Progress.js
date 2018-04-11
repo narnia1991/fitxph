@@ -192,11 +192,12 @@ class Progress extends React.Component {
             {this.state.datasets.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
         </View>
-      </Wrapper>,
-      <Submit key={2} onSubmit={this.handleProgressClick} text="Add Entry" />
+      </Wrapper>
     ];
   }
 }
+
+// <Submit key={2} onSubmit={this.handleProgressClick} text="Add Entry" />
 
 let { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({

@@ -13,19 +13,22 @@ class Goal extends React.Component {
     weight: 0
   };
 
-  componentWillMount() {
+  async componentWillMount() {
     if (!this.props.user) {
       Actions.login();
     }
     this.setState({ user: this.props.user });
-  }
-
-  componentDidMount = async () => {
     const progress = await getData(`${this.props.user.username}_progress`);
     console.log(progress)
     this.setState({ progress });
-    // this.setState({ day: this.props.user.current_day });
-  };
+  }
+
+  // componentDidMount = async () => {
+  //   const progress = await getData(`${this.props.user.username}_progress`);
+  //   console.log(progress)
+  //   this.setState({ progress });
+  //   // this.setState({ day: this.props.user.current_day });
+  // };
 
   handleOnChange = input => {
     this.setState({ target_weight: input });
@@ -73,7 +76,7 @@ class Goal extends React.Component {
       const bmiValue = bmi(targetWeight, initial_height)
       return bmiStatus(bmiValue)
     } else {
-      return '0'
+      return <Text>Nothing to Show</Text>
     }
   }
 
