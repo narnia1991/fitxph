@@ -70,14 +70,14 @@ class ExerciseOnGoing extends React.Component {
     return [
       <Wrapper>
         <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
-        <Text> </Text>
+        <Text>{this.state.timer || item.reps} </Text>
         <Card>
           <CardItem header>
             <Text>{item.Workout}</Text>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>{this.state.isCountdown?this.state.timer:item.Reps}</Text>
+              <Text>{this.state.isCountdown ? this.state.timer : item.Reps}</Text>
             </Body>
           </CardItem>
         </Card>
