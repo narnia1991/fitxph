@@ -33,7 +33,7 @@ class PlanList extends React.Component {
     console.log('pressed', this.state);
     const user = { ...this.state.user, current_plan: this.state.selectedPlan, current_day: 1 };
     await setData(user.username, user);
-    Actions.replace('journey', { user });
+    Actions.replace('goal', { user });
   };
 
   render() {

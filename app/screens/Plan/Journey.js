@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Right, Text } from 'native-base';
 import { StyleSheet, Dimensions, View } from 'react-native';
-import { Wrapper, Submit } from '../../components';
+import { Wrapper, Submit, TextBox } from '../../components';
 import { Actions } from 'react-native-router-flux';
 import { setData } from '../../AsyncStorage';
 

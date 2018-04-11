@@ -234,6 +234,8 @@ class Progress extends React.Component {
   }
 }
 
+// <Submit key={2} onSubmit={this.handleProgressClick} text="Add Entry" />
+
 let { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {

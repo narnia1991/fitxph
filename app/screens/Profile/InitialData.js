@@ -44,8 +44,8 @@ class InitialData extends React.Component {
       name,
       dob,
       gender,
-      weight,
-      height,
+      initial_weight: weight,
+      initial_height: height,
       start_date: moment(options.date).format('YYYY-d-MM')
     };
 
