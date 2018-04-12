@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { Card, CardItem, Text, Body, Button } from 'native-base';
 import { Image } from 'react-native';
 import { Wrapper, Submit } from '../../components';
+import { setData } from '../../AsyncStorage';
 
 class ExerciseFinished extends React.Component {
   state = {
@@ -17,11 +18,10 @@ class ExerciseFinished extends React.Component {
 
     const user = {
       ...this.props.user,
-      progress: {
-        day: this.props.day + 1,
-        ...this.props.user.progress
-      }
+      current_day: this.props.user.current_day + 1,
+      current_day_finished: new Date()
     };
+
     setData(this.props.user.username, user);
   };
 

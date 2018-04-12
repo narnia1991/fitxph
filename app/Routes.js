@@ -4,7 +4,15 @@ import { Router, Scene } from 'react-native-router-flux';
 import { Discover, Landing, Login, Reference, SignUp, Splash, Sync, SyncNow } from './screens/General';
 import { Calendar, DayMeal, DayWorkout, Journey, Goal, PlanAdd, PlanList } from './screens/Plan';
 import { InitialData, Progress, InputProgress } from './screens/Profile';
-import { Exercise, ExerciseAdd, ExerciseFinished, ExerciseList, ExerciseOnGoing } from './screens/Exercise';
+import {
+  Exercise,
+  ExerciseAdd,
+  ExerciseFinished,
+  ExerciseList,
+  ExerciseOnGoing,
+  HeartRateInput,
+  HeartRateOutput
+} from './screens/Exercise';
 import { Food, FoodAdd, FoodList } from './screens/Recipe';
 
 import { Nav, NavBar } from './components';
@@ -31,7 +39,9 @@ class routes extends React.Component {
                 <Scene key="food" component={Food} hideNavBar={true} />
                 <Scene key="foodAdd" component={FoodAdd} hideNavBar={true} />
                 <Scene key="foodlist" component={FoodList} hideNavBar={true} />
-                <Scene key="goal" component={Goal} hideNavBar={true} />
+                <Scene key="goal" component={Goal} hideNavBar={true} passProps />
+                <Scene key="heartrateinput" component={HeartRateInput} hideNavBar={true} passProps />
+                <Scene key="heartrateoutput" component={HeartRateOutput} hideNavBar={true} passProps />
                 <Scene key="initialData" component={InitialData} hideNavBar={true} passProps />
                 <Scene key="inputprogress" component={InputProgress} hideNavBar={true} passProps />
                 <Scene key="journey" component={Journey} hideNavBar={true} passProps />

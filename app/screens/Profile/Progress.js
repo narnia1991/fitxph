@@ -9,6 +9,8 @@ import { ScreenLabel, SectionLabel, Wrapper, Submit } from '../../components';
 import PureChart from 'react-native-pure-chart';
 import { getUnix } from '../../utils';
 
+import { getData } from '../../AsyncStorage';
+
 // import regression from 'regression';
 // import Table from 'react-native-simple-table'
 
@@ -105,15 +107,17 @@ class Progress extends React.Component {
       Actions.login();
     }
 
-    // const progress = await getData(`${this.props.user.username}_progress`)
-    this.setState({ progress: dummyProgress, user: this.props.user });
+    const progress = await getData(`${this.props.user.username}_progress`);
+    this.setState({ progress, user: this.props.user });
   };
 
   componentDidMount = async () => {
-    this.calculate();
+    if (!!this.state.progress) this.calculate();
   };
+
   calculate = () => {
     const progress = this.state.progress;
+    console.log('calculate');
 
     dataset1 = [];
     dataset2 = [];
@@ -203,12 +207,16 @@ class Progress extends React.Component {
   };
 
   render() {
-    let sampleData = [
-      { seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' },
-      { seriesName: 'target', data: this.state.dataset2, color: 'yellow' },
-      { seriesName: 'Regression', data: this.state.dataset4, color: 'black' }
-    ];
-    if (!this.state.datasets) return <Spinner />;
+    const { dataset1, dataset2, dataset4 } = this.state;
+    let sampleData = [];
+    if (!!dataset1 && !!dataset2 && !!dataset4) {
+      sampleData = [
+        { seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' },
+        { seriesName: 'target', data: this.state.dataset2, color: 'yellow' },
+        { seriesName: 'Regression', data: this.state.dataset4, color: 'black' }
+      ];
+    }
+    if (!this.state.progress) return <Spinner />;
     if (!this.state.progress.data)
       return [
         <Wrapper key={1} padder>
@@ -220,6 +228,9 @@ class Progress extends React.Component {
     return [
       <Wrapper key={1} padder>
         <ScreenLabel text="Progress" />
+        <Right>
+          <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
+        </Right>
         <PureChart data={sampleData} type="line" />
 
         <View>

@@ -30,28 +30,29 @@ class ExerciseOnGoing extends React.Component {
     this.setState({
       user: this.props.user,
       exercises: this.props.exercises,
-      routineLength: this.props.exercises.length
+      routineLength: this.props.exercises.length,
+      exerciseData: this.props.exercise_data
     });
     console.log('exercise ongoing', this.state);
   };
 
   handleNextClick = () => {
-    if (this.state.isCountdown) {
-      this.countdown(this.state.currentExercise.reps.match(/\d+/)[0]);
-      if (!this.state.timer) {
-        this.setState({ isCountdown: false });
-      }
-    }
-    this.setState({ isCountdown: false });
-    Tts.stop();
+    // if (this.state.isCountdown) {
+    //   this.countdown(this.state.currentExercise.reps.match(/\d+/)[0]);
+    //   if (!this.state.timer) {
+    //     this.setState({ isCountdown: false });
+    //   }
+    // }
+    // this.setState({ isCountdown: false });
+    // Tts.stop();
     if (this.state.currentExercise < this.state.exercises.length - 1) {
       this.setState({ currentExercise: this.state.currentExercise + 1 });
-      if (isNaN(this.state.currentExercise.reps))
-        this.setState({
-          isCountdown: true,
-          buttonText: 'Start'
-        });
-    } else Actions.exercisefinished({ user: this.state.user });
+      //   if (isNaN(this.state.currentExercise.reps))
+      //     this.setState({
+      //       isCountdown: true,
+      //       buttonText: 'Start'
+      //     });
+    } else Actions.heartrateoutput({ user: this.state.user, exercise_data: this.state.exerciseData });
   };
 
   countdown = timeCount => {
@@ -70,14 +71,13 @@ class ExerciseOnGoing extends React.Component {
     return [
       <Wrapper>
         <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
-        <Text>{this.state.timer || item.reps} </Text>
         <Card>
           <CardItem header>
             <Text>{item.Workout}</Text>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>{this.state.isCountdown ? this.state.timer : item.Reps}</Text>
+              <ScreenLabel text={item.Reps} />
             </Body>
           </CardItem>
         </Card>
