@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { Toast } from 'native-base';
 import { Tile } from '../../components';
 import imageLoader from '../../utils/imageLoader';
+import { getData } from '../../AsyncStorage';
 import { getProgress } from './LandingModel';
 
 class Landing extends Component {
@@ -18,9 +19,10 @@ class Landing extends Component {
     this.setState({ user: this.props.user });
   };
 
-  handlePlanPress = () => {
-    console.log(Actions.plan);
-    if (!this.state.user.current_plan) return Actions.plan({ user: this.state.user });
+  handlePlanPress = async () => {
+    const progress = await getData(`${this.props.user.username}_progress`);
+
+    if (!this.state.user.current_plan && !progress && !progress.target_weight) return Actions.plan({ user: this.state.user });
     Actions.journey({ user: this.state.user });
   };
 

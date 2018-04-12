@@ -1,8 +1,12 @@
 import moment from 'moment';
 
-export const bmi = (weight, height) => weight / (height * height);
+function round(value, decimals) {
+  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+}
 
-export const reverseBMI = (height, bmi) => (height * height) * bmi;
+export const bmi = (weight, height) => round(weight / (height * height), 2);
+
+export const reverseBMI = (height, bmi) => round((height * height) * bmi, 2);
 
 export const bmiStatus = bmi => {
   switch (true) {

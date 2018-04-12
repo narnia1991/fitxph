@@ -27,7 +27,6 @@ class Journey extends React.Component {
     user = this.state.user;
     delete user.current_plan;
     delete user.current_day;
-    console.log(user);
     await setData(user.username, user);
     Actions.replace('plan', { user });
   };

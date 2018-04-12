@@ -67,7 +67,7 @@ class InitialData extends React.Component {
             options={[{ name: 'Male', value: 'male' }, { name: 'Female', value: 'female' }]}
             defaultValue={{ name: 'Male', value: 'male' }}
           />
-          <SectionLabel text="Target Information" />
+          <SectionLabel text="Initial Data" />
           <TextBox label="Weight(kg)" onChangeText={text => (this.weight = text)} />
           <TextBox label="Height(m)" onChangeText={text => (this.height = text)} />
         </Form>
