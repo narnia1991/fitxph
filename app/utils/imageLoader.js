@@ -6,7 +6,7 @@ const imageLoader = {
   Reference: require('../images/optimized/science.jpg'),
   Splash: require('../images/splash.jpg'),
   Workout: require('../images/optimized/curls.jpg'),
-  Wallpaper: require('../images/optimized/bg.jpg')
+  Wallpaper: require('../images/optimized/bg.jpg'),
   Heart: require('../images/heart.png')
 }
 export default imageLoader

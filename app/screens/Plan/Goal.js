@@ -27,19 +27,15 @@ class Goal extends React.Component {
   };
 
   handleOnChange = input => {
-    this.setState({
-      errorMsg: ''
-    })
-    this.setState({ target_weight: input });
+    this.setState({ target_weight: input, errorMsg: '' });
   }
 
   handleSubmit = async () => {
-    const target_weight = this.targetWeight;
 
-    if (target_weight && typeof target_weight === "number") {
+    if (this.state.target_weight) {
       const progress = await getData(`${this.state.user.username}_progress`)
 
-      progress.target_weight = target_weight;
+      progress.target_weight = this.state.target_weight;
 
       await setData(`${this.state.user.username}_progress`, progress);
       Actions.replace('journey', { user: this.state.user });
