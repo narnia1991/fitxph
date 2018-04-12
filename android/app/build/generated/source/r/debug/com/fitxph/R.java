@@ -1855,18 +1855,19 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020048;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020049;
         public static final int abc_textfield_search_material=0x7f02004a;
-        public static final int app_images_optimized_curls=0x7f02004b;
-        public static final int app_images_optimized_food=0x7f02004c;
-        public static final int app_images_optimized_jog=0x7f02004d;
-        public static final int app_images_optimized_science=0x7f02004e;
-        public static final int app_images_optimized_stats=0x7f02004f;
-        public static final int app_images_splash=0x7f020050;
-        public static final int node_modules_reactnativecalendars_src_calendar_img_next=0x7f020051;
-        public static final int node_modules_reactnativecalendars_src_calendar_img_previous=0x7f020052;
-        public static final int node_modules_reactnativerouterflux_images_back_chevron=0x7f020053;
-        public static final int node_modules_reactnativerouterflux_images_menu_burger=0x7f020054;
-        public static final int node_modules_reactnavigation_src_views_assets_backicon=0x7f020055;
-        public static final int notification_template_icon_bg=0x7f020056;
+        public static final int app_images_optimized_bg=0x7f02004b;
+        public static final int app_images_optimized_curls=0x7f02004c;
+        public static final int app_images_optimized_food=0x7f02004d;
+        public static final int app_images_optimized_jog=0x7f02004e;
+        public static final int app_images_optimized_science=0x7f02004f;
+        public static final int app_images_optimized_stats=0x7f020050;
+        public static final int app_images_splash=0x7f020051;
+        public static final int node_modules_reactnativecalendars_src_calendar_img_next=0x7f020052;
+        public static final int node_modules_reactnativecalendars_src_calendar_img_previous=0x7f020053;
+        public static final int node_modules_reactnativerouterflux_images_back_chevron=0x7f020054;
+        public static final int node_modules_reactnativerouterflux_images_menu_burger=0x7f020055;
+        public static final int node_modules_reactnavigation_src_views_assets_backicon=0x7f020056;
+        public static final int notification_template_icon_bg=0x7f020057;
     }
     public static final class id {
         public static final int action0=0x7f0d005b;
