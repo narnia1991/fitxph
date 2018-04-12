@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { Dimensions, StyleSheet } from 'react-native';
 import { getUnix } from '../../utils';
 import { getData, setData } from '../../AsyncStorage';
-import { Error, ScreenLabel, Submit, TextBox, Wrapper } from '../../components';
+import { Error, DatePicker, ScreenLabel, Submit, TextBox, Wrapper } from '../../components';
 
 class InputProgress extends React.Component {
   state = {
@@ -18,10 +18,10 @@ class InputProgress extends React.Component {
   };
 
   handleProgress = async () => {
-    if (!this.date || !this.state.weight) return this.setState({ errors: 'Error in input' });
+    if (!this.date || !this.weight) return this.setState({ errors: 'Error in input' });
     const progress = await getData(`${this.state.user.username}_progress`);
-    progress.data = [...progress.data, { date: getUnix(new Date(this.date)), weight: this.weigth }];
-    console.log(progress.data);
+    if (!progress.data) progress.data = [];
+    progress.data = [...progress.data, { date: getUnix(this.date), weight: this.weight }];
     await setData(`${this.state.user.username}_progress`, progress);
     Actions.progress({ user: this.state.user });
   };

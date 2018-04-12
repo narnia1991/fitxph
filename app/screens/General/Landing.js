@@ -30,7 +30,7 @@ class Landing extends Component {
     const progress = await getProgress(this.state.user.username);
     if (!progress)
       Toast.show({
-        text: "You haven't set up your plan yet",
+        text: "You haven't set up yet",
         position: 'bottom',
         buttonText: 'Okay'
       });

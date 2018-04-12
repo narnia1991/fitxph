@@ -4,6 +4,7 @@ import { StyleSheet, Dimensions, View } from 'react-native';
 import { Wrapper, Submit, TextBox } from '../../components';
 import { Actions } from 'react-native-router-flux';
 import { setData } from '../../AsyncStorage';
+import moment from 'moment';
 
 class Journey extends React.Component {
   state = {
@@ -56,6 +57,19 @@ class Journey extends React.Component {
     }
     return month;
   }
+
+  handleNextClick = () => {
+    if (!!this.state.user.current_day_finished) {
+      if (moment(this.state.user.current_day_finished).isSame(new Date(), 'day'))
+        Alert.alert(
+          'Exercise Already Done',
+          'Seems you already accompplished your plan. Patience and consistency is key',
+          [{ text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel' }],
+          { cancelable: false }
+        );
+    }
+    Actions.daymeal({ user: this.state.user });
+  };
   render() {
     console.log('exerciselist', this.state);
 
@@ -66,7 +80,7 @@ class Journey extends React.Component {
         </Button>
         {this.renderCalendar()}
       </Wrapper>,
-      <Submit key={2} text="Proceed" onSubmit={() => Actions.daymeal({ user: this.state.user })} />
+      <Submit key={2} text="Proceed" onSubmit={this.handleNextClick} />
     ];
   }
 }

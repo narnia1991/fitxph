@@ -1,15 +1,16 @@
-import React from "react";
-import { Form, Text } from "native-base";
-import { Actions } from "react-native-router-flux";
-import { Dimensions, StyleSheet } from "react-native";
-import { loginUser } from "../../FireBase";
-import { Error, ScreenLabel, Submit, TextBox, Wrapper } from "../../components";
+import React from 'react';
+import { Form, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import { Dimensions, StyleSheet } from 'react-native';
+import { loginUser } from '../../FireBase';
+import { Error, ScreenLabel, Submit, TextBox, Wrapper } from '../../components';
+import { setData } from '../../AsyncStorage';
 
 class Sync extends React.Component {
   state = {
     user: null,
-    email: "",
-    errors: ""
+    email: '',
+    errors: ''
   };
 
   componentWillMount = () => {
@@ -17,7 +18,7 @@ class Sync extends React.Component {
   };
 
   componentDidMount = () => {
-    console.log(" potato");
+    console.log(' potato');
   };
 
   handleSyncLater = () => {
@@ -37,10 +38,10 @@ class Sync extends React.Component {
         Actions.landing(user);
       }
     } catch (error) {
-      this.setState({ errors: "Cannot sync data" });
-      console.log("====================================");
+      this.setState({ errors: 'Cannot sync data' });
+      console.log('====================================');
       console.log(error);
-      console.log("====================================");
+      console.log('====================================');
     }
   };
 
@@ -50,14 +51,21 @@ class Sync extends React.Component {
         <ScreenLabel text="Sync" />
         <Form>
           <Error message={this.state.errors} />
-          <TextBox label="Email" onChangeText={input => this.setState({
-            email: input
-          })} />
-          <Text onPress={this.handleSyncLater} style={styles.syncLater}>Maybe Later</Text>
+          <TextBox
+            label="Email"
+            onChangeText={input =>
+              this.setState({
+                email: input
+              })
+            }
+          />
+          <Text onPress={this.handleSyncLater} style={styles.syncLater}>
+            Maybe Later
+          </Text>
         </Form>
       </Wrapper>,
       <Submit key={2} text="Sync" onSubmit={this.handleSync} />
-    ]
+    ];
   }
 }
 

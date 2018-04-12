@@ -45,7 +45,7 @@ class DayWorkout extends React.Component {
       <Submit
         key={2}
         text="Proceed"
-        onSubmit={() => Actions.exerciseongoing({ user: this.state.user, exercises: this.state.items })}
+        onSubmit={() => Actions.heartrateinput({ user: this.state.user, exercises: this.state.items })}
       />
     ];
   }

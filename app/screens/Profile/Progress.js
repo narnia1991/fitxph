@@ -4,10 +4,12 @@ import React from 'react';
 import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
 import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
-import { Body, Left, List, ListItem, Right, Text } from 'native-base';
-import { ScreenLabel, Wrapper, Submit } from '../../components';
+import { Body, Button, Left, List, ListItem, Right, Spinner, Text } from 'native-base';
+import { ScreenLabel, SectionLabel, Wrapper, Submit } from '../../components';
 import PureChart from 'react-native-pure-chart';
 import { getUnix } from '../../utils';
+
+import { getData } from '../../AsyncStorage';
 
 // import regression from 'regression';
 // import Table from 'react-native-simple-table'
@@ -21,7 +23,7 @@ const dummyProgress = {
   data: [
     {
       date: 1520023576,
-      weight: 100
+      weight: 77
     },
     {
       date: 1520628376,
@@ -29,11 +31,11 @@ const dummyProgress = {
     },
     {
       date: 1521233176,
-      weight: 50
+      weight: 74
     },
     {
       date: 1521837976,
-      weight: 45
+      weight: 73
     }
   ]
 };
@@ -94,8 +96,9 @@ class Progress extends React.Component {
     columns: [
       { title: 'Date', dataIndex: 'x' },
       { title: 'Weight', dataIndex: 'y' },
-      { title: ' Target Weight', dataIndex: 'z' },
-      { title: 'Regression', dataIndex: 'm' }
+      { title: 'Target Weight', dataIndex: 'z' },
+      { title: 'Track', dataIndex: 'm' }
+      // { title: 'Action', dataIndex: 'j' }
     ]
   };
 
@@ -104,8 +107,17 @@ class Progress extends React.Component {
       Actions.login();
     }
 
-    // const progress = await getData(`${this.props.user.username}_progress`)
-    const progress = dummyProgress;
+    const progress = await getData(`${this.props.user.username}_progress`);
+    this.setState({ progress, user: this.props.user });
+  };
+
+  componentDidMount = async () => {
+    if (!!this.state.progress) this.calculate();
+  };
+
+  calculate = () => {
+    const progress = this.state.progress;
+    console.log('calculate');
 
     dataset1 = [];
     dataset2 = [];
@@ -119,10 +131,14 @@ class Progress extends React.Component {
     progress.data.forEach(data => {
       let targetWeight = targetSlope * (data.date - progress.initial_date) + progress.initial_weight;
       dataset1.push({ x: data.date, y: data.weight });
-      dataset2.push({ x: data.date, y: targetWeight });
-      console.log(dataset3[len][1]);
-      dataset4.push({ x: data.date, y: dataset3[len][1] });
-      datasets.push({ x: data.date, y: data.weight, z: Math.round(targetWeight).toFixed(2), m: dataset3[len][1] });
+      dataset2.push({ x: data.date, y: targetWeight || '' });
+      dataset4.push({ x: data.date, y: dataset3[len][1] || '' });
+      datasets.push({
+        x: data.date,
+        y: data.weight,
+        z: Math.round(targetWeight).toFixed(2) || '',
+        m: dataset3[len][1] || ''
+      });
       len++;
     });
 
@@ -150,18 +166,33 @@ class Progress extends React.Component {
   renderRow(rowData, index) {
     return (
       <View key={index} style={styles.row}>
-        {this.state.columns.map(col => this.renderCell(rowData[col.dataIndex], col))}
+        {this.state.columns.map(col => this.renderCell(rowData[col.dataIndex], col, index))}
       </View>
     );
   }
 
-  renderCell(cellData, col) {
+  handleRemove = index => {
+    console.log(index);
+    this.setState({ progress: { ...this.state.progress, data: delete dummyProgress.data[index] } });
+    this.calculate();
+    console.log(dummyProgress);
+  };
+
+  renderCell(cellData, col, index) {
     if (col.dataIndex === 'x') {
       return (
         <Left key={col.dataIndex}>
-          <Text>{moment.unix(cellData).format('MM/DD/YYYY')}</Text>
+          <Text>{moment.unix(cellData).format('MM/DD/YY')}</Text>
         </Left>
       );
+      // } else if (col.dataIndex === 'j') {
+      //   return (
+      //     <Right key={col.dataIndex} style={[styles.cell]}>
+      //       <Button danger onPress={() => this.handleRemove(index)}>
+      //         <Text>X</Text>
+      //       </Button>
+      //     </Right>
+      //   );
     } else {
       return (
         <Right key={col.dataIndex} style={[styles.cell]}>
@@ -176,14 +207,30 @@ class Progress extends React.Component {
   };
 
   render() {
-    let sampleData = [
-      { seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' },
-      { seriesName: 'target', data: this.state.dataset2, color: 'yellow' },
-      { seriesName: 'Regression', data: this.state.dataset4, color: 'black' }
-    ];
+    const { dataset1, dataset2, dataset4 } = this.state;
+    let sampleData = [];
+    if (!!dataset1 && !!dataset2 && !!dataset4) {
+      sampleData = [
+        { seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' },
+        { seriesName: 'target', data: this.state.dataset2, color: 'yellow' },
+        { seriesName: 'Regression', data: this.state.dataset4, color: 'black' }
+      ];
+    }
+    if (!this.state.progress) return <Spinner />;
+    if (!this.state.progress.data)
+      return [
+        <Wrapper key={1} padder>
+          <ScreenLabel text="Progress" />
+          <SectionLabel text="No Data Yet" />
+          <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
+        </Wrapper>
+      ];
     return [
       <Wrapper key={1} padder>
         <ScreenLabel text="Progress" />
+        <Right>
+          <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
+        </Right>
         <PureChart data={sampleData} type="line" />
 
         <View>
@@ -192,6 +239,7 @@ class Progress extends React.Component {
             {this.state.datasets.map((rowData, index) => this.renderRow(rowData, index))}
           </ScrollView>
         </View>
+        <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
       </Wrapper>
     ];
   }
