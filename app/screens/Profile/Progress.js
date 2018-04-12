@@ -108,7 +108,7 @@ class Progress extends React.Component {
     }
 
     const progress = await getData(`${this.props.user.username}_progress`);
-    this.setState({ progress, user: this.props.user });
+    this.setState({ progress: dummyProgress, user: this.props.user });
   };
 
   componentDidMount = async () => {
