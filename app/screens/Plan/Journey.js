@@ -59,15 +59,15 @@ class Journey extends React.Component {
   }
 
   handleNextClick = () => {
-    if (!!this.state.user.current_day_finished) {
-      if (moment(this.state.user.current_day_finished).isSame(new Date(), 'day'))
-        Alert.alert(
-          'Exercise Already Done',
-          'Seems you already accompplished your plan. Patience and consistency is key',
-          [{ text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel' }],
-          { cancelable: false }
-        );
-    }
+    //   if (!!this.state.user.current_day_finished) {
+    //     if (moment(this.state.user.current_day_finished).isSame(new Date(), 'day'))
+    //       Alert.alert(
+    //         'Exercise Already Done',
+    //         'Seems you already accompplished your plan. Patience and consistency is key',
+    //         [{ text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel' }],
+    //         { cancelable: false }
+    //       );
+    //   } else
     Actions.daymeal({ user: this.state.user });
   };
   render() {

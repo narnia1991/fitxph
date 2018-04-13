@@ -1,3 +1,4 @@
-export const getUnix = (date = new Date()) => {
-  Math.round(date.getTime() / 1000);
+export const getUnix = date => {
+  const newDate = new Date(date);
+  return Math.round(newDate.getTime() / 1000);
 };

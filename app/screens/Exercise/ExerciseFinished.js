@@ -4,6 +4,7 @@ import { Card, CardItem, Text, Body, Button } from 'native-base';
 import { Image } from 'react-native';
 import { Wrapper, Submit } from '../../components';
 import { setData } from '../../AsyncStorage';
+import imageLoader from '../../utils/imageLoader';
 
 class ExerciseFinished extends React.Component {
   state = {

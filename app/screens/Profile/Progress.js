@@ -18,7 +18,7 @@ const dummyProgress = {
   initial_weight: 76,
   initial_height: 166,
   initial_heart_rate: 89,
-  initial_date: 1519677976,
+  start_date: 1519677976,
   target_weight: 72,
   data: [
     {
@@ -95,11 +95,10 @@ class Progress extends React.Component {
     user: null,
     columns: [
       { title: 'Date', dataIndex: 'x' },
-      { title: 'Weight', dataIndex: 'y' },
-      { title: 'Target Weight', dataIndex: 'z' },
-      { title: 'Track', dataIndex: 'm' }
+      { title: 'Progress', dataIndex: 'y' }
       // { title: 'Action', dataIndex: 'j' }
-    ]
+    ],
+    datasets: []
   };
 
   componentWillMount = async () => {
@@ -109,16 +108,17 @@ class Progress extends React.Component {
 
     const progress = await getData(`${this.props.user.username}_progress`);
     this.setState({ progress: dummyProgress, user: this.props.user });
-  };
-
-  componentDidMount = async () => {
-    if (!!this.state.progress) this.calculate();
+    if (this.state.progress.data.length > 3) this.calculate();
+    else {
+      const data = this.state.progress.data.map(item => {
+        return { x: item.date, y: item.weight };
+      });
+      this.setState({ datasets: data });
+    }
   };
 
   calculate = () => {
     const progress = this.state.progress;
-    console.log('calculate');
-
     dataset1 = [];
     dataset2 = [];
     dataset3 = calculateRegression(progress.data);
@@ -126,10 +126,9 @@ class Progress extends React.Component {
     datasets = [];
     targetSlope = (progress.target_weight - progress.initial_weight) / 2592000;
 
-    console.log('dataset', dataset3);
     let len = 0;
     progress.data.forEach(data => {
-      let targetWeight = targetSlope * (data.date - progress.initial_date) + progress.initial_weight;
+      let targetWeight = targetSlope * (data.date - progress.start_date) + progress.initial_weight;
       dataset1.push({ x: data.date, y: data.weight });
       dataset2.push({ x: data.date, y: targetWeight || '' });
       dataset4.push({ x: data.date, y: dataset3[len][1] || '' });
@@ -142,7 +141,14 @@ class Progress extends React.Component {
       len++;
     });
 
-    this.setState({ user: this.props.user, dataset1, dataset2, datasets, dataset4 });
+    this.setState({
+      user: this.props.user,
+      dataset1,
+      dataset2,
+      datasets,
+      dataset4,
+      columns: [...this.state.columns, { title: 'Target', dataIndex: 'z' }, { title: 'Track', dataIndex: 'm' }]
+    });
   };
 
   renderHeader() {
@@ -172,34 +178,25 @@ class Progress extends React.Component {
   }
 
   handleRemove = index => {
-    console.log(index);
     this.setState({ progress: { ...this.state.progress, data: delete dummyProgress.data[index] } });
     this.calculate();
-    console.log(dummyProgress);
   };
 
   renderCell(cellData, col, index) {
+    console.log(cellData);
     if (col.dataIndex === 'x') {
+      console.log('xxxxx');
       return (
         <Left key={col.dataIndex}>
           <Text>{moment.unix(cellData).format('MM/DD/YY')}</Text>
         </Left>
       );
-      // } else if (col.dataIndex === 'j') {
-      //   return (
-      //     <Right key={col.dataIndex} style={[styles.cell]}>
-      //       <Button danger onPress={() => this.handleRemove(index)}>
-      //         <Text>X</Text>
-      //       </Button>
-      //     </Right>
-      //   );
-    } else {
-      return (
-        <Right key={col.dataIndex} style={[styles.cell]}>
-          <Text>{cellData}</Text>
-        </Right>
-      );
     }
+    return (
+      <Right key={col.dataIndex} style={[styles.cell]}>
+        <Text>{cellData}</Text>
+      </Right>
+    );
   }
 
   handleProgressClick = () => {
@@ -209,12 +206,17 @@ class Progress extends React.Component {
   render() {
     const { dataset1, dataset2, dataset4 } = this.state;
     let sampleData = [];
-    if (!!dataset1 && !!dataset2 && !!dataset4) {
-      sampleData = [
-        { seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' },
-        { seriesName: 'target', data: this.state.dataset2, color: 'yellow' },
-        { seriesName: 'Regression', data: this.state.dataset4, color: 'black' }
-      ];
+
+    if (!!dataset1) {
+      sampleData.push({ seriesName: 'progress', data: this.state.dataset1, color: '#297AB1' });
+    }
+
+    if (!!dataset2) {
+      sampleData.push({ seriesName: 'target', data: this.state.dataset2, color: 'yellow' });
+    }
+
+    if (!!dataset4) {
+      sampleData.push({ seriesName: 'Regression', data: this.state.dataset4, color: 'black' });
     }
     if (!this.state.progress) return <Spinner />;
     if (!this.state.progress.data)
@@ -225,23 +227,23 @@ class Progress extends React.Component {
           <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
         </Wrapper>
       ];
-    return [
-      <Wrapper key={1} padder>
-        <ScreenLabel text="Progress" />
-        <Right>
-          <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
-        </Right>
-        <PureChart data={sampleData} type="line" />
-
-        <View>
-          <View style={styles.header}>{this.renderHeader()}</View>
-          <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
-            {this.state.datasets.map((rowData, index) => this.renderRow(rowData, index))}
-          </ScrollView>
-        </View>
-        <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
-      </Wrapper>
-    ];
+    else
+      return [
+        <Wrapper key={1} padder>
+          <ScreenLabel text="Progress" />
+          <Right />
+          <PureChart data={sampleData} type="line" />
+          <View>
+            <View style={styles.header}>{this.renderHeader()}</View>
+            <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
+              {this.state.datasets.map((rowData, index) => {
+                this.renderRow(rowData, index);
+              })}
+            </ScrollView>
+          </View>
+          {/* <Submit key={2} onSubmit={this.handleProgressClick} text="Add" /> */}
+        </Wrapper>
+      ];
   }
 }
 
@@ -316,3 +318,12 @@ const dummyUser = [
     ]
   }
 ];
+
+// } else if (col.dataIndex === 'j') {
+//   return (
+//     <Right key={col.dataIndex} style={[styles.cell]}>
+//       <Button danger onPress={() => this.handleRemove(index)}>
+//         <Text>X</Text>
+//       </Button>
+//     </Right>
+//   );

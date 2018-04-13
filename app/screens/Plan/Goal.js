@@ -27,13 +27,13 @@ class Goal extends React.Component {
   };
 
   handleOnChange = input => {
+    console.log(input);
     this.setState({ target_weight: input, errorMsg: '' });
-  }
+  };
 
   handleSubmit = async () => {
-
     if (this.state.target_weight) {
-      const progress = await getData(`${this.state.user.username}_progress`)
+      const progress = await getData(`${this.state.user.username}_progress`);
 
       progress.target_weight = this.state.target_weight;
 
@@ -42,44 +42,44 @@ class Goal extends React.Component {
     } else {
       this.setState({
         errorMsg: 'Please enter valid weight'
-      })
+      });
     }
   };
 
   getCurrentBMI = () => {
     if (this.state.progress && this.state.progress.initial_weight && this.state.progress.initial_height) {
-      const { initial_weight, initial_height } = this.state.progress
+      const { initial_weight, initial_height } = this.state.progress;
 
       return bmi(initial_weight, initial_height).toString();
     } else {
-      return '0'
+      return '0';
     }
-  }
+  };
 
   getTargetBMI = weight => {
     const targetWeight = weight || 0;
 
     if (targetWeight && this.state.progress && this.state.progress.initial_height) {
-      const { initial_height } = this.state.progress
+      const { initial_height } = this.state.progress;
 
-      return bmi(targetWeight, initial_height).toString()
+      return bmi(targetWeight, initial_height).toString();
     } else {
-      return '0'
+      return '0';
     }
-  }
+  };
 
   getStatusBMI = weight => {
     const targetWeight = weight || 0;
 
     if (targetWeight && this.state.progress && this.state.progress.initial_height) {
-      const { initial_height } = this.state.progress
+      const { initial_height } = this.state.progress;
 
-      const bmiValue = bmi(targetWeight, initial_height)
-      return bmiStatus(bmiValue)
+      const bmiValue = bmi(targetWeight, initial_height);
+      return bmiStatus(bmiValue);
     } else {
-      return 'Nothing to Show'
+      return 'Nothing to Show';
     }
-  }
+  };
 
   render() {
     if (this.state.progress) {
@@ -87,11 +87,18 @@ class Goal extends React.Component {
         <Wrapper key={1} padder>
           <ScreenLabel text="Set your Goal" />
           <Error message={this.state.errorMsg} />
-          <TextBox label="Target Weight(kg)" onChangeText={(input) => this.handleOnChange(input)} />
+          <TextBox label="Target Weight(kg)" onChangeText={input => this.handleOnChange(input)} />
           <SectionLabel text="Status:" />
           <Item disabled stackedLabel>
             <Label>Current Weight</Label>
-            <Input disabled placeholder={this.state.progress && this.state.progress.initial_weight ? this.state.progress.initial_weight : 'Not set'} />
+            <Input
+              disabled
+              placeholder={
+                this.state.progress && this.state.progress.initial_weight
+                  ? this.state.progress.initial_weight
+                  : 'Not set'
+              }
+            />
           </Item>
           <Item disabled stackedLabel>
             <Label>Current BMI</Label>
@@ -110,7 +117,7 @@ class Goal extends React.Component {
         <Submit key={2} text="Start" onSubmit={this.handleSubmit} />
       ];
     } else {
-      return <Text>Initial Data Not Set</Text>
+      return <Text>Initial Data Not Set</Text>;
     }
   }
 }

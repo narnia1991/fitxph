@@ -4,13 +4,10 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
-import { Wrapper, Submit } from '../../components';
-import { setData } from '../../AsyncStorage';
-import Tts from 'react-native-tts';
-
-class HeartRateOutput extends React.Component {
+import { Wrapper, Submit, TextBox, ScreenLabel } from '../../components';
+class HeartRateInput extends React.Component {
   state = {
     heartRate: 0,
     errors: ''
@@ -21,27 +18,27 @@ class HeartRateOutput extends React.Component {
     }
 
     this.setState({
-      user: this.props.user
+      user: this.props.user,
+      exercise_data: this.props.exercise_data
     });
   };
 
   handleNextClick = async () => {
-    if (isNaN(this.state.heartRate) || this.state.heartRate === 0)
-      return this.setState({ errors: 'Please supply valid input' });
+    if (this.state.heartRate === 0) return this.setState({ errors: 'Please supply valid input' });
     const exercise_data = {
-      ...this.props.exercise_data,
       post_heart_rate: this.state.heartRate
     };
-    const exerciseData = await getData(`${this.state.user.username}_exercise_data`);
-    await setData(`${this.state.user.username}_exercise_data`, [...exerciseData, exercise_data]);
-    Actions.exercisefinished({ user: this.state.user });
+    Actions.exercisefinished({ user: this.state.user, exercise_data, exercises: this.state.exercises });
   };
 
   render() {
-    const item = this.state.exercises[this.state.currentExercise];
+    // const item = this.state.exercises[this.state.currentExercise];
     return [
       <Wrapper>
-        <Image source={imageLoader.heart} />
+        <ScreenLabel text="Heart Rate" />
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <Image source={imageLoader.Heart} style={{ height: 200, width: 200 }} />
+        </View>
         <TextBox
           label="Heart Rate"
           onChangeText={input =>
@@ -52,9 +49,9 @@ class HeartRateOutput extends React.Component {
           }
         />
       </Wrapper>,
-      <Submit disabled={this.state.exerciseOnGoing} key={2} onSubmit={this.handleNextClick} text="Submit" />
+      <Submit key={2} onSubmit={this.handleNextClick} text="Submit" />
     ];
   }
 }
 
-export default HeartRateOutput;
+export default HeartRateInput;

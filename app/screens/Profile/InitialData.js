@@ -7,6 +7,7 @@ import moment from 'moment';
 import { Form, Text } from 'native-base';
 import { DatePicker, Dropdown, ScreenLabel, SectionLabel, Submit, TextBox, Wrapper } from '../../components';
 import { setData } from '../../AsyncStorage';
+import { getUnix } from '../../utils/unix';
 
 const options = {
   date: new Date(),
@@ -46,7 +47,7 @@ class InitialData extends React.Component {
       gender,
       initial_weight: weight,
       initial_height: height,
-      start_date: moment(options.date).format('YYYY-d-MM')
+      start_date: getUnix(options.date)
     };
 
     await setData(`${this.state.user.username}_progress`, user);

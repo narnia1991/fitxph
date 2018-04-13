@@ -22,8 +22,9 @@ class Landing extends Component {
   handlePlanPress = async () => {
     const progress = await getData(`${this.props.user.username}_progress`);
 
-    if (!this.state.user.current_plan && !progress && !progress.target_weight) return Actions.plan({ user: this.state.user });
-    Actions.journey({ user: this.state.user });
+    if (!this.state.user.current_plan || !progress || !progress.target_weight)
+      return Actions.plan({ user: this.state.user });
+    else Actions.journey({ user: this.state.user });
   };
 
   handleProgressPress = async () => {

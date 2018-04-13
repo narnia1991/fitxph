@@ -4,9 +4,9 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
-import { Wrapper, Submit } from '../../components';
+import { Wrapper, Submit, ScreenLabel } from '../../components';
 import Tts from 'react-native-tts';
 
 class ExerciseOnGoing extends React.Component {
@@ -70,7 +70,9 @@ class ExerciseOnGoing extends React.Component {
     const item = this.state.exercises[this.state.currentExercise];
     return [
       <Wrapper>
-        <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
+        <View style={{ flex: 1, justifyContents: 'center' }}>
+          <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
+        </View>
         <Card>
           <CardItem header>
             <Text>{item.Workout}</Text>

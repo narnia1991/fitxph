@@ -23,7 +23,8 @@ class InputProgress extends React.Component {
     if (!progress.data) progress.data = [];
     progress.data = [...progress.data, { date: getUnix(this.date), weight: this.weight }];
     await setData(`${this.state.user.username}_progress`, progress);
-    Actions.progress({ user: this.state.user });
+    console.log({ user: this.state.user, progress });
+    Actions.replace('progress', { user: this.state.user, progress });
   };
 
   render() {
@@ -32,7 +33,7 @@ class InputProgress extends React.Component {
         <ScreenLabel text="Progress" />
         <Form>
           <Error message={this.state.errors} />
-          <DatePicker label="Date of Birth(MM/DD/YYYY)" onChangeText={text => (this.date = text)} />
+          <DatePicker label="Date (MM/DD/YYYY)" onChangeText={text => (this.date = text)} />
           <TextBox label="Weight(kg)" onChangeText={input => (this.weight = input)} />
         </Form>
       </Wrapper>,
