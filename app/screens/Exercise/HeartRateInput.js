@@ -7,10 +7,16 @@ import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
 import { Image, View } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
 import { Wrapper, Submit, TextBox, ScreenLabel } from '../../components';
+import { hrStatus, hrTarget } from '../../utils/bmi'
+
 class HeartRateInput extends React.Component {
   state = {
     heartRate: 0,
-    errors: ''
+    errors: '',
+    status: '',
+    mid: '',
+    high: '',
+    max: ''
   };
   componentWillMount = () => {
     if (!this.props.user) {
@@ -30,23 +36,36 @@ class HeartRateInput extends React.Component {
     };
     Actions.exerciseongoing({ user: this.state.user, exercise_data, exercises: this.state.exercises });
   };
-
+  handleChange = input => {
+    // const status = hrStatus(input) || ''
+    // const hrTarget = hrTarget(this.state.user.dob) || ''
+    this.setState({
+      heartRate: input,
+      errors: '',
+      // status,
+      // mid: hrTarget.mid,
+      // high: hrTarget.high,
+      // max: hrTarget.max,
+    })
+  }
   render() {
     // const item = this.state.exercises[this.state.currentExercise];
     return [
       <Wrapper>
         <ScreenLabel text="Heart Rate" />
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
           <Image source={imageLoader.Heart} style={{ height: 200, width: 200 }} />
+          <View>
+            {/* <Text>Status: {this.state.status}</Text>
+            <Text>Max Heartrate: {this.state.max}</Text>
+            <Text>Target(mid): {this.state.mid}</Text>
+            <Text>Target(high): {this.state.high}</Text> */}
+          </View>
         </View>
         <TextBox
           label="Heart Rate"
-          onChangeText={input =>
-            this.setState({
-              heartRate: input,
-              errors: ''
-            })
-          }
+          onChangeText={this.handleChange}
+
         />
       </Wrapper>,
       <Submit key={2} onSubmit={this.handleNextClick} text="Submit" />

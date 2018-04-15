@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment'
 import { Form, Text, Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { Dimensions, StyleSheet } from 'react-native';
@@ -8,20 +9,30 @@ import { Error, DatePicker, ScreenLabel, Submit, TextBox, Wrapper } from '../../
 
 class InputProgress extends React.Component {
   state = {
-    user: {}
+    user: {},
+    disableButton: false
   };
   componentWillMount = async () => {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user });
+    const progress = await getData(`${this.props.user.username}_progress`)
+    this.setState({ user: this.props.user, progress });
+    if ((getUnix(new Date()) - progress.last_date) < 1) this.setState({ disableButton: true })
   };
 
   handleProgress = async () => {
-    if (!this.date || !this.weight) return this.setState({ errors: 'Error in input' });
-    const progress = await getData(`${this.state.user.username}_progress`);
+    if (!this.weight) return this.setState({ errors: 'Error in input' });
+    const progress = this.state.progress
+    progress.last_date = getUnix(this.date)
+    progress.last_weight = this.weight
     if (!progress.data) progress.data = [];
-    progress.data = [...progress.data, { date: getUnix(this.date), weight: this.weight }];
+
+    const target = parseFloat(progress.last_weight) + parseFloat(((Math.round((getUnix(this.date) - progress.last_date) / 86400)) * progress.target_diff_per_day))
+
+    console.log(target, 'targeeeeeeeeeeeeeeeeeeet')
+    progress.data = [...progress.data, { date: getUnix(this.date), weight: this.weight, target }]
+
     await setData(`${this.state.user.username}_progress`, progress);
     console.log({ user: this.state.user, progress });
     Actions.replace('progress', { user: this.state.user, progress });
@@ -33,7 +44,9 @@ class InputProgress extends React.Component {
         <ScreenLabel text="Progress" />
         <Form>
           <Error message={this.state.errors} />
-          <DatePicker label="Date (MM/DD/YYYY)" onChangeText={text => (this.date = text)} />
+
+
+          <DatePicker label="Date(MM/DD/YYYY)" onChangeText={text => (this.date = text)} options={{ maxDate: new Date() }} />
           <TextBox label="Weight(kg)" onChangeText={input => (this.weight = input)} />
         </Form>
       </Wrapper>,

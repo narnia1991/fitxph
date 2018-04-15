@@ -71,7 +71,7 @@ class ExerciseOnGoing extends React.Component {
     return [
       <Wrapper>
         <View style={{ flex: 1, justifyContents: 'center' }}>
-          <Image source={imageLoader[item.Workout] || imageLoader.Splash} />
+          <Image source={imageLoader[item.Workout.toLowerCase()] || imageLoader.Splash} />
         </View>
         <Card>
           <CardItem header>

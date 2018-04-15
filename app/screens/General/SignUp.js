@@ -18,17 +18,13 @@ class SignUp extends Component {
     if (!this.state.username || !this.state.password || !this.state.confirm_password)
       return this.setState({ errors: 'Username / Password required' });
     try {
-      console.log(this.state);
       const user = await getData(this.state.username);
       if (!user) {
-        console.log('====================================');
-        console.log('reselt', await getData(this.state.username));
-        console.log('====================================');
         const newUser = { username: this.state.username, password: this.state.password };
         await setData(this.state.username, newUser);
         await setData('current_user', newUser.username);
 
-        Actions.replace('initialData', {
+        Actions.replace('landing', {
           user: newUser
         });
       } else if (this.state.password !== this.state.confirm_password) {

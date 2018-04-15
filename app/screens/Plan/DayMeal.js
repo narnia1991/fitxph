@@ -19,12 +19,9 @@ class DayMeal extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-    console.log('daymeal');
     let plans = [weight_loss, weight_gain, maintain];
     //get custom plans from asyncstorage
-    console.log(plans);
     const plan = plans.filter(plan => plan.name === this.props.user.current_plan.name);
-    console.log(plan);
     if (plan) {
       const mealPlan = plan[0].meal_plan;
       if (mealPlan) {
@@ -47,16 +44,13 @@ class DayMeal extends React.Component {
 
   renderMeals = () => {
     const renderItems = [];
-    console.log(this.state.items.length);
     if (this.state.items.length > 0)
       this.state.items.forEach(item => {
-        console.log(item);
         renderItems.push(
-          <SectionLabel text={item.meal} />,
-          <Lists key={item.meal} items={item.dish} keyValue="food" subKey="quantity" handlePress={() => {}} />
+          <SectionLabel key={1} text={item.meal} />,
+          <Lists key={item.meal} items={item.dish} keyValue="food" subKey="quantity" handlePress={() => { }} />
         );
       });
-    console.log(renderItems);
     return renderItems;
   };
 

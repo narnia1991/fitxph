@@ -22,14 +22,18 @@ class Landing extends Component {
   handlePlanPress = async () => {
     const progress = await getData(`${this.props.user.username}_progress`);
 
-    if (!this.state.user.current_plan || !progress || !progress.target_weight)
+    if (!this.state.user.current_plan)
       return Actions.plan({ user: this.state.user });
+    if (!progress.initial_weight)
+      return Actions.initialData({ user: this.state.user });
+    if (!progress.target_weight)
+      return Actions.goal({ user: this.state.user });
     else Actions.journey({ user: this.state.user });
   };
 
   handleProgressPress = async () => {
     const progress = await getProgress(this.state.user.username);
-    if (!progress)
+    if (!progress.target_weight)
       Toast.show({
         text: "You haven't set up yet",
         position: 'bottom',

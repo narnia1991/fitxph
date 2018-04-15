@@ -3,7 +3,7 @@ import { Button, Right, Text } from 'native-base';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import { Wrapper, Submit, TextBox } from '../../components';
 import { Actions } from 'react-native-router-flux';
-import { setData } from '../../AsyncStorage';
+import { setData, deleteData } from '../../AsyncStorage';
 import moment from 'moment';
 
 class Journey extends React.Component {
@@ -29,6 +29,7 @@ class Journey extends React.Component {
     delete user.current_plan;
     delete user.current_day;
     await setData(user.username, user);
+    await deleteData(`${user.username}_progress`)
     Actions.replace('plan', { user });
   };
 

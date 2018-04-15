@@ -4,7 +4,6 @@ import { Input, Item, Label } from "native-base";
 
 const options = {
   date: new Date(),
-  maxDate: new Date()
 }
 
 class DatePicker extends Component {
@@ -14,7 +13,7 @@ class DatePicker extends Component {
 
   showPicker = async () => {
     try {
-      const { action, year, month, day } = await DatePickerAndroid.open(options);
+      const { action, year, month, day } = await DatePickerAndroid.open({ options, ...this.props.options });
       if (action !== DatePickerAndroid.dismissedAction) {
         this.setState({
           date: new Date(year, month, day)

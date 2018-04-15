@@ -1,10 +1,17 @@
 import React from 'react';
 import { Button, Right, Text, Item, Input, Label } from 'native-base';
 import { StyleSheet, Dimensions, View } from 'react-native';
-import { Error, Wrapper, ScreenLabel, SectionLabel, Submit, TextBox } from '../../components';
+import { DatePicker, Error, Wrapper, ScreenLabel, SectionLabel, Submit, TextBox } from '../../components';
 import { Actions } from 'react-native-router-flux';
 import { getData, setData } from '../../AsyncStorage';
 import { bmi, bmiStatus } from '../../utils/bmi';
+import { getUnix } from '../../utils/unix'
+
+const options = {
+  date: new Date(),
+  maxDate: new Date()
+};
+
 
 class Goal extends React.Component {
   state = {
@@ -14,17 +21,18 @@ class Goal extends React.Component {
     errorMsg: ''
   };
 
-  componentWillMount() {
+  componentWillMount = async () => {
     if (!this.props.user) {
       Actions.login();
     }
-    this.setState({ user: this.props.user });
+    const progress = await getData(`${this.props.user.username}_progress`);
+    this.setState({ user: this.props.user, progress });
   }
 
-  componentDidMount = async () => {
-    const progress = await getData(`${this.props.user.username}_progress`);
-    this.setState({ progress });
-  };
+  // componentDidMount = async () => {
+  //   const progress = await getData(`${this.props.user.username}_progress`);
+  //   this.setState({ progress });
+  // };
 
   handleOnChange = input => {
     console.log(input);
@@ -32,18 +40,27 @@ class Goal extends React.Component {
   };
 
   handleSubmit = async () => {
-    if (this.state.target_weight) {
-      const progress = await getData(`${this.state.user.username}_progress`);
+    if (!this.state.target_weight || !this.target_date)
+      return this.setData({ errorMsg: 'all fields required' })
 
-      progress.target_weight = this.state.target_weight;
 
-      await setData(`${this.state.user.username}_progress`, progress);
-      Actions.replace('journey', { user: this.state.user });
-    } else {
-      this.setState({
-        errorMsg: 'Please enter valid weight'
-      });
-    }
+    const progress = await getData(`${this.state.user.username}_progress`);
+    if (getUnix(this.state.target_date) < progress.initial_date)
+      return this.setData({ errorMsg: ' please select valid date' })
+
+    const target_no_days = Math.round((getUnix(this.target_date) - progress.initial_date) / 86400)
+    progress.target_weight = this.state.target_weight;
+    progress.target_date = getUnix(this.target_date)
+    progress.target_no_days = target_no_days
+    progress.target_total = this.state.target_weight - progress.initial_weight
+    progress.target_diff_per_day = Math.round((progress.target_weight - progress.initial_weight) / target_no_days) * 100 / 100
+    progress.target_discrepancy = 0
+
+    console.log(progress)
+
+    await setData(`${this.state.user.username}_progress`, progress);
+    Actions.replace('journey', { user: this.state.user });
+
   };
 
   getCurrentBMI = () => {
@@ -82,43 +99,39 @@ class Goal extends React.Component {
   };
 
   render() {
-    if (this.state.progress) {
-      return [
-        <Wrapper key={1} padder>
-          <ScreenLabel text="Set your Goal" />
-          <Error message={this.state.errorMsg} />
-          <TextBox label="Target Weight(kg)" onChangeText={input => this.handleOnChange(input)} />
-          <SectionLabel text="Status:" />
-          <Item disabled stackedLabel>
-            <Label>Current Weight</Label>
-            <Input
-              disabled
-              placeholder={
-                this.state.progress && this.state.progress.initial_weight
-                  ? this.state.progress.initial_weight
-                  : 'Not set'
-              }
-            />
-          </Item>
-          <Item disabled stackedLabel>
-            <Label>Current BMI</Label>
-            <Input disabled placeholder={this.getCurrentBMI()} />
-          </Item>
-          <SectionLabel text="Target Status:" />
-          <Item disabled stackedLabel>
-            <Label>Target BMI</Label>
-            <Input disabled placeholder={this.getTargetBMI(this.state.target_weight)} />
-          </Item>
-          <Item disabled stackedLabel>
-            <Label>BMI Status</Label>
-            <Input disabled placeholder={this.getStatusBMI(this.state.target_weight)} />
-          </Item>
-        </Wrapper>,
-        <Submit key={2} text="Start" onSubmit={this.handleSubmit} />
-      ];
-    } else {
-      return <Text>Initial Data Not Set</Text>;
-    }
+    return [<Wrapper key={1} padder>
+      <ScreenLabel text="Set your Goal" />
+      <Error message={this.state.errorMsg} />
+      <TextBox label="Target Weight(kg)" onChangeText={input => this.handleOnChange(input)} />
+      <DatePicker label="Target Date (MM/DD/YYYY)" onChangeText={text => this.target_date = text} options={{ minDate: new Date() }} />
+      <SectionLabel text="Status:" />
+      <Item disabled stackedLabel>
+        <Label>Current Weight</Label>
+        <Input
+          disabled
+          placeholder={
+            this.state.progress && this.state.progress.initial_weight
+              ? this.state.progress.initial_weight
+              : 'Not set'
+          }
+        />
+      </Item>
+      <Item disabled stackedLabel>
+        <Label>Current BMI</Label>
+        <Input disabled placeholder={this.getCurrentBMI()} />
+      </Item>
+      <SectionLabel text="Target Status:" />
+      <Item disabled stackedLabel>
+        <Label>Target BMI</Label>
+        <Input disabled placeholder={this.getTargetBMI(this.state.target_weight)} />
+      </Item>
+      <Item disabled stackedLabel>
+        <Label>BMI Status</Label>
+        <Input disabled placeholder={this.getStatusBMI(this.state.target_weight)} />
+      </Item>
+    </Wrapper>,
+    <Submit key={2} text="Start" onSubmit={this.handleSubmit} />
+    ]
   }
 }
 

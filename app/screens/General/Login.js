@@ -63,7 +63,7 @@ class Login extends React.Component {
       if (user.password == this.state.password) {
         await setData('current_user', user.username);
 
-        if (!progress) return Actions.replace('initialData', { user });
+        // if (!progress) return Actions.replace('initialData', { user });
         Actions.replace('landing', { user });
       } else {
         throw new Error();

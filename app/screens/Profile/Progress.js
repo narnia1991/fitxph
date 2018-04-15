@@ -3,42 +3,43 @@
 import React from 'react';
 import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Body, Button, Left, List, ListItem, Right, Spinner, Text } from 'native-base';
 import { ScreenLabel, SectionLabel, Wrapper, Submit } from '../../components';
 import PureChart from 'react-native-pure-chart';
 import { getUnix } from '../../utils';
+import { styles } from './ProgressStyles'
 
 import { getData } from '../../AsyncStorage';
 
 // import regression from 'regression';
 // import Table from 'react-native-simple-table'
 
-const dummyProgress = {
-  initial_weight: 76,
-  initial_height: 166,
-  initial_heart_rate: 89,
-  start_date: 1519677976,
-  target_weight: 72,
-  data: [
-    {
-      date: 1520023576,
-      weight: 77
-    },
-    {
-      date: 1520628376,
-      weight: 75.5
-    },
-    {
-      date: 1521233176,
-      weight: 74
-    },
-    {
-      date: 1521837976,
-      weight: 73
-    }
-  ]
-};
+// const dummyProgress = {
+//   initial_weight: 76,
+//   initial_height: 1.66,
+//   initial_heart_rate: 89,
+//   start_date: 1519677976,
+//   target_weight: 72,
+//   data: [
+//     {
+//       date: 1520023576,
+//       weight: 77
+//     },
+//     {
+//       date: 1520628376,
+//       weight: 75.5
+//     },
+//     {
+//       date: 1521233176,
+//       weight: 74
+//     },
+//     {
+//       date: 1521837976,
+//       weight: 73
+//     }
+//   ]
+// };
 
 const linear = (data, options) => {
   const sum = [0, 0, 0, 0, 0];
@@ -78,16 +79,6 @@ const calculateRegression = formattedData => {
   });
   const result = linear(regressionData);
   return result.points;
-  // const gradient = result.equation[0];
-  // const yIntercept = result.equation[1];
-  // console.log(result.points);
-  // regressionData = result.points.map(el => {
-  //   return {
-  //     x: el[0],
-  //     y: el[1]
-  //   };
-  // });
-  // return { regressionData, gradient, yIntercept, prediction };
 };
 
 class Progress extends React.Component {
@@ -96,7 +87,6 @@ class Progress extends React.Component {
     columns: [
       { title: 'Date', dataIndex: 'x' },
       { title: 'Progress', dataIndex: 'y' }
-      // { title: 'Action', dataIndex: 'j' }
     ],
     datasets: []
   };
@@ -105,16 +95,41 @@ class Progress extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-
     const progress = await getData(`${this.props.user.username}_progress`);
-    this.setState({ progress: dummyProgress, user: this.props.user });
-    if (this.state.progress.data.length > 3) this.calculate();
-    else {
-      const data = this.state.progress.data.map(item => {
-        return { x: item.date, y: item.weight };
-      });
-      this.setState({ datasets: data });
-    }
+    this.setState({ progress, user: this.props.user });
+
+
+
+    let data = []
+    if (!!progress.data && progress.data.length > 3) return this.calculate();
+    if (!!progress.data) data.push(...this.state.progress.data.map(item => {
+      return { x: item.date, y: item.weight };
+    }))
+    console.log(this.state.progress)
+    console.log('days', Math.round((getUnix(new Date()) - progress.last_date) / 86400))
+    console.log((Math.round((getUnix(new Date()) - progress.last_date) / 86400)) * progress.target_diff_per_day)
+    console.log(this.state.progress)
+    console.log(parseFloat(progress.last_weight) + parseFloat(((Math.round((getUnix(new Date()) - progress.last_date) / 86400)) * progress.target_diff_per_day)))
+
+    let a_week = getUnix(moment(new Date()).add(7, 'days').format('MM/DD/YY'))
+    if (parseInt(a_week) > parseInt(progress.target_date)) a_week = progress.target_date
+
+
+    data.push({ x: getUnix(moment(new Date()).format('MM/DD/YY')), y: 'XX', z: (parseFloat(progress.last_weight) + parseFloat(((Math.round((getUnix(new Date()) - progress.last_date) / 86400)) * progress.target_diff_per_day))) })
+
+
+    data.push({ x: a_week, y: 'XX', z: (parseFloat(progress.last_weight) + parseFloat(((Math.round((a_week - progress.last_date) / 86400)) * progress.target_diff_per_day))) })
+
+    console.log('lastweight', parseFloat(progress.last_weight))
+    console.log('initial', parseFloat(progress.initial_weight))
+    console.log('target', parseFloat(progress.target_total))
+    console.log('days', parseFloat(((Math.round((a_week - progress.last_date) / 86400)) * progress.target_diff_per_day)))
+
+    const projection = (parseFloat(progress.last_weight) + parseFloat(((Math.round((a_week - progress.last_date) / 86400)) * progress.target_diff_per_day))) - parseFloat(progress.initial_weight) / parseFloat(progress.target_total) * 100
+
+    console.log(data, ' projection', projection)
+    this.setState({ datasets: data, columns: [...this.state.columns, { title: 'Target', dataIndex: 'z' }] });
+
   };
 
   calculate = () => {
@@ -124,18 +139,18 @@ class Progress extends React.Component {
     dataset3 = calculateRegression(progress.data);
     dataset4 = [];
     datasets = [];
-    targetSlope = (progress.target_weight - progress.initial_weight) / 2592000;
+    // targetSlope = (progress.target_weight - progress.initial_weight);
 
     let len = 0;
     progress.data.forEach(data => {
-      let targetWeight = targetSlope * (data.date - progress.start_date) + progress.initial_weight;
+      // let targetWeight = targetSlope * (data.date - progress.start_date) + progress.initial_weight;
       dataset1.push({ x: data.date, y: data.weight });
-      dataset2.push({ x: data.date, y: targetWeight || '' });
+      dataset2.push({ x: data.date, y: data.target });
       dataset4.push({ x: data.date, y: dataset3[len][1] || '' });
       datasets.push({
         x: data.date,
         y: data.weight,
-        z: Math.round(targetWeight).toFixed(2) || '',
+        z: Math.round(data.target).toFixed(2) || '',
         m: dataset3[len][1] || ''
       });
       len++;
@@ -147,7 +162,7 @@ class Progress extends React.Component {
       dataset2,
       datasets,
       dataset4,
-      columns: [...this.state.columns, { title: 'Target', dataIndex: 'z' }, { title: 'Track', dataIndex: 'm' }]
+      columns: [...this.state.columns, { title: 'Track', dataIndex: 'm' }]
     });
   };
 
@@ -204,6 +219,7 @@ class Progress extends React.Component {
   };
 
   render() {
+    console.log(this.state)
     const { dataset1, dataset2, dataset4 } = this.state;
     let sampleData = [];
 
@@ -218,112 +234,25 @@ class Progress extends React.Component {
     if (!!dataset4) {
       sampleData.push({ seriesName: 'Regression', data: this.state.dataset4, color: 'black' });
     }
-    if (!this.state.progress) return <Spinner />;
-    if (!this.state.progress.data)
-      return [
-        <Wrapper key={1} padder>
-          <ScreenLabel text="Progress" />
-          <SectionLabel text="No Data Yet" />
-          <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
-        </Wrapper>
-      ];
-    else
-      return [
-        <Wrapper key={1} padder>
-          <ScreenLabel text="Progress" />
-          <Right />
-          <PureChart data={sampleData} type="line" />
-          <View>
-            <View style={styles.header}>{this.renderHeader()}</View>
-            <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
-              {this.state.datasets.map((rowData, index) => {
-                this.renderRow(rowData, index);
-              })}
-            </ScrollView>
-          </View>
-          {/* <Submit key={2} onSubmit={this.handleProgressClick} text="Add" /> */}
-        </Wrapper>
-      ];
+    return [
+      <Wrapper key={1} padder>
+        <ScreenLabel text="Progress" />
+        <Right />
+        <PureChart data={sampleData} type="line" />
+        <View>
+          <View style={styles.header}>{this.renderHeader()}</View>
+          <ScrollView style={styles.dataView} contentContainerStyle={styles.dataViewContent}>
+            {this.state.datasets.map((rowData, index) => {
+              return this.renderRow(rowData, index);
+            })}
+          </ScrollView>
+        </View>
+      </Wrapper>,
+
+      <Submit key={2} onSubmit={this.handleProgressClick} text="Add" />
+    ];
   }
 }
-
 // <Submit key={2} onSubmit={this.handleProgressClick} text="Add Entry" />
 
-let { height, width } = Dimensions.get('window');
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: width
-  },
-  header: {
-    flexDirection: 'row'
-  },
-  headerItem: {
-    minHeight: 30,
-    backgroundColor: '#000',
-    borderRightWidth: 1,
-    borderRightColor: '#dfdfdf',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  dataView: {
-    flexGrow: 1,
-    marginBottom: 10
-  },
-  dataViewContent: {},
-  row: {
-    flexDirection: 'row',
-    backgroundColor: '#000',
-    borderBottomWidth: 1,
-    borderBottomColor: '#dfdfdf'
-  },
-  cell: {
-    minHeight: 25,
-    backgroundColor: 'transparent',
-    borderRightWidth: 1,
-    borderRightColor: '#dfdfdf',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
 export default Progress;
-
-const dummyUser = [
-  {
-    day: 1,
-    initial_heart_rate: 89,
-    end_heart_rate: 123,
-    date: 1523306784,
-    data: [
-      {
-        exercise: 'Jumping Jacks',
-        time: 60
-      },
-      {
-        exercise: 'High Knees',
-        time: 60
-      },
-      {
-        exercise: 'Sit Ups',
-        time: 60
-      },
-      {
-        exercise: 'Squats',
-        time: 60
-      },
-      {
-        exercise: 'Push Ups',
-        time: 60
-      }
-    ]
-  }
-];
-
-// } else if (col.dataIndex === 'j') {
-//   return (
-//     <Right key={col.dataIndex} style={[styles.cell]}>
-//       <Button danger onPress={() => this.handleRemove(index)}>
-//         <Text>X</Text>
-//       </Button>
-//     </Right>
-//   );

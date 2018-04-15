@@ -26,8 +26,8 @@ class ExerciseFinished extends React.Component {
     setData(this.props.user.username, user);
   };
 
-  handleClick() {
-    return Action.landing({ user: this.state.user });
+  handleClick = () => {
+    return Actions.landing({ user: this.state.user });
   }
 
   render() {
