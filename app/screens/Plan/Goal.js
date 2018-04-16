@@ -25,7 +25,7 @@ class Goal extends React.Component {
     if (!this.props.user) {
       Actions.login();
     }
-    const progress = await getData(`${this.props.user.username}_progress`);
+    const progress = this.props.progress || await getData(`${this.props.user.username}_progress`);
     this.setState({ user: this.props.user, progress });
   }
 
@@ -40,20 +40,28 @@ class Goal extends React.Component {
   };
 
   handleSubmit = async () => {
-    if (!this.state.target_weight || !this.target_date)
+    if (!this.state.target_weight)
       return this.setData({ errorMsg: 'all fields required' })
 
 
-    const progress = await getData(`${this.state.user.username}_progress`);
-    if (getUnix(this.state.target_date) < progress.initial_date)
-      return this.setData({ errorMsg: ' please select valid date' })
+    const progress = this.state.progress
 
-    const target_no_days = Math.round((getUnix(this.target_date) - progress.initial_date) / 86400)
     progress.target_weight = this.state.target_weight;
-    progress.target_date = getUnix(this.target_date)
-    progress.target_no_days = target_no_days
+    progress.target_date = getUnix(new Date()) + (86400 * 30)
+    progress.target_no_days = 30
+
+    // i_weight = 90
+    // t_weight = 85
+    // t_total = -5
+
+    // t_total = t_weight - i_weight
+    // e_weight - i_weight / t_total * 100
+    // 87 - 90 / -5
+
     progress.target_total = this.state.target_weight - progress.initial_weight
-    progress.target_diff_per_day = Math.round((progress.target_weight - progress.initial_weight) / target_no_days) * 100 / 100
+
+    // t_weight - i_weight/ 30
+    progress.target_diff_per_day = (this.state.target_weight - progress.initial_weight) / 30
     progress.target_discrepancy = 0
 
     console.log(progress)
@@ -103,7 +111,6 @@ class Goal extends React.Component {
       <ScreenLabel text="Set your Goal" />
       <Error message={this.state.errorMsg} />
       <TextBox label="Target Weight(kg)" onChangeText={input => this.handleOnChange(input)} />
-      <DatePicker label="Target Date (MM/DD/YYYY)" onChangeText={text => this.target_date = text} options={{ minDate: new Date() }} />
       <SectionLabel text="Status:" />
       <Item disabled stackedLabel>
         <Label>Current Weight</Label>

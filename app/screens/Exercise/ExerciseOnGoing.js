@@ -69,9 +69,9 @@ class ExerciseOnGoing extends React.Component {
   render() {
     const item = this.state.exercises[this.state.currentExercise];
     return [
-      <Wrapper>
-        <View style={{ flex: 1, justifyContents: 'center' }}>
-          <Image source={imageLoader[item.Workout.toLowerCase()] || imageLoader.Splash} />
+      <Wrapper key={1}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 200 }}>
+          <Image source={imageLoader[item.Workout.toLowerCase()] || imageLoader.Splash} style={{flex:1, resizeMode:'contain' }} />
         </View>
         <Card>
           <CardItem header>

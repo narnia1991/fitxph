@@ -7,7 +7,7 @@ import { Card, CardItem, Text, Body, Fab, StyleProvider } from 'native-base';
 import { Image, View } from 'react-native';
 import imageLoader from '../../utils/imageLoader';
 import { Wrapper, Submit, TextBox, ScreenLabel } from '../../components';
-class HeartRateInput extends React.Component {
+class HeartRateOutput extends React.Component {
   state = {
     heartRate: 0,
     errors: ''
@@ -24,20 +24,21 @@ class HeartRateInput extends React.Component {
   };
 
   handleNextClick = async () => {
-    if (this.state.heartRate === 0) return this.setState({ errors: 'Please supply valid input' });
+    if (!this.state.heartRate) return this.setState({ errors: 'Please supply valid input' });
     const exercise_data = {
+      ...this.props.exercise_data,
       post_heart_rate: this.state.heartRate
     };
-    Actions.exercisefinished({ user: this.state.user, exercise_data, exercises: this.state.exercises });
+    Actions.exercisefinished({ user: this.state.user, exercise_data });
   };
 
   render() {
     // const item = this.state.exercises[this.state.currentExercise];
     return [
-      <Wrapper>
+      <Wrapper key={1}  padder>
         <ScreenLabel text="Heart Rate" />
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <Image source={imageLoader.Heart} style={{ height: 200, width: 200 }} />
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={imageLoader.Heart} style={{ height: 100, width: 100 }} />
         </View>
         <TextBox
           label="Heart Rate"
@@ -54,4 +55,4 @@ class HeartRateInput extends React.Component {
   }
 }
 
-export default HeartRateInput;
+export default HeartRateOutput;

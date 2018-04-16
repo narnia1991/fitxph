@@ -51,10 +51,10 @@ class HeartRateInput extends React.Component {
   render() {
     // const item = this.state.exercises[this.state.currentExercise];
     return [
-      <Wrapper>
+      <Wrapper key={1} padder>
         <ScreenLabel text="Heart Rate" />
-        <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
-          <Image source={imageLoader.Heart} style={{ height: 200, width: 200 }} />
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={imageLoader.Heart} style={{ width: 100, height: 100 }} />
           <View>
             {/* <Text>Status: {this.state.status}</Text>
             <Text>Max Heartrate: {this.state.max}</Text>
@@ -65,7 +65,7 @@ class HeartRateInput extends React.Component {
         <TextBox
           label="Heart Rate"
           onChangeText={this.handleChange}
-
+          style={{ padding: 5 }}
         />
       </Wrapper>,
       <Submit key={2} onSubmit={this.handleNextClick} text="Submit" />

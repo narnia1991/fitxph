@@ -6,10 +6,10 @@ import {
   Text
 } from "native-base";
 
-const Submit = ({ onSubmit, text }) => (
+const Submit = ({ onSubmit, text, disabled }) => (
   <Footer>
     <FooterTab>
-      <Button large onPress={onSubmit}>
+      <Button large onPress={onSubmit} disabled={disabled}>
         <Text>{text}</Text>
       </Button>
     </FooterTab>

@@ -1,17 +1,18 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Card, CardItem, Text, Body, Button } from 'native-base';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { Wrapper, Submit } from '../../components';
-import { setData } from '../../AsyncStorage';
+import { getData, setData } from '../../AsyncStorage';
 import imageLoader from '../../utils/imageLoader';
+import {getUnix} from '../../utils/unix'
 
 class ExerciseFinished extends React.Component {
   state = {
     user: {}
   };
 
-  componentWillMount = () => {
+  componentWillMount = async () => {
     if (!this.props.user) {
       Actions.login();
     }
@@ -20,21 +21,29 @@ class ExerciseFinished extends React.Component {
     const user = {
       ...this.props.user,
       current_day: this.props.user.current_day + 1,
-      current_day_finished: new Date()
+      current_day_finished: getUnix(new Date())
     };
+  console.log(user)
+    let exerciseData = [];
+    exerciseData.push(await getData(`${this.props.user.username}_exercise_data`))
 
-    setData(this.props.user.username, user);
+    exerciseData.push(this.props.exercise_data)
+
+    await setData(this.props.user.username, user);
+    await setData(`${this.props.user.username}_exercise_data`, exerciseData);
   };
 
   handleClick = () => {
-    return Actions.landing({ user: this.state.user });
+    return Actions.replace('landing', { user: this.state.user });
   }
 
   render() {
     return [
       <Wrapper key={1}>
-        <Image source={imageLoader.Splash} />
-        <Card>
+        <View style={{flex:1, alignItems: 'center'}}>
+          <Image source={imageLoader.Splash} />
+        </View>
+      <Card>
           <CardItem header>
             <Text>Congratulations!!!</Text>
           </CardItem>

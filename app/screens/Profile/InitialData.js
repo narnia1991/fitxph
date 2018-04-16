@@ -38,7 +38,6 @@ class InitialData extends React.Component {
   handleSubmit = async () => {
     const { dob, gender, weight, height, initial_date } = this;
 
-
     if (!dob || !gender || !weight || !height) return this.setState({ errors: 'All fields are required' });
     const user = {
       dob,
@@ -46,27 +45,32 @@ class InitialData extends React.Component {
       initial_weight: weight,
       last_weight: weight,
       initial_height: height,
-      initial_date: getUnix(initial_date)
+      initial_date: getUnix(new Date()),
+      last_date: getUnix(new Date())
     };
 
-    this.loading = true
+    this.loading = true;
     await setData(`${this.state.user.username}_progress`, user);
     await setData(this.state.user.username, { ...this.state.user, dob });
     setTimeout(() => {
-      this.loading = false
-      Actions.replace('goal', { user })
+      this.loading = false;
+      Actions.replace('goal', { user: this.state.user, progress: user });
     }, 2000);
   };
 
   render() {
-    if (!!this.loading) return <Spinner />
+    if (!!this.loading) return <Spinner />;
     return [
       <Wrapper key={1}>
         <ScreenLabel text="Let's get started!" />
         <Text style={{ color: 'red' }}>{this.state.errors}</Text>
         <Form>
           {/* <TextBox label="Name" onChangeText={text => (this.name = text)} /> */}
-          <DatePicker label="Date of Birth(MM/DD/YYYY)" onChangeText={text => (this.dob = text)} options={{ maxDate: new Date() }} />
+          <DatePicker
+            label="Date of Birth(MM/DD/YYYY)"
+            onChangeText={text => (this.dob = text)}
+            options={{ maxDate: new Date() }}
+          />
           <Dropdown
             label="Gender"
             onChange={value => (this.gender = value)}
@@ -76,8 +80,6 @@ class InitialData extends React.Component {
           <SectionLabel text="Initial Data" />
           <TextBox label="Weight(kg)" onChangeText={text => (this.weight = text)} />
           <TextBox label="Height(m)" onChangeText={text => (this.height = text)} />
-
-          <DatePicker label="Start Date(MM/DD/YYYY)" onChangeText={text => (this.initial_date = text)} options={{ maxDate: new Date() }} />
         </Form>
       </Wrapper>,
       <Submit key={2} text="Submit" onSubmit={this.handleSubmit} />
